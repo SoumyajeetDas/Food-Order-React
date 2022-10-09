@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+#data {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#image {
+    border-radius: 10px;
+    box-shadow: 0px 2px 43px 8px rgb(132, 214, 255, 0.55)
+}
+
+#intro1 {
+    font-size: 40px;
+
+    font-family: 'Dancing Script', cursive;
+
+}
+
+#intro2 {
+    font-size: 5rem;
+    font-family: 'Alkalami', serif;
+    color: rgb(244, 191, 92);
+    height:66px
+}
+
+#accountbtn{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: white;
+    padding: 9px 25px;
+    background-color: #D2078B;
+    border: none;
+    border-radius: 50px;
+    margin-top:5rem;
+}
+
