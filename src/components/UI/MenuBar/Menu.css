@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&display=swap');
+
+.menubar {
+    position: fixed;
+    left: -5px;
+    top: 10px;
+    background-color: rgb(183, 142, 65);
+    border-radius:10px;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    z-index: 7;
+}
+
+.menu-bar-initial{
+    display: none;
+}
+
+
+.menuitems {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.9rem;
+    gap: 1rem;
+    font-weight: 700;
+    transition-timing-function: ease;
+    transition-duration: 300ms;
+}
+
+.menuitems:hover {
+    transform: translateX(5px);
+    background-color: rgb(244, 191, 92, 0.8);
+    border-radius: 20px;
+}
+
+#cross {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Alkalami', serif;
+    font-size: 25px;
+}
+
+@media screen and (min-width:1092px){
+    .menubar {
+        display: none;
+    }
+}

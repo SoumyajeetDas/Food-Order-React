@@ -98,3 +98,21 @@ header {
         transform: scale(1);
     }
 }
+
+
+#menu-icon{
+    display: none;
+}
+
+
+
+@media screen and (max-width:1092px){
+    #menu-icon{
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .nav__links{
+        display: none;
+    }
+}

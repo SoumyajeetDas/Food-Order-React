@@ -10,10 +10,11 @@ export default function Content() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 2 }}
+
         >
-            <Container class="my-5">
+            <Container>
                 <Row>
-                    <div id="data">
+                    <div id="data" class="my-5">
 
                         <div>
                             <p id="intro1" class="text-white mb-4">The Health you want is here :)</p>

@@ -8,6 +8,7 @@
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
+
 }
 
 #image {
@@ -17,7 +18,6 @@
 
 #intro1 {
     font-size: 40px;
-
     font-family: 'Dancing Script', cursive;
 
 }
@@ -26,10 +26,10 @@
     font-size: 5rem;
     font-family: 'Alkalami', serif;
     color: rgb(244, 191, 92);
-    height:66px
+    height: 66px
 }
 
-#accountbtn{
+#accountbtn {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     color: white;
@@ -37,6 +37,39 @@
     background-color: #D2078B;
     border: none;
     border-radius: 50px;
-    margin-top:5rem;
+    margin-top: 5rem;
 }
 
+@media screen and (max-width:1199px) {
+    #image {
+        margin-top: 5rem;
+    }
+
+    #accountbtn {
+        display: none;
+    }
+}
+
+@media screen and (max-width:600px) {
+    #image {
+        height: 300px;
+        width: 300px
+    }
+}
+
+@media screen and (max-width:600px) {
+    #intro1 {
+        font-size: 29px;
+        text-align: center;
+    }
+
+    #intro2 {
+        font-size: 3rem;
+        height: 40px;
+        text-align: center;
+    }
+
+    #image {
+        margin-top: 2rem;
+    }
+}
