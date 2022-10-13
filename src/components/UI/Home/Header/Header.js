@@ -1,9 +1,11 @@
 import React from 'react'
 import './Header.css'
 import { motion } from "framer-motion"
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header(props) {
 
+  const navigate = useNavigate();
 
   return (
 
@@ -12,16 +14,16 @@ export default function Header(props) {
       animate={{ y: 0 }} // Keep in mind 0 does not mean 0px. It means the object where it is in DOM
       transition={{ type: 'spring', stifness: 500 }}
 
-      class="mb-5"
+      class="mb-1"
     >
       <nav>
-        <span class="material-symbols-outlined text-white" id="menu-icon" onClick={()=>props.show()}>
+        <span class="material-symbols-outlined text-white" id="menu-icon" onClick={() => props.show()}>
           menu
         </span>
         <ul class="nav__links">
           <motion.li
             whileHover={{ scale: 1.5 }}
-          ><a href="/">Home</a></motion.li>
+          ><Link to="/">Home</Link></motion.li>
           <motion.li
             whileHover={{ scale: 1.5 }}
           ><a href="/">Order</a></motion.li>
@@ -34,17 +36,14 @@ export default function Header(props) {
         <ul class="nav__links">
           <motion.li
             whileHover={{ scale: 1.5 }}
-          ><a class="login" href="/">Register</a></motion.li>
-          <motion.li
-            whileHover={{ scale: 1.5 }}
-          ><a class="login" href="/">Login</a></motion.li>
+          ><Link class="login" to="/login">Login</Link></motion.li>
         </ul>
 
 
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          class="button" href="/">Sign Up</motion.button>
+          class="button" onClick={()=>navigate("/register")}>Sign Up</motion.button>
 
       </div>
 

@@ -1,9 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
-import Content from './components/UI/Home/Content/Content';
-import Footer from './components/UI/Home/Footer/Footer';
-import Header from './components/UI/Home/Header/Header';
 import Menu from './components/UI/MenuBar/Menu';
+import Header from './components/UI/Home/Header/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/UI/Home/Home';
+import Register from './components/UI/Credential/Register';
+import Login from './components/UI/Credential/Login';
 
 
 const App = () => {
@@ -33,13 +35,23 @@ const App = () => {
   }
   return (
     <>
+      {/* Backdrop */}
       {status && <div id="backdrop" onClick={show}>
 
       </div>}
+
+      <BrowserRouter>
       <Header show={show} />
       <Menu show={show} classname={classname} variant={variant} />
-      <Content />
-      <Footer />
+      <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/register" element={<Register/>}/>
+        <Route exact path="/login" element={<Login/>}/>
+      </Routes>
+      </BrowserRouter>
+
+      
+
     </>
   );
 }
