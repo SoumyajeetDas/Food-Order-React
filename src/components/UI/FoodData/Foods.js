@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap';
 import FoodItems from './FoodItems/FoodItems';
 import Spinner from '../Spinner/Spiner'
+import Footer from '../Home/Footer/Footer';
 
 
 export default function Foods() {
@@ -45,6 +46,7 @@ export default function Foods() {
   return (
     <div>
 
+
       <Container>
         <Row>
           {loading && <Spinner />}
@@ -66,8 +68,13 @@ export default function Foods() {
 
         :
 
-        query.map(item => <FoodItems key={item._id} item={item} />)}
+        query.map(item => 
+        
+        
+        <FoodItems key={item._id} item={item} />)}
 
+
+      <Footer />
     </div>
   )
 }

@@ -39,6 +39,15 @@
     border-radius: 17px
 }
 
+#toast {
+    position: fixed;
+    top: 100px;
+    z-index: 2;
+    right:10px;
+    padding:5px 10px;
+    border-radius:5px;
+}
+
 @media screen and (max-width:738px) {
     #wrapper {
         flex-wrap: wrap

@@ -33,32 +33,32 @@ export default function Menu(props) {
             animate={`${props.variant.animate}`}
             transition={{ type: "spring" }}
 
-            class={props.classname}>
+            className={props.classname}>
             <div id="cross" >
                 <div>
                     <img src="icon.png" alt="Loading..." height="30" width="30"></img>
                     <p>Bengali Food</p>
                 </div>
 
-                <span class="material-symbols-rounded" onClick={()=>props.show()}>
+                <span className="material-symbols-rounded" onClick={()=>props.show()}>
                     close
                 </span>
             </div>
             <div
-                class="menuitems">
-                <span class="material-symbols-rounded">
+                className="menuitems">
+                <span className="material-symbols-rounded">
                     home
                 </span>
                 Home
             </div>
-            <div class="menuitems">
-                <span class="material-symbols-rounded">
+            <div className="menuitems">
+                <span className="material-symbols-rounded">
                     list_alt
                 </span>
                 Orders
             </div>
-            <div class="menuitems">
-                <span class="material-symbols-rounded">
+            <div className="menuitems">
+                <span className="material-symbols-rounded">
                     history
                 </span>
                 Previous Order

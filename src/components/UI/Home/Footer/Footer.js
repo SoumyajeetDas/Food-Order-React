@@ -22,19 +22,19 @@ export default function Footer() {
                             <motion.i
                                 whileHover={{ scale: 2.1 }}
                                 whileTap={{ scale: 1.5 }}
-                                class="fab fa-facebook text-white"></motion.i>
+                                className="fab fa-facebook text-white"></motion.i>
                             <motion.i
                                 whileHover={{ scale: 2.1 }}
                                 whileTap={{ scale: 1.5 }}
-                                class="fab fa-instagram text-white"></motion.i>
+                                className="fab fa-instagram text-white"></motion.i>
                             <motion.i
                                 whileHover={{ scale: 2.1 }}
                                 whileTap={{ scale: 1.5 }}
-                                class="fab fa-twitter text-white"></motion.i>
+                                className="fab fa-twitter text-white"></motion.i>
                             <motion.i
                                 whileHover={{ scale: 2.1 }}
                                 whileTap={{ scale: 1.5 }}
-                                class="fab fa-linkedin text-white"></motion.i>
+                                className="fab fa-linkedin text-white"></motion.i>
                         </div>
                     </div>
                 </Row>

@@ -2,10 +2,12 @@ import React from 'react'
 import './Header.css'
 import { motion } from "framer-motion"
 import { Link, useNavigate } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 export default function Header(props) {
 
   const navigate = useNavigate();
+  const items = useSelector(state => state.cartReducer.items)
 
   return (
 
@@ -14,13 +16,13 @@ export default function Header(props) {
       animate={{ y: 0 }} // Keep in mind 0 does not mean 0px. It means the object where it is in DOM
       transition={{ type: 'spring', stifness: 500 }}
 
-      class="mb-1"
+      className="mb-1"
     >
       <nav>
-        <span class="material-symbols-outlined text-white" id="menu-icon" onClick={() => props.show()}>
+        <span className="material-symbols-outlined text-white" id="menu-icon" onClick={() => props.show()}>
           menu
         </span>
-        <ul class="nav__links">
+        <ul className="nav__links">
           <motion.li
             whileHover={{ scale: 1.5 }}
           ><Link to="/">Home</Link></motion.li>
@@ -32,18 +34,31 @@ export default function Header(props) {
           ><a href="/">Orders</a></motion.li>
         </ul>
       </nav>
-      <div class="right_part">
-        <ul class="nav__links">
+      <div className="right_part">
+        <ul className="nav__links">
           <motion.li
             whileHover={{ scale: 1.5 }}
-          ><Link class="login" to="/login">Login</Link></motion.li>
+          ><Link className="login" to="/login">Login</Link></motion.li>
         </ul>
 
+        <ul className="nav__links">
+          <motion.li
+            whileHover={{ scale: 1.5 }}
+          >
+
+            <span className="material-symbols-rounded text-white">
+              shopping_cart
+            </span>
+            <span className="text-warning" id="cart-number">
+              <b>{items.length}</b>
+            </span>
+          </motion.li>
+        </ul>
 
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          class="button" onClick={()=>navigate("/register")}>Sign Up</motion.button>
+          className="button" onClick={() => navigate("/register")}>Sign Up</motion.button>
 
       </div>
 

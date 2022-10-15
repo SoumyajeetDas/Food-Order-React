@@ -14,12 +14,12 @@ export default function Content() {
         >
             <Container>
                 <Row>
-                    <div id="data" class="my-5">
+                    <div id="data" className="my-5">
 
                         <div>
-                            <p id="intro1" class="text-white mb-4">The Health you want is here :)</p>
+                            <p id="intro1" className="text-white mb-4">The Health you want is here :)</p>
                             <p id="intro2"><b>Bengali Food</b></p>
-                            <p class="text-white text-center">Bring the quality living experience to today's urban customers</p>
+                            <p className="text-white text-center">Bring the quality living experience to today's urban customers</p>
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
