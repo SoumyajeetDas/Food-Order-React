@@ -26,10 +26,10 @@ export default function Header(props) {
           ><Link to="/">Home</Link></motion.li>
           <motion.li
             whileHover={{ scale: 1.5 }}
-          ><a href="/">Order</a></motion.li>
+          ><Link to="/foods">Foods</Link></motion.li>
           <motion.li
             whileHover={{ scale: 1.5 }}
-          ><a href="/">Previuos Orders</a></motion.li>
+          ><a href="/">Orders</a></motion.li>
         </ul>
       </nav>
       <div class="right_part">

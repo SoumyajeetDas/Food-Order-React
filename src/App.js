@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/UI/Home/Home';
 import Register from './components/UI/Credential/Register';
 import Login from './components/UI/Credential/Login';
+import Foods from './components/UI/FoodData/Foods';
 
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/register" element={<Register/>}/>
         <Route exact path="/login" element={<Login/>}/>
+        <Route exact path="/foods" element={<Foods/>}/>
       </Routes>
       </BrowserRouter>
 

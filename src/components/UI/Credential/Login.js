@@ -29,14 +29,17 @@ export default function Login() {
                         <motion.div
                             whileHover={{ scale: 1.1 }}
                         >
-                            <Form.Group className="mb-5 form-group">
+                            <Form.Group className="mb-2 form-group">
                                 <span class="material-symbols-rounded b-0 p-2 text-warning">
                                     lock
                                 </span>
                                 <input type="password" placeholder="Enter the password" class="text-warning" />
                             </Form.Group>
+                            
                         </motion.div>
-
+                        <div class="mb-5">
+                        <p class="text-end text-white">Forgot Password?</p>
+                        </div>
                         <motion.div
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
@@ -45,6 +48,7 @@ export default function Login() {
                                 Login
                             </Button>
                         </motion.div>
+  
                     </Form>
                 </Col>
             </Row>
