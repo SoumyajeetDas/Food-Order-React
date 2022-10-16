@@ -3,7 +3,6 @@ import { Container, Row } from 'react-bootstrap';
 import FoodItems from './FoodItems/FoodItems';
 import Spinner from '../Spinner/Spiner'
 import Footer from '../Home/Footer/Footer';
-import Order from '../Order/Order';
 
 
 export default function Foods() {
@@ -79,7 +78,7 @@ export default function Foods() {
         <Footer />
       </div>
 
-      <Order/>
+
     </div>
 
   )

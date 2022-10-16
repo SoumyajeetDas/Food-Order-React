@@ -12,6 +12,10 @@
     color: white;
     font-family: 'Poppins', sans-serif;
     z-index: 7;
+    height:75vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .menu-bar-initial{

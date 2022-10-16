@@ -7,6 +7,7 @@ import Home from './components/UI/Home/Home';
 import Register from './components/UI/Credential/Register';
 import Login from './components/UI/Credential/Login';
 import Foods from './components/UI/FoodData/Foods';
+import Order from './components/UI/Order/Order';
 
 
 const App = () => {
@@ -42,17 +43,17 @@ const App = () => {
       </div>}
 
       <BrowserRouter>
-      <Header show={show} />
-      <Menu show={show} classname={classname} variant={variant} />
-      <Routes>
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/register" element={<Register/>}/>
-        <Route exact path="/login" element={<Login/>}/>
-        <Route exact path="/foods" element={<Foods/>}/>
-      </Routes>
+        <Header show={show} />
+        <Menu show={show} classname={classname} variant={variant} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/foods" element={<Foods />} />
+        </Routes>
       </BrowserRouter>
 
-      
+      <Order />
 
     </>
   );

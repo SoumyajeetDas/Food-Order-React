@@ -1,20 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 
 #order-bar {
-    width: 320px;
-    height: 85vh;
+    width: 300px;
     position: fixed;
+    top: 30px;
     right: 0px;
     padding: 1rem;
-    border-radius: 20px 0 0 0;
+    border-radius: 20px 0 0 20px;
     z-index: 7;
+
 }
 
 
-#order-bar h5{
+#order-bar h5 {
     font-family: 'Prompt', sans-serif;
 }
 
-#total-price{
+#total-price {
     font-size: 20px;
+}
+
+
+#menu-items {
+    height: 60vh;
+    overflow-y: scroll
+}
+
+
+
+@media screen and (max-width:576px) {
+    #menu-items {
+
+        height: 370px;
+    }
+
+    #order-bar {
+        width: 300px;
+    }
 }

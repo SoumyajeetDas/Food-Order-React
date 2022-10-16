@@ -37,7 +37,7 @@ export default function Order() {
                 <h4 class="mb-3">We will deliver in 24mins to the address!!</h4>
 
 
-                <div style={{ height: "350px", overflowY: "scroll" }}>
+                <div id="menu-items">
                     {items.length === 0 ?
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="noitem.gif" alt="Loading..." header="200" width="200"></img>
