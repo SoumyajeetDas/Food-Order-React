@@ -1,0 +1,27 @@
+#item-slice{
+    border-radius: 20px; 
+    background-color: rgb(244, 191, 92); 
+    padding:1rem 1rem;
+    margin:1rem 0;
+}
+
+#wrapper-order{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#wrapper-order img{
+    height:50px;
+    width:50px;
+}
+
+#inner-wrapper{
+    display: flex; 
+    justify-content: space-between;
+    /* align-items: center */
+}
+
+#button{
+    cursor:pointer
+}

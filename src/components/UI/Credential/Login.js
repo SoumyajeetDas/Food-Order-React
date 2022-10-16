@@ -12,17 +12,17 @@ export default function Login() {
         <Container >
             <Row>
                 <Col md={6} className="m-auto p-5" style={{ borderRadius: "20px" }}>
-                    <h2 id="register" class="text-center text-warning mb-3">Login</h2>
+                    <h2 id="register" class="text-center mb-3">Login</h2>
                     <Form>
 
                         <motion.div
                             whileHover={{ scale: 1.1 }}
                         >
                             <Form.Group className="mb-5 form-group">
-                                <span class="material-symbols-outlined b-0 p-2 text-warning" >
+                                <span class="material-symbols-outlined b-0 p-2 colouring" >
                                     email
                                 </span>
-                                <input type="email" placeholder="Enter the email" class="text-warning" />
+                                <input type="email" placeholder="Enter the email" class="colouring" />
                             </Form.Group>
                         </motion.div>
 
@@ -30,10 +30,10 @@ export default function Login() {
                             whileHover={{ scale: 1.1 }}
                         >
                             <Form.Group className="mb-2 form-group">
-                                <span class="material-symbols-rounded b-0 p-2 text-warning">
+                                <span class="material-symbols-rounded b-0 p-2 colouring">
                                     lock
                                 </span>
-                                <input type="password" placeholder="Enter the password" class="text-warning" />
+                                <input type="password" placeholder="Enter the password" class="colouring" />
                             </Form.Group>
                             
                         </motion.div>

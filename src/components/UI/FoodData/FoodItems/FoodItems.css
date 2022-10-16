@@ -46,6 +46,7 @@
     right:10px;
     padding:5px 10px;
     border-radius:5px;
+    background-color: rgb(244, 191, 92);
 }
 
 @media screen and (max-width:738px) {
@@ -58,4 +59,8 @@
         height: 200px;
         width: 100%
     }
+}
+
+#price{
+    color:rgb(244, 191, 92); 
 }

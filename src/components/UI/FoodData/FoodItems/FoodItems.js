@@ -10,44 +10,42 @@ import { useDispatch } from 'react-redux';
 export default function FoodItems(props) {
 
   const dispatch = useDispatch();
-  const [item,setItem] = useState();
+  const [item, setItem] = useState();
   const [show, setShow] = useState(false);
 
 
   const addCartHandler = () => {
-    console.log(props.item.name)
 
-
-
-    console.log("Item ",item)
     dispatch(cartActions.addItem({
       id: props.item._id,
       name: props.item.name,
       price: props.item.price,
-      imageUrl: props.item.imageUrl
+      imageUrl: props.item.imageUrl,
+      amount: 1
     }));
 
     setItem(props.item.name);
     setShow(true);
 
 
-    setTimeout(()=>{
+    setTimeout(() => {
       setShow(false);
-    },2000)
+    }, 2000)
   }
 
   return (
     <>
-      {show && <div id="toast" className="text-center text-white bg-warning border-0" >
+      {show && <motion.div
+        initial={{ y: -250, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
 
-        <motion.div
-        initial={{opacity: 0}}
-        animate={{opacity: 1}} 
-        
-        className="text-white">
+        id="toast" className="text-center text-white border-0" >
+
+        <div
+          className="text-white">
           {item} added in cart
-        </motion.div>
-      </div>}
+        </div>
+      </motion.div>}
 
       <motion.div
         whileHover={{ x: 10 }}
@@ -67,7 +65,7 @@ export default function FoodItems(props) {
                 <div className="p-4">
                   <h3 id="food-name" className="text-white">{props.item.name}</h3>
                   <small className="text-white"><i>{props.item.description}</i></small>
-                  <h4 className="text-warning mt-3"><b>₹{props.item.price}</b></h4>
+                  <h4 id="price" className="mt-3"><b>₹{props.item.price}</b></h4>
                 </div>
               </div>
 

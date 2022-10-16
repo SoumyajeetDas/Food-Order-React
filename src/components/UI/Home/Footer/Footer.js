@@ -15,7 +15,7 @@ export default function Footer() {
             <Container className="my-5">
                 <Row>
                     <Col sm={12} className="text-center mx-auto">
-                        <p id="follow-us" className="text-white">Follow Us On</p>
+                        <p id="follow-us">Follow Us On</p>
                     </Col>
                     <div style={{width:"150px"}} className="text-center mx-auto">
                         <div id="footer">

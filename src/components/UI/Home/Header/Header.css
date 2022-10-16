@@ -73,6 +73,7 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 1;
+    color:rgb(244, 191, 92); 
 }
 
 #cart-number{

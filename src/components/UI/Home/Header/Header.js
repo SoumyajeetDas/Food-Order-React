@@ -2,12 +2,19 @@ import React from 'react'
 import './Header.css'
 import { motion } from "framer-motion"
 import { Link, useNavigate } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { cartItemShowActions } from '../../../../store/index'
 
 export default function Header(props) {
 
   const navigate = useNavigate();
-  const items = useSelector(state => state.cartReducer.items)
+  const items = useSelector(state => state.cartReducer.items);
+
+  const dispatch = useDispatch();
+
+  const cartItemShowHandler = () => {
+    dispatch(cartItemShowActions.show());
+  }
 
   return (
 
@@ -43,13 +50,15 @@ export default function Header(props) {
 
         <ul className="nav__links">
           <motion.li
-            whileHover={{ scale: 1.5 }}
+            whileHover={{ scale: 1.2 }}
+            style={{ cursor: "pointer" }}
+            onClick={cartItemShowHandler}
           >
 
             <span className="material-symbols-rounded text-white">
               shopping_cart
             </span>
-            <span className="text-warning" id="cart-number">
+            <span id="cart-number">
               <b>{items.length}</b>
             </span>
           </motion.li>

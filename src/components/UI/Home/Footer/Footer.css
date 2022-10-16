@@ -3,11 +3,9 @@
 #follow-us{
     font-size:2rem;
     font-family: 'Comforter Brush', cursive;
+    color:rgb(244, 191, 92); 
 }
 
-.fab{
-    color: antiquewhite;
-}
 
 #footer{
     display: flex;
