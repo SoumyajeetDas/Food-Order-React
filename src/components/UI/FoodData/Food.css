@@ -1,0 +1,32 @@
+#food-btn {
+    border-radius: 30px;
+    box-shadow: 0px 4px 11px -1px rgb(132, 214, 255, 0.35);
+    border:0;
+    color:rgb(244, 191, 92);
+}
+
+#food-btn-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap
+}
+
+.form-group {
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #173331;
+    border-radius: 30px;
+    box-shadow: 0px 4px 11px -1px rgb(132, 214, 255, 0.35)
+}
+
+
+.form-group input {
+    width: 80%;
+    height: 3rem;
+    outline: none;
+    border: none;
+    background-color: #173331
+}

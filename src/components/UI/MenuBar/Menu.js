@@ -2,8 +2,10 @@ import React from 'react';
 import './Menu.css';
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartItemShowActions,  } from '../../../store/index'
+import { cartItemShowActions, } from '../../../store/index'
 import { useNavigate } from 'react-router-dom';
+import { authActions } from '../../../store/index';
+import { logout } from '../../../store/auth-slice'
 
 const MenuVaraints1 = {
     hidden: {
@@ -30,16 +32,25 @@ const MenuVaraints2 = {
 
 export default function Menu(props) {
     const items = useSelector(state => state.cartReducer.items);
+    const { user } = useSelector(state => state.authReducer);
+
 
     const dispatch = useDispatch();
-  
+
     const cartItemShowHandler = () => {
-      dispatch(cartItemShowActions.show());
-      props.show();
+        dispatch(cartItemShowActions.show());
+        props.show();
     }
 
     const navigate = useNavigate();
-  
+
+    const handleLogout = () => {
+        dispatch(logout());
+
+        dispatch(authActions.reset());
+
+        navigate("/")
+    }
 
     return (
         <motion.div
@@ -63,7 +74,7 @@ export default function Menu(props) {
             </div>
 
 
-            <div className="menuitems" onClick = {()=> navigate('/')}>
+            <div className="menuitems" onClick={() => navigate('/')}>
                 <span className="material-symbols-rounded">
                     home
                 </span>
@@ -71,14 +82,14 @@ export default function Menu(props) {
             </div>
 
 
-            <div className="menuitems" onClick = {()=> navigate('/foods')}>
+            <div className="menuitems" onClick={() => navigate('/foods')}>
                 <span className="material-symbols-rounded">
                     list_alt
                 </span>
                 Menus
             </div>
 
-            <div className="menuitems" onClick={cartItemShowHandler}>
+            {user && <div className="menuitems" onClick={cartItemShowHandler}>
                 <span className="material-symbols-rounded">
                     <span class="material-symbols-rounded">
                         shopping_cart
@@ -87,7 +98,7 @@ export default function Menu(props) {
                 Cart
 
                 <p class="m-0 py-1 px-3 bg-danger rounded-pill">{items.length}</p>
-            </div>
+            </div>}
 
 
             <div className="menuitems">
@@ -98,28 +109,20 @@ export default function Menu(props) {
             </div>
 
 
-            <div className="menuitems">
-                <span class="material-symbols-rounded">
-                    person_add
-                </span>
-                SignUp
-            </div>
-
-
-            <div className="menuitems">
+            {!user && <div className="menuitems" onClick={()=>navigate("/login")}>
                 <span class="material-symbols-outlined">
                     login
                 </span>
                 Login
-            </div>
+            </div>}
 
 
-            <div className="menuitems">
+            {user && <div className="menuitems" onClick={handleLogout}>
                 <span class="material-symbols-rounded">
                     logout
                 </span>
                 Logout
-            </div>
+            </div>}
         </motion.div>
     )
 }

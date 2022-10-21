@@ -27,7 +27,7 @@ header {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    margin:0
+    margin: 0
 }
 
 
@@ -46,7 +46,7 @@ header {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    
+
 }
 
 
@@ -73,14 +73,16 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 1;
-    color:rgb(244, 191, 92); 
+    color: rgb(244, 191, 92);
 }
 
-#cart-number{
-    position:relative; 
-    top: -21px; 
-    right: 2px
+#cart-number {
+    position: relative;
+    top: -21px;
+    right: 2px;
+    color: rgb(244, 191, 92);
 }
+
 
 
 
@@ -107,19 +109,40 @@ header {
 }
 
 
-#menu-icon{
+#menu-icon {
     display: none;
 }
 
 
+#right-part-loggedin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-@media screen and (max-width:1092px){
-    #menu-icon{
+}
+
+#user-login {
+    display: flex;
+    justify-content: center;
+    color: rgb(244, 191, 92);
+}
+
+
+@media screen and (max-width:1092px) {
+    #menu-icon {
         display: inline-block;
         cursor: pointer;
     }
 
-    .nav__links{
+    .nav__links {
         display: none;
+    }
+
+    #cart-icon {
+        display: none
+    }
+
+    #logout {
+        display: none
     }
 }

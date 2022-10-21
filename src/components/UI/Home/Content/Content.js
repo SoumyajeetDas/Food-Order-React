@@ -2,9 +2,13 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import './Content.css'
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 export default function Content() {
+
+    const navigate = useNavigate();
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -23,7 +27,13 @@ export default function Content() {
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                id="accountbtn">Open your account</motion.button>
+                                id="accountbtn"
+                                onClick={()=>navigate("/register")}
+                                >
+
+                                Open your account
+
+                            </motion.button>
 
                         </div>
                         <img src="BengaliFood.jpg" height="500" width="500" alt="Loading......." id="image"></img>
