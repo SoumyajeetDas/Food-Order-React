@@ -11,6 +11,7 @@ import { register } from '../../../store/auth-slice'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spiner'
+import Footer from '../Home/Footer/Footer';
 
 
 
@@ -189,6 +190,8 @@ export default function Register() {
                     </Col>
                 </Row>
             </Container>
+
+            <Footer/>
         </>
 
     )

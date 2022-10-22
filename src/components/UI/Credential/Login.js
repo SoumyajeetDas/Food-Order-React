@@ -11,6 +11,7 @@ import { authActions } from '../../../store/index';
 import Spinner from '../Spinner/Spiner';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Home/Footer/Footer';
 
 
 let validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
@@ -148,6 +149,8 @@ export default function Login() {
                     </Col>
                 </Row>
             </Container>
+
+            <Footer/>
         </>
 
     )

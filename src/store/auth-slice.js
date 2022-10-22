@@ -4,10 +4,10 @@ import Cookie from 'js-cookie'
 
 // const user = JSON.parse(localStorage.getItem('user'));
 
-const user = Cookie.get('user')?JSON.parse(Cookie.get('user')):null;
+const registerData = Cookie.get('userregisterData')?JSON.parse(Cookie.get('userregisterData')):'';
 
 const initialAuthState = {
-    user: user,
+    registerData,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -89,13 +89,13 @@ export const authSlice = createSlice({
         [register.fulfilled]: (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.user = action.payload
+            state.registerData = action.payload
         },
         [register.rejected]: (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
-            state.user = null;
+            state.registerData = null;
         },
         [login.pending]: (state) => {
             state.isLoading = true
@@ -104,16 +104,16 @@ export const authSlice = createSlice({
         [login.fulfilled]: (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.user = action.payload
+            state.registerData = action.payload
         },
         [login.rejected]: (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
-            state.user = null;
+            state.registerData = null;
         },
         [logout.fulfilled]:(state)=>{
-            state.user = null;
+            state.registerData = '';
         }
 
     }

@@ -47,19 +47,18 @@ export default function FoodItems(props) {
         </div>
       </motion.div>}
 
-       <motion.div
+      <motion.div
         initial={{ y: 250, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         whileHover={{ x: 10 }}
         whileTap={{ scale: 0.9 }}
         className="my-5"
-        onClick={addCartHandler}
 
       >
         <Container style={{ maxWidth: "90%" }} className="p-0">
 
           <Row>
-            <Col className="mx-auto p-0" sm={9} id="food-bar" style={{ position: "relative" }}>
+            <Col className="mx-auto p-0" sm={9} id="food-bar" style={{ position: "relative" }} onClick={addCartHandler}>
 
               <span className="p-1 text-center text-white" id="badge">{props.item.rating}</span>
               <div id="wrapper">

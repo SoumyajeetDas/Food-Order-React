@@ -18,7 +18,7 @@ const register = async (user) => {
     if (res.status === 201) {
 
         // localStorage.setItem('user', JSON.stringify(response.data));
-        Cookie.set('user', JSON.stringify(response.data))
+        Cookie.set('userregisterData', JSON.stringify(response.data))
     }
 
     return response;
@@ -45,7 +45,7 @@ export const login = async (user) => {
 
         // localStorage.setItem('user', JSON.stringify(response.data));
 
-        Cookie.set('user', JSON.stringify(response.data));
+        Cookie.set('userregisterData', JSON.stringify(response.data));
     }
 
     return response;
@@ -57,7 +57,7 @@ export const login = async (user) => {
 export const logout = async () => {
     // localStorage.removeItem('user');
 
-    Cookie.remove('user');
+    Cookie.remove('userregisterData');
 }
 
 

@@ -12,7 +12,7 @@ export default function Header(props) {
   const navigate = useNavigate();
   const items = useSelector(state => state.cartReducer.items);
 
-  const { user } = useSelector(state => state.authReducer);
+  const { registerData } = useSelector(state => state.authReducer);
 
 
   const dispatch = useDispatch();
@@ -44,6 +44,9 @@ export default function Header(props) {
         </span>
 
         <ul className="nav__links">
+          <li>
+            <img src="icon.png" alt="...Loading"></img>
+          </li>
           <motion.li
             whileHover={{ scale: 1.5 }}
           ><Link to="/">Home</Link></motion.li>
@@ -57,7 +60,7 @@ export default function Header(props) {
       </nav>
 
 
-      {!user ?
+      {!registerData ?
         <div className="right_part">
           <ul className="nav__links">
             <motion.li
@@ -96,10 +99,12 @@ export default function Header(props) {
 
             <div class="me-md-4" id="user-login">
 
-              <small><i>Hello {user.user.name} !!</i></small>
+              <small><i>Hello {registerData.user.name} !!</i></small>
 
               <div class="ms-2">
-                <img src="user.png" width="30" height="30" alt="Loading..."></img>
+                <span class="material-symbols-outlined text-white" id="login-icon">
+                  account_circle
+                </span>
               </div>
 
             </div>

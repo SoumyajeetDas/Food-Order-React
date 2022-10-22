@@ -32,7 +32,7 @@ const MenuVaraints2 = {
 
 export default function Menu(props) {
     const items = useSelector(state => state.cartReducer.items);
-    const { user } = useSelector(state => state.authReducer);
+    const { registerData } = useSelector(state => state.authReducer);
 
 
     const dispatch = useDispatch();
@@ -89,7 +89,7 @@ export default function Menu(props) {
                 Menus
             </div>
 
-            {user && <div className="menuitems" onClick={cartItemShowHandler}>
+            {registerData  && <div className="menuitems" onClick={cartItemShowHandler}>
                 <span className="material-symbols-rounded">
                     <span class="material-symbols-rounded">
                         shopping_cart
@@ -109,7 +109,7 @@ export default function Menu(props) {
             </div>
 
 
-            {!user && <div className="menuitems" onClick={()=>navigate("/login")}>
+            {!registerData  && <div className="menuitems" onClick={()=>navigate("/login")}>
                 <span class="material-symbols-outlined">
                     login
                 </span>
@@ -117,7 +117,7 @@ export default function Menu(props) {
             </div>}
 
 
-            {user && <div className="menuitems" onClick={handleLogout}>
+            {registerData  && <div className="menuitems" onClick={handleLogout}>
                 <span class="material-symbols-rounded">
                     logout
                 </span>

@@ -7,126 +7,34 @@ import './Food.css';
 import { motion } from 'framer-motion';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchFood, fetchFoodTypeFood, fetchSearchedFood } from '../../../store/foodSlice';
+import { foodActions } from '../../../store/index'
 
 
 export default function Foods() {
 
-  const [query, setQuery] = useState([]);
-  const [apiStatus, setApiStatus] = useState(200);
-  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   let [isFirst, setIsFirst] = useState(true);
 
+
+  const { isError, isSuccess, isLoading, message, foodItems } = useSelector((state) => state.foodReducer);
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
-  const { user } = useSelector(state => state.authReducer);
-
-
-
-  const fetchData = async () => {
-    // setLoading(true);
-    try {
-
-      if (user === null) {
-        setApiStatus(401);
-      }
-      else {
-        let data = await fetch('http://localhost:6001/api/v1/bengalifood', {
-          method: 'GET',
-          headers: {
-            Authorization: 'Bearer ' + user.token
-          }
-        });
-
-        if (data.status === 200) {
-          let dataJson = await data.json();
-          setQuery(dataJson.data)
-          setLoading(false);
-        }
-        else {
-          setApiStatus(data.status)
-          setLoading(false);
-        }
-      }
-    }
-    catch (err) {
-      setLoading(false);
-      setApiStatus(500);
-      alert(err.message)
-    }
-  }
 
   const handleFoodType = async (type) => {
-    setLoading(true);
-    try {
 
-      if (user === null) {
-        setApiStatus(401);
-      }
-
-      else {
-
-        let data = await fetch(`http://localhost:6001/api/v1/bengalifood/${type}`, {
-          method: 'GET',
-          headers: {
-            Authorization: 'Bearer ' + user.token
-          }
-        });
-
-        if (data.status === 200) {
-          let dataJson = await data.json();
-          setQuery(dataJson.data)
-          setLoading(false);
-        }
-        else {
-          setApiStatus(data.status)
-          setLoading(false);
-        }
-      }
-
+    if (isError && message === '401 Unauthorized') {
+      navigate('/login');
+      dispatch(foodActions.reset());
     }
 
-    catch (err) {
-      setLoading(false);
-      alert(err.message)
-    }
+    dispatch(fetchFoodTypeFood(type))
   }
 
-  const fetchSearchData = async (key) => {
-    setLoading(true);
-    try {
-
-      if (user === null) {
-        setApiStatus(401);
-      }
-
-      else {
-        let data = await fetch(`http://localhost:6001/api/v1/bengalifood/search/${key}`, {
-          method: 'GET',
-          headers: {
-            Authorization: 'Bearer ' + user.token
-          }
-        });
-
-        if (data.status === 200) {
-          let dataJson = await data.json();
-          setQuery(dataJson.data)
-          setLoading(false);
-        }
-        else {
-          setApiStatus(data.status)
-          setLoading(false);
-        }
-
-      }
-
-    }
-    catch (err) {
-      setLoading(false);
-      alert(err.message)
-    }
-  }
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -135,6 +43,7 @@ export default function Foods() {
     // is a asnc function.
   }
 
+  
 
   // To remeber the concept of return in useEffect plaese check the React Notes --> Type "useEffect Imp Concept"
   useEffect(() => {
@@ -146,9 +55,9 @@ export default function Foods() {
     }
     const interval = setTimeout(() => {
       // console.log("In Time", interval)
-      if (search === '') fetchData();
+      if (search === '') dispatch(fetchFood());
 
-      else fetchSearchData(search);
+      else dispatch(fetchSearchedFood(search));
 
     }, 1000);
 
@@ -161,10 +70,20 @@ export default function Foods() {
   }, [search]);
 
 
+  useEffect(() => {
+    if (isError && message === '401 Unauthorized') {
+      navigate('/login');
+      dispatch(foodActions.reset());
+    }
+
+
+  }, [isError, navigate, message, dispatch])
+
 
   useEffect(() => {
+    dispatch(fetchFood());
 
-    fetchData()
+    // dispatch(foodActions.reset())
 
     // eslint-disable-next-line 
   }, []);
@@ -204,7 +123,7 @@ export default function Foods() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
 
-                id="food-btn" className="btn m-3" onClick={() => fetchData()}>All</motion.button>
+                id="food-btn" className="btn m-3" onClick={() => handleFoodType('all')}>All</motion.button>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -228,55 +147,37 @@ export default function Foods() {
 
       <Container>
         <Row>
-          {loading && <Spinner />}
+          {isLoading && <Spinner />}
         </Row>
       </Container>
 
-      {query.length === 0 && apiStatus !== 401 && apiStatus !== 500 ?
+      {isError &&
         <Container>
           <Row>
 
+
+            {/* If here loading was not given then during searching the spiner was coming along with the food Items down of it */}
             <div className="text-center text-white my-5" role="alert">
-              <h3><i>No data found !!</i></h3>
+              <h3><i>{message}</i></h3>
             </div>
 
           </Row>
-        </Container>
-
-        :
-
-        apiStatus !== 200 && apiStatus !== 401 ?
-
-          <Container>
-            <Row>
-
-              <div className="alert alert-danger text-center" role="alert">
-                <strong>Some problem from the backend !!</strong>
-              </div>
-
-            </Row>
-          </Container>
+        </Container>}
 
 
-          :
-
-          apiStatus === 401 ? navigate('/login')
 
 
-            :
+      {isSuccess && foodItems.map(item =>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
 
+          key={item._id}
+        >
+          <FoodItems item={item} />
+        </motion.div>
 
-            query.map(item =>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-
-                key={item._id}
-              >
-                <FoodItems item={item} />
-              </motion.div>
-
-            )}
+      )}
 
 
       <Footer />
