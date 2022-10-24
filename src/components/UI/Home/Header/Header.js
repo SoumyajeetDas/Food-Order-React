@@ -10,7 +10,8 @@ import { logout } from '../../../../store/auth-slice'
 export default function Header(props) {
 
   const navigate = useNavigate();
-  const items = useSelector(state => state.cartReducer.items);
+  const { items } = useSelector(state => state.cartReducer);
+
 
   const { registerData } = useSelector(state => state.authReducer);
 

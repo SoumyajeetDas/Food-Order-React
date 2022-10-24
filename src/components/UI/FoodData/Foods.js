@@ -9,7 +9,9 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFood, fetchFoodTypeFood, fetchSearchedFood } from '../../../store/foodSlice';
-import { foodActions } from '../../../store/index'
+import { getCartData } from '../../../store/cart-slice'
+import { foodActions, cartActions } from '../../../store/index'
+
 
 
 export default function Foods() {
@@ -19,6 +21,8 @@ export default function Foods() {
 
 
   const { isError, isSuccess, isLoading, message, foodItems } = useSelector((state) => state.foodReducer);
+
+  const { isCartError, cartMessage, items, changed, totalPrice} = useSelector(state => state.cartReducer);
 
   const dispatch = useDispatch();
 
@@ -43,7 +47,7 @@ export default function Foods() {
     // is a asnc function.
   }
 
-  
+
 
   // To remeber the concept of return in useEffect plaese check the React Notes --> Type "useEffect Imp Concept"
   useEffect(() => {
@@ -71,17 +75,37 @@ export default function Foods() {
 
 
   useEffect(() => {
+
+    // This is used if any error comes from the foodSlice 
     if (isError && message === '401 Unauthorized') {
       navigate('/login');
       dispatch(foodActions.reset());
     }
 
 
-  }, [isError, navigate, message, dispatch])
+    // This is used if any error comes from cartSlice while calling the cartData
+    if(isCartError){
+      alert(cartMessage);
+      dispatch(cartActions.reset())
+    }
+
+
+  }, [isError,cartMessage,isCartError, navigate, message, dispatch])
 
 
   useEffect(() => {
+
     dispatch(fetchFood());
+
+
+    dispatch(getCartData());
+
+    if(changed){
+      dispatch(cartActions.replaceCart({
+        items,
+        totalPrice
+      }))
+    }
 
     // dispatch(foodActions.reset())
 
@@ -155,8 +179,6 @@ export default function Foods() {
         <Container>
           <Row>
 
-
-            {/* If here loading was not given then during searching the spiner was coming along with the food Items down of it */}
             <div className="text-center text-white my-5" role="alert">
               <h3><i>{message}</i></h3>
             </div>

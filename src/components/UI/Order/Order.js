@@ -11,8 +11,7 @@ import { motion } from 'framer-motion'
 
 export default function Order() {
 
-    const items = useSelector(state => state.cartReducer.items);
-    const totalPrice = useSelector(state => state.cartReducer.totalPrice);
+    const { items, totalPrice } = useSelector(state => state.cartReducer);
 
 
     const show = useSelector(state => state.cartItemShowReducer.willShow);
