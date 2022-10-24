@@ -1,3 +1,5 @@
+/**********************Get the cart Data*************************/ 
+
 const getCart = async(token)=>{
     let data = await fetch('http://localhost:6001/api/v1/cart/getCart', {
         method: 'GET',
@@ -12,6 +14,8 @@ const getCart = async(token)=>{
 }
 
 
+
+/**********************Upadting the cart*************************/ 
 const updateCart = async(token,cartData)=>{
 
     // console.log("CartData", cartData.items);

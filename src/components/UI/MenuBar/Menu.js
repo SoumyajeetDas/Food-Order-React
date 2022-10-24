@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartItemShowActions, } from '../../../store/index'
 import { useNavigate } from 'react-router-dom';
-import { authActions } from '../../../store/index';
+import { authActions, cartActions } from '../../../store/index';
 import { logout } from '../../../store/auth-slice'
 
 const MenuVaraints1 = {
@@ -48,6 +48,7 @@ export default function Menu(props) {
         dispatch(logout());
 
         dispatch(authActions.reset());
+        dispatch(cartActions.reset());
 
         navigate("/")
     }
@@ -92,7 +93,7 @@ export default function Menu(props) {
             {registerData  && <div className="menuitems" onClick={cartItemShowHandler}>
                 <span className="material-symbols-rounded">
                     <span class="material-symbols-rounded">
-                        shopping_cart
+                        lunch_dining
                     </span>
                 </span>
                 Cart

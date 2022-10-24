@@ -10,6 +10,8 @@ const initialCartState = {
 }
 
 
+
+/**********************Get the cart Data when Food.js gets mounted*************************/ 
 export const getCartData = createAsyncThunk('cart/getCartData', async (value = null, thunkAPI) => {
     try {
 
@@ -38,6 +40,8 @@ export const getCartData = createAsyncThunk('cart/getCartData', async (value = n
 });
 
 
+
+/**********************Update the cart data in Mongo DB on adding any item in cart*************************/ 
 export const updateCartData = createAsyncThunk('cart/updateCartData', async (value=null, thunkAPI) => {
     try {
 
@@ -52,7 +56,7 @@ export const updateCartData = createAsyncThunk('cart/updateCartData', async (val
 
 
         // The value passed in the fulfillWithValue will be going in the reducer method as action.paylaod
-        if (response.status === '200 OK') return thunkAPI.fulfillWithValue(` got added`);
+        if (response.status === '200 OK') return thunkAPI.fulfillWithValue(`Item got added`);
 
         else
             return thunkAPI.rejectWithValue(response.message);
@@ -73,7 +77,8 @@ const cartSlice = createSlice({
     reducers: {
         replaceCart(state, action) {
             state.items = action.payload.items;
-            state.totalPrice = action.payload.totalPrice
+            state.totalPrice = action.payload.totalPrice;
+            state.changed = false;
         },
 
 
@@ -153,6 +158,7 @@ const cartSlice = createSlice({
         reset(state) {
             state.isCartError = false;
             state.cartMessage = ''
+            state.changed = false;
         }
     },
 

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartItemShowActions } from '../../../../store/index';
-import { authActions } from '../../../../store/index';
+import { authActions, cartActions } from '../../../../store/index';
 import { logout } from '../../../../store/auth-slice'
 
 export default function Header(props) {
@@ -26,6 +26,7 @@ export default function Header(props) {
     dispatch(logout());
 
     dispatch(authActions.reset());
+    dispatch(cartActions.reset());
 
     navigate("/")
   }
@@ -91,7 +92,7 @@ export default function Header(props) {
             >
 
               <span className="material-symbols-rounded text-white">
-                shopping_cart
+                lunch_dining
               </span>
               <span id="cart-number">
                 <b>{items.length}</b>

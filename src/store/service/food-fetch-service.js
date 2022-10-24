@@ -1,3 +1,5 @@
+/**********************Get All Foods*************************/ 
+
 const getAllFoods = async (token) => {
 
     let data = await fetch('http://localhost:6001/api/v1/bengalifood', {
@@ -12,6 +14,9 @@ const getAllFoods = async (token) => {
     return response;
 }
 
+
+
+/**********************Get the Type of Food like Breakfast, Lunch etc.*************************/ 
 const getFoodTypeFoods = async (type, token) => {
 
     let data;
@@ -41,6 +46,9 @@ const getFoodTypeFoods = async (type, token) => {
 }
 
 
+
+
+/**********************Search the food*************************/ 
 const getSearchedFoods = async (key, token) => {
 
 

@@ -8,8 +8,9 @@ import { motion } from 'framer-motion';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchFood, fetchFoodTypeFood, fetchSearchedFood } from '../../../store/foodSlice';
-import { getCartData } from '../../../store/cart-slice'
+import { fetchFood, fetchFoodTypeFood, fetchSearchedFood } from '../../../store/food-slice';
+import { getCartData, updateCartData } from '../../../store/cart-slice'
+import { logout } from '../../../store/auth-slice'
 import { foodActions, cartActions } from '../../../store/index'
 
 
@@ -17,12 +18,15 @@ import { foodActions, cartActions } from '../../../store/index'
 export default function Foods() {
 
   const [search, setSearch] = useState('');
-  let [isFirst, setIsFirst] = useState(true);
+  const [isFirst, setIsFirst] = useState(true);
+  const [item, setItem] = useState();
+  const [show, setShow] = useState(false);
+
 
 
   const { isError, isSuccess, isLoading, message, foodItems } = useSelector((state) => state.foodReducer);
 
-  const { isCartError, cartMessage, items, changed, totalPrice} = useSelector(state => state.cartReducer);
+  const { isCartError, cartMessage, changed, items, totalPrice } = useSelector(state => state.cartReducer);
 
   const dispatch = useDispatch();
 
@@ -30,11 +34,6 @@ export default function Foods() {
 
 
   const handleFoodType = async (type) => {
-
-    if (isError && message === '401 Unauthorized') {
-      navigate('/login');
-      dispatch(foodActions.reset());
-    }
 
     dispatch(fetchFoodTypeFood(type))
   }
@@ -47,6 +46,8 @@ export default function Foods() {
     // is a asnc function.
   }
 
+
+  /****************Call the Serach API within 1s of change in the Search bar******************/
 
 
   // To remeber the concept of return in useEffect plaese check the React Notes --> Type "useEffect Imp Concept"
@@ -74,23 +75,43 @@ export default function Foods() {
   }, [search]);
 
 
+
+
+
+  /****************For handling all kind of error******************/
   useEffect(() => {
 
     // This is used if any error comes from the foodSlice 
     if (isError && message === '401 Unauthorized') {
       navigate('/login');
+      dispatch(logout());
       dispatch(foodActions.reset());
     }
 
 
     // This is used if any error comes from cartSlice while calling the cartData
-    if(isCartError){
+    if (isCartError) {
       alert(cartMessage);
       dispatch(cartActions.reset())
     }
 
 
-  }, [isError,cartMessage,isCartError, navigate, message, dispatch])
+  }, [isError, cartMessage, isCartError, navigate, message, dispatch])
+
+
+
+  /****************Updating the cart in DB whenever any item gets added or removed******************/
+  useEffect(() => {
+
+    if (changed) {
+      dispatch(updateCartData());
+      dispatch(cartActions.reset());
+    }
+
+
+    // Whenever any item gets added or deleted the item and totalPrice also gets changed and the useEffect() wil also be called
+
+  }, [items, totalPrice, dispatch, changed])
 
 
   useEffect(() => {
@@ -100,12 +121,11 @@ export default function Foods() {
 
     dispatch(getCartData());
 
-    if(changed){
-      dispatch(cartActions.replaceCart({
-        items,
-        totalPrice
-      }))
-    }
+
+    dispatch(cartActions.replaceCart({
+      items,
+      totalPrice
+    }))
 
     // dispatch(foodActions.reset())
 
@@ -119,6 +139,18 @@ export default function Foods() {
 
 
     <div>
+      {show && <motion.div
+        initial={{ y: -250, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+
+        id="toast" className="text-center text-white border-0" >
+
+        <div
+          className="text-white">
+          {item} added in cart
+        </div>
+      </motion.div>}
+
       <Container>
         <Row>
           <Col sm={6} className="mx-auto">
@@ -196,7 +228,7 @@ export default function Foods() {
 
           key={item._id}
         >
-          <FoodItems item={item} />
+          <FoodItems item={item} setItem={setItem} setShow={setShow} />
         </motion.div>
 
       )}

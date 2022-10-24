@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,8 +10,7 @@ import { useDispatch } from 'react-redux';
 export default function FoodItems(props) {
 
   const dispatch = useDispatch();
-  const [item, setItem] = useState();
-  const [show, setShow] = useState(false);
+
 
 
   const addCartHandler = () => {
@@ -24,28 +23,26 @@ export default function FoodItems(props) {
       amount: 1
     }));
 
-    setItem(props.item.name);
-    setShow(true);
+    // The item name will be set as toast when the data gets added in cart
+    props.setItem(props.item.name);
+
+
+
+    // The toast will be shown when the item gets added in cart.
+
+    props.setShow(true);
 
 
     setTimeout(() => {
-      setShow(false);
+      props.setShow(false);
     }, 2000)
+
+
   }
 
   return (
     <>
-      {show && <motion.div
-        initial={{ y: -250, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
 
-        id="toast" className="text-center text-white border-0" >
-
-        <div
-          className="text-white">
-          {item} added in cart
-        </div>
-      </motion.div>}
 
       <motion.div
         initial={{ y: 250, opacity: 0 }}

@@ -11,6 +11,7 @@ const initialFoodState = {
 }
 
 
+/**********************Get all Foods when Food.js gets mounted*************************/ 
 export const fetchFood = createAsyncThunk('foods/fetchFood', async (value = null, thunkAPI) => {
 
     try {
@@ -37,6 +38,8 @@ export const fetchFood = createAsyncThunk('foods/fetchFood', async (value = null
 
 
 
+
+/**********************Fetch the type of food depending on which button pressed like Breakfast, Lunch etc.*************************/ 
 export const fetchFoodTypeFood = createAsyncThunk('foods/fetchFoodTypeFood',async(type, thunkAPI) => {
     try {
 
@@ -62,6 +65,9 @@ export const fetchFoodTypeFood = createAsyncThunk('foods/fetchFoodTypeFood',asyn
 });
 
 
+
+
+/**********************Call the searched Food*************************/ 
 export const fetchSearchedFood = createAsyncThunk('foods/fetchSearchedFood',async(key, thunkAPI) => {
     try {
 
