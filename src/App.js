@@ -8,6 +8,7 @@ import Register from './components/UI/Credential/Register';
 import Login from './components/UI/Credential/Login';
 import Foods from './components/UI/FoodData/Foods';
 import Order from './components/UI/Order/Order';
+import ForgotPassword from './components/UI/Credential/ForgotPassword';
 
 
 const App = () => {
@@ -49,6 +50,7 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/forgotPassword" element={<ForgotPassword/>} />
           <Route exact path="/foods" element={<Foods />} />
         </Routes>
       </BrowserRouter>

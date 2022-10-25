@@ -67,6 +67,33 @@ export const logout = createAsyncThunk('auth/logout', async()=>{
     await authService.logout();
 })
 
+
+
+// createAsyncThunk will always return a promise
+export const forgotPassword = createAsyncThunk('auth/forgotPassword', async (user, thunkAPI) => {
+
+    try {
+        let response = await authService.passwordUpdate(user);
+
+        // The value passed in the fulfillWithValue will be going in the reducer method as action.paylaod
+        if (response.status === '200 OK') return thunkAPI.fulfillWithValue(response.message);
+
+
+
+        else if (response.status === '500 Internal Server Error' && response.message === "Duplicate")
+            return thunkAPI.rejectWithValue("Sorry user already exists with same email!!")
+
+
+
+        // The value passed in the rejectWithValue will be going in the reducer method as action.paylaod
+        else return thunkAPI.rejectWithValue(response.message);
+    }
+
+    catch (err) {
+        return thunkAPI.rejectWithValue('Could not able to login. Problem from backend!!');
+    }
+});
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState: initialAuthState,
@@ -97,6 +124,9 @@ export const authSlice = createSlice({
             state.message = action.payload;
             state.registerData = null;
         },
+
+
+
         [login.pending]: (state) => {
             state.isLoading = true
         },
@@ -112,9 +142,31 @@ export const authSlice = createSlice({
             state.message = action.payload;
             state.registerData = null;
         },
+
+
+
         [logout.fulfilled]:(state)=>{
             state.registerData = '';
-        }
+        },
+
+
+
+        [forgotPassword.pending]: (state) => {
+            state.isLoading = true
+        },
+
+        [forgotPassword.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
+            state.message = action.payload
+        },
+        [forgotPassword.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.isSuccess = false;
+            state.message = action.payload;
+        },
 
     }
 });

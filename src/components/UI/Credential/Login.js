@@ -10,7 +10,7 @@ import { login } from '../../../store/auth-slice'
 import { authActions } from '../../../store/index';
 import Spinner from '../Spinner/Spiner';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../Home/Footer/Footer';
 
 
@@ -132,8 +132,8 @@ export default function Login() {
 
                             </motion.div>
 
-                            <div class="mb-5">
-                                <p class="text-end text-white">Forgot Password?</p>
+                            <div class="mb-5 ms-auto d-flex justify-content-end">
+                                <Link to="/forgotPassword" class="text-white">Forgot Password?</Link>
                             </div>
 
                             <motion.div

@@ -62,11 +62,30 @@ export const logout = async () => {
 
 
 
+/**********************Forgot Password*************************/ 
+
+const passwordUpdate = async (user) => {
+    let res = await fetch('http://localhost:6001/api/v1/authenticate/forgotPassword', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    });
+
+    let response = await res.json();
+
+    return response;
+}
+
+
 
 const authService = {
     register,
     login,
-    logout
+    logout,
+    passwordUpdate
 }
 
 
