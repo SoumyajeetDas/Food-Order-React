@@ -9,11 +9,23 @@ export default function Content() {
 
     const navigate = useNavigate();
 
+    const containerVariants = {
+        hidden: {
+            x: 400,
+            opacity: 0
+        },
+        visible: {
+            x: 0,
+            opacity: 1,
+        }
+    }
+
     return (
         <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
+
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
 
         >
             <Container>
@@ -28,8 +40,8 @@ export default function Content() {
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 id="accountbtn"
-                                onClick={()=>navigate("/register")}
-                                >
+                                onClick={() => navigate("/register")}
+                            >
 
                                 Open your account
 

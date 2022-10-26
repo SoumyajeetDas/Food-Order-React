@@ -33,13 +33,7 @@ export default function Header(props) {
 
   return (
 
-    <motion.header
-      initial={{ y: -250 }}
-      animate={{ y: 0 }} // Keep in mind 0 does not mean 0px. It means the object where it is in DOM
-      transition={{ type: 'spring', stifness: 500 }}
-
-      className="mb-1"
-    >
+    <header className="mb-1">
       <nav>
         <span className="material-symbols-outlined text-white" id="menu-icon" onClick={() => props.show()}>
           menu
@@ -123,6 +117,6 @@ export default function Header(props) {
         </>
       }
 
-    </motion.header>
+    </header>
   )
 }

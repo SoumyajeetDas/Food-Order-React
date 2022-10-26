@@ -11,11 +11,13 @@ import Order from './components/UI/Order/Order';
 import ForgotPassword from './components/UI/Credential/ForgotPassword';
 
 
+
 const App = () => {
 
   const [status, setStatus] = useState(false)
   const [classname, seClassName] = useState('menu-bar-initial'); // Initially the menubar wil be kept as display: none so that it is not visible
   const [variant, setVariant] = useState({});
+
 
   const show = () => {
     if (status === false) {
@@ -43,17 +45,20 @@ const App = () => {
 
       </div>}
 
-      <BrowserRouter>
-        <Header show={show} />
-        <Menu show={show} classname={classname} variant={variant} />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/forgotPassword" element={<ForgotPassword/>} />
-          <Route exact path="/foods" element={<Foods />} />
-        </Routes>
-      </BrowserRouter>
+
+
+        <BrowserRouter>
+          <Header show={show} />
+          <Menu show={show} classname={classname} variant={variant} />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/forgotPassword" element={<ForgotPassword />} />
+            <Route exact path="/foods" element={<Foods />} />
+          </Routes>
+        </BrowserRouter>
+
 
       <Order />
 

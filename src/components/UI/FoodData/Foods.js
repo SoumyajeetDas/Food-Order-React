@@ -138,15 +138,30 @@ export default function Foods() {
   }, []);
 
 
+  const containerVariants = {
+    hidden: {
+      x: 400,
+      opacity: 0
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+    }
+  }
+
 
 
   return (
 
 
-    <div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
 
-      
-    {modalShow && <RatingAddedModal modalShow={modalShow} setModalShow={setModalShow}/>}
+
+      {modalShow && <RatingAddedModal modalShow={modalShow} setModalShow={setModalShow} />}
 
       {show && <motion.div
         initial={{ y: -250, opacity: 0 }}
@@ -237,14 +252,14 @@ export default function Foods() {
 
           key={item._id}
         >
-          <FoodItems token={token} item={item} setItem={setItem} setShow={setShow} setModalShow={setModalShow}/>
+          <FoodItems token={token} item={item} setItem={setItem} setShow={setShow} setModalShow={setModalShow} />
         </motion.div>
 
       )}
 
 
       <Footer />
-    </div>
+    </motion.div>
 
   )
 }

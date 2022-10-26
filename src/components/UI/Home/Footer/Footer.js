@@ -7,11 +7,7 @@ import { motion } from "framer-motion"
 
 export default function Footer() {
     return (
-        <motion.div
-            initial={{ y: 250 }}
-            animate={{ y: 0 }} // Keep in mind 0 does not mean 0px. It means the object where it is in DOM
-            transition={{ type: 'spring', stifness: 500 }}
-        >
+        <div>
             <Container className="my-5">
                 <Row>
                     <Col sm={12} className="text-center mx-auto">
@@ -39,7 +35,7 @@ export default function Footer() {
                     </div>
                 </Row>
             </Container>
-        </motion.div>
+        </div>
 
     )
 }
