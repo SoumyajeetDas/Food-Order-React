@@ -12,6 +12,7 @@ import { fetchFood, fetchFoodTypeFood, fetchSearchedFood } from '../../../store/
 import { getCartData, updateCartData } from '../../../store/cart-slice'
 import { logout } from '../../../store/auth-slice'
 import { foodActions, cartActions } from '../../../store/index'
+import RatingAddedModal from '../Ratings/RatingAddedModal';
 
 
 
@@ -22,11 +23,15 @@ export default function Foods() {
   const [item, setItem] = useState();
   const [show, setShow] = useState(false);
 
+  const [modalShow, setModalShow] = useState(false);
+
 
 
   const { isError, isSuccess, isLoading, message, foodItems } = useSelector((state) => state.foodReducer);
 
   const { isCartError, cartMessage, changed, items, totalPrice } = useSelector(state => state.cartReducer);
+
+  const { token } = useSelector(state => state.authReducer.registerData);
 
   const dispatch = useDispatch();
 
@@ -139,6 +144,10 @@ export default function Foods() {
 
 
     <div>
+
+      
+    {modalShow && <RatingAddedModal modalShow={modalShow} setModalShow={setModalShow}/>}
+
       {show && <motion.div
         initial={{ y: -250, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -228,7 +237,7 @@ export default function Foods() {
 
           key={item._id}
         >
-          <FoodItems item={item} setItem={setItem} setShow={setShow} />
+          <FoodItems token={token} item={item} setItem={setItem} setShow={setShow} setModalShow={setModalShow}/>
         </motion.div>
 
       )}
