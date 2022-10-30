@@ -17,6 +17,20 @@ const isEmpty = value => value.trim() === ''
 const isEmail = value => validRegex.test(value.trim())
 const isPwdAndCnfSame = (pwd, cnf) => pwd === cnf
 
+
+const containerVariants = {
+    hidden: {
+        x: 400,
+        opacity: 0
+    },
+    visible: {
+        x: 0,
+        opacity: 1,
+    }
+}
+
+
+
 export default function ForgotPassword() {
 
     const dispatch = useDispatch();
@@ -78,95 +92,101 @@ export default function ForgotPassword() {
                 <Spinner />
             </div>}
 
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <Container >
 
-            <Container >
+                    {isSuccess && <Row>
+                        <Col md={6} className="m-auto mb-3">
+                            <div class="alert alert-success text-center" role="alert">
+                                <b>{message}</b>
+                            </div>
+                        </Col>
+                    </Row>}
+                    {isError && <Row>
+                        <Col md={6} className="m-auto mb-3">
+                            <div class="alert alert-danger text-center" role="alert">
+                                <b>{message}</b>
+                            </div>
+                        </Col>
+                    </Row>}
 
-                {isSuccess && <Row>
-                    <Col md={6} className="m-auto mb-3">
-                        <div class="alert alert-success text-center" role="alert">
-                            <b>{message}</b>
-                        </div>
-                    </Col>
-                </Row>}
-                {isError && <Row>
-                    <Col md={6} className="m-auto mb-3">
-                        <div class="alert alert-danger text-center" role="alert">
-                            <b>{message}</b>
-                        </div>
-                    </Col>
-                </Row>}
+                    <Row>
+                        <Col md={6} className="m-auto p-3" style={{ borderRadius: "20px" }}>
+                            <h2 id="register" class="text-center mb-3">Forgot Your Password?</h2>
+                            <Form onSubmit={handleSubmit}>
 
-                <Row>
-                    <Col md={6} className="m-auto p-3" style={{ borderRadius: "20px" }}>
-                        <h2 id="register" class="text-center mb-3">Forgot Your Password?</h2>
-                        <Form onSubmit={handleSubmit}>
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
 
-                            <motion.div
-                                whileHover={{ scale: 1.1 }}
-
-                                className="mb-5"
-                            >
-                                <Form.Group className="form-group">
-                                    <span class="material-symbols-outlined b-0 p-2 colouring" >
-                                        email
-                                    </span>
-                                    <input id="email" type="email" placeholder="Enter the email" class="colouring" onChange={handleRegisterData} />
-                                </Form.Group>
-                                <div>
-                                    {!forgotPasswordFormValidity.email && <p className="text-danger text-end">**Please enter the email correctly</p>}
-                                </div>
-
-                            </motion.div>
-
-                            <motion.div
-                                whileHover={{ scale: 1.1 }}
-
-                                className="mb-5"
-                            >
-                                <Form.Group className="form-group">
-                                    <span class="material-symbols-rounded b-0 p-2 colouring">
-                                        lock
-                                    </span>
-                                    <input id="password" type="password" placeholder="Enter the password" class="colouring" onChange={handleRegisterData} />
-                                </Form.Group>
-                                <div>
-                                    {!forgotPasswordFormValidity.password && <p className="text-danger text-end">**Please enter the password correctly</p>}
-                                </div>
-
-                            </motion.div>
-
-                            <motion.div
-                                whileHover={{ scale: 1.1 }}
-
-                                className="mb-5"
-                            >
-                                <Form.Group className="form-group">
-                                    <span class="material-symbols-rounded b-0 p-2 colouring">
-                                        <span class="material-symbols-outlined">
-                                            lock_open
+                                    className="mb-5"
+                                >
+                                    <Form.Group className="form-group">
+                                        <span class="material-symbols-outlined b-0 p-2 colouring" >
+                                            email
                                         </span>
-                                    </span>
-                                    <input id="confirmpassword" type="password" placeholder="Confirm password" class="colouring" onChange={handleRegisterData} />
-                                </Form.Group>
+                                        <input id="email" type="email" placeholder="Enter the email" class="colouring" onChange={handleRegisterData} />
+                                    </Form.Group>
+                                    <div>
+                                        {!forgotPasswordFormValidity.email && <p className="text-danger text-end">**Please enter the email correctly</p>}
+                                    </div>
 
-                                <div>
-                                    {!forgotPasswordFormValidity.confirmpassword && <p className="text-danger text-end">**Confirm Password and Password should be same</p>}
-                                </div>
+                                </motion.div>
 
-                            </motion.div>
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
 
-                            <motion.div
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                id="btn">
-                                <Button class="m-auto" style={{ backgroundColor: '#D2078B', border: "none" }} type="submit">
-                                    Create Account
-                                </Button>
-                            </motion.div>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
+                                    className="mb-5"
+                                >
+                                    <Form.Group className="form-group">
+                                        <span class="material-symbols-rounded b-0 p-2 colouring">
+                                            lock
+                                        </span>
+                                        <input id="password" type="password" placeholder="Enter the password" class="colouring" onChange={handleRegisterData} />
+                                    </Form.Group>
+                                    <div>
+                                        {!forgotPasswordFormValidity.password && <p className="text-danger text-end">**Please enter the password correctly</p>}
+                                    </div>
+
+                                </motion.div>
+
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+
+                                    className="mb-5"
+                                >
+                                    <Form.Group className="form-group">
+                                        <span class="material-symbols-rounded b-0 p-2 colouring">
+                                            <span class="material-symbols-outlined">
+                                                lock_open
+                                            </span>
+                                        </span>
+                                        <input id="confirmpassword" type="password" placeholder="Confirm password" class="colouring" onChange={handleRegisterData} />
+                                    </Form.Group>
+
+                                    <div>
+                                        {!forgotPasswordFormValidity.confirmpassword && <p className="text-danger text-end">**Confirm Password and Password should be same</p>}
+                                    </div>
+
+                                </motion.div>
+
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    id="btn">
+                                    <Button class="m-auto" style={{ backgroundColor: '#D2078B', border: "none" }} type="submit">
+                                        Create Account
+                                    </Button>
+                                </motion.div>
+                            </Form>
+                        </Col>
+                    </Row>
+                </Container>
+            </motion.div>
+
 
             <Footer />
         </>

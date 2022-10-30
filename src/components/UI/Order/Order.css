@@ -22,7 +22,7 @@
 
 
 #menu-items {
-    height: 60vh;
+    height: 50vh;
     overflow-y: scroll
 }
 
@@ -31,10 +31,10 @@
 @media screen and (max-width:576px) {
     #menu-items {
 
-        height: 370px;
+        height: 330px;
     }
 
     #order-bar {
-        width: 300px;
+        width: 280px;
     }
 }

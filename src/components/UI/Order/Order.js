@@ -1,22 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OrderItem from './OrderItems/OrderItem';
 import './Order.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartItemShowActions } from '../../../store/index'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import Form from 'react-bootstrap/Form';
+import Checkout from '../Checkout/Checkout';
 
 
+const isEmpty = value => value.length === 0;
 
 export default function Order() {
 
     const { items, totalPrice } = useSelector(state => state.cartReducer);
 
+    const [showCheckOut, setShowCheckOut] = useState(false);
+
 
     const show = useSelector(state => state.cartItemShowReducer.willShow);
 
     const dispatch = useDispatch();
+
+
+    const handleShow = () => setShowCheckOut(true);
+
+    const [addressData, setAddressData] = useState({
+        address: ''
+    });
+
+
+    const [addressValidity, setAddressValidity] = useState({
+        address: true
+    });
+
+    const handleAddressData = (e) => {
+        setAddressData((prevState) => {
+            return {
+                ...prevState,
+                [e.target.id]: e.target.value
+            }
+        })
+    }
+
+
+    const onOrderSubmit = (e) => {
+        e.preventDefault();
+
+
+
+        const isAddressValid = !isEmpty(addressData.address)
+
+
+        setAddressValidity({
+            address: isAddressValid
+        });
+
+        const isFormValid = isAddressValid;
+
+        if (!isFormValid) {
+            return;
+        }
+
+        dispatch(cartItemShowActions.dontShow());
+        handleShow();
+
+    }
 
 
     const cartItemdontShowHandler = () => {
@@ -28,6 +78,11 @@ export default function Order() {
             {show && <div id="backdrop" onClick={cartItemdontShowHandler}>
 
             </div>}
+
+
+            <Checkout showCheckOut={showCheckOut} setShowCheckOut={setShowCheckOut} addressData={addressData}/>
+
+
             {show && <motion.div
                 initial={{ x: 250 }}
                 animate={{ x: 0 }}
@@ -54,7 +109,15 @@ export default function Order() {
                 </div>
                 <Container >
                     <Row>
-                        <button class={`btn btn-sm btn-danger mb-2 ${items.length === 0 ? 'disabled' : ''}`}>Order</button>
+                        <Form onSubmit={onOrderSubmit}>
+                            <Form.Group className="mb-3">
+                                <Form.Control value={addressData.address} id="address" type="text" placeholder="Enter your address" onChange={handleAddressData} />
+                                {!addressValidity.address && <b class="text-danger">Please provide an address</b>}
+                            </Form.Group>
+
+                            <button type='submit' class={`w-100 btn btn-sm btn-danger mb-2 ${items.length === 0 ? 'disabled' : ''}`}>Order</button>
+                        </Form>
+
                     </Row>
                 </Container>
             </motion.div>}

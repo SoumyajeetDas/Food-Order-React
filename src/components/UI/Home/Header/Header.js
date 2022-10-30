@@ -51,7 +51,7 @@ export default function Header(props) {
           ><Link to="/foods">Menus</Link></motion.li>
           <motion.li
             whileHover={{ scale: 1.5 }}
-          ><a href="/">Orders</a></motion.li>
+          ><a href="/">Your Orders</a></motion.li>
         </ul>
       </nav>
 

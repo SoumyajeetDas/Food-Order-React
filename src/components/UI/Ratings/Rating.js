@@ -21,8 +21,6 @@ export default function Rating(props) {
             })
         });
 
-        console.log(data)
-
         if(data.status===201){
             console.log("200")
             props.setModalShow(true);
