@@ -119,7 +119,24 @@ export default function Checkout(props) {
 
 
     /*************************Handling The Error Status******************************/
-    const handleError = (err) => {
+    const handleError = async(err) => {
+        //Saving the Order to DB
+        await fetch(`http://localhost:6001/api/v1/order/`, {
+            method: "POST",
+            headers: {
+                Authorization: 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                address: props.addressData.address,
+                orders: items,
+                totalPrice,
+                paymentStatus: 'Failed',
+                // orderId --> Since the order failed with error so orderId is also not present
+            })
+        });
+
         setErrMsg(err);
         setCannotPaidFor(true);
 

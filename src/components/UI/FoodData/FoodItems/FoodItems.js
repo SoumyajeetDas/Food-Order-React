@@ -47,7 +47,7 @@ export default function FoodItems(props) {
 
 
       <motion.div
-        initial={{ y: 250, opacity: 0 }}
+        initial={{ y: 400, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         whileHover={{ x: 10 }}
 

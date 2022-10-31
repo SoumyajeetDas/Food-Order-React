@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+#orderitem-bar {
+    border-radius: 30px;
+    box-shadow: 0px 4px 11px -1px rgb(132, 214, 255, 0.35);
+    max-width: 90%;
+}
+
+#orderitem-bar h3{
+    font-family: 'Alkalami', serif;
+}
+
+#middle-order-items{
+    color: rgb(244, 191, 92);
+    font-family: 'Poppins', sans-serif;
+}
+
+.location-date{
+    color: antiquewhite;
+}

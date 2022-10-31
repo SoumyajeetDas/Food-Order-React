@@ -164,7 +164,7 @@ export default function Foods() {
       {modalShow && <RatingAddedModal modalShow={modalShow} setModalShow={setModalShow} />}
 
       {show && <motion.div
-        initial={{ y: -250, opacity: 0 }}
+        initial={{ y: -400, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
 
         id="toast" className="text-center text-white border-0" >
@@ -219,6 +219,11 @@ export default function Foods() {
                 whileTap={{ scale: 0.9 }}
 
                 id="food-btn" className="btn m-3" onClick={() => handleFoodType('Dinner')}>Dinner</motion.button>
+                <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+
+                id="food-btn" className="btn m-3" onClick={() => handleFoodType('Desserts')}>Desserts</motion.button>
             </div>
           </Col>
         </Row>

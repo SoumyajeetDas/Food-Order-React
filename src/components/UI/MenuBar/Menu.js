@@ -75,12 +75,12 @@ export default function Menu(props) {
             </div>
 
 
-            <div className="menuitems" onClick={() => navigate('/')}>
+           {!registerData && <div className="menuitems" onClick={() => navigate('/')}>
                 <span className="material-symbols-rounded">
                     home
                 </span>
                 Home
-            </div>
+            </div>}
 
 
             <div className="menuitems" onClick={() => navigate('/foods')}>
@@ -102,11 +102,11 @@ export default function Menu(props) {
             </div>}
 
 
-            <div className="menuitems">
+            <div className="menuitems" onClick={()=>navigate("/orderHistory")}>
                 <span className="material-symbols-rounded">
                     history
                 </span>
-                Orders
+                Your Orders
             </div>
 
 

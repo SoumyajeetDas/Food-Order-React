@@ -10,7 +10,9 @@ export default function RatingAddedModal(props) {
 
     return (
         <Modal show={props.modalShow} onHide={handleClose}>
-            <Modal.Body>Thanks for the Rating!!</Modal.Body>
+            <Modal.Body>
+                <Modal.Title><b class="text-info">Thanks for the Rating!!</b></Modal.Title>
+                </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close

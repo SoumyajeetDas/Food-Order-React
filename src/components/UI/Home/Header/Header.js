@@ -43,15 +43,15 @@ export default function Header(props) {
           <li>
             <img src="icon.png" alt="...Loading"></img>
           </li>
-          <motion.li
+          {!registerData && <motion.li
             whileHover={{ scale: 1.5 }}
-          ><Link to="/">Home</Link></motion.li>
+          ><Link to="/">Home</Link></motion.li>}
           <motion.li
             whileHover={{ scale: 1.5 }}
           ><Link to="/foods">Menus</Link></motion.li>
           <motion.li
             whileHover={{ scale: 1.5 }}
-          ><a href="/">Your Orders</a></motion.li>
+          ><Link to="/orderHistory">Your Orders</Link></motion.li>
         </ul>
       </nav>
 
