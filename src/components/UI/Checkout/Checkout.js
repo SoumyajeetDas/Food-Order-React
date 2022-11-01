@@ -25,7 +25,7 @@ export default function Checkout(props) {
 
     const { items, totalPrice } = useSelector(state => state.cartReducer);
 
-    const { token } = useSelector(state => state.authReducer.registerData);
+    const registerData = useSelector(state => state.authReducer.registerData);
 
 
     /*************************Converting INR TO USD on Checkout Component Mounting******************************/
@@ -77,7 +77,7 @@ export default function Checkout(props) {
         let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
             method: "POST",
             headers: {
-                Authorization: 'Bearer ' + token,
+                Authorization: 'Bearer ' + registerData.token!==null ? registerData.token : '',
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -123,7 +123,7 @@ export default function Checkout(props) {
         await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
             method: "POST",
             headers: {
-                Authorization: 'Bearer ' + token,
+                Authorization: 'Bearer ' + registerData.token!==null ? registerData.token : '',
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
