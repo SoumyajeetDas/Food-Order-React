@@ -8,7 +8,7 @@ import Register from './components/UI/Credential/Register';
 import Login from './components/UI/Credential/Login';
 import Foods from './components/UI/FoodData/Foods';
 import Order from './components/UI/Order/Order';
-import OrderHistory from './components/UI/Order_History/OrderHistory'
+import OrderHistory from './components/UI/OrderHistory/OrderHistory'
 import ForgotPassword from './components/UI/Credential/ForgotPassword';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 

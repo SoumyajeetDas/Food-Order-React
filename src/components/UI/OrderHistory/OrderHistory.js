@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container';
-import OrderHistoryItem from './Order_History_Items/OrderHistoryItem';
+import OrderHistoryItem from './OrderHistoryItems/OrderHistoryItem';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
