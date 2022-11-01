@@ -3,7 +3,7 @@ import Cookie from 'js-cookie'
 /**********************Register*************************/ 
 
 const register = async (user) => {
-    let res = await fetch('http://localhost:6001/api/v1/authenticate/signup', {
+    let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/signup`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -29,7 +29,7 @@ const register = async (user) => {
 
 /**********************Login*************************/ 
 export const login = async (user) => {
-    let res = await fetch('http://localhost:6001/api/v1/authenticate/login', {
+    let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/login`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -65,7 +65,7 @@ export const logout = async () => {
 /**********************Forgot Password*************************/ 
 
 const passwordUpdate = async (user) => {
-    let res = await fetch('http://localhost:6001/api/v1/authenticate/forgotPassword', {
+    let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/forgotPassword`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',

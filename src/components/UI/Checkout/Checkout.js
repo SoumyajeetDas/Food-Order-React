@@ -74,7 +74,7 @@ export default function Checkout(props) {
     const handleApprove = async (orderId) => {
 
         //Saving the Order to DB
-        let data = await fetch(`http://localhost:6001/api/v1/order/`, {
+        let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
             method: "POST",
             headers: {
                 Authorization: 'Bearer ' + token,
@@ -94,7 +94,6 @@ export default function Checkout(props) {
             alert("Your payment is successful but order is not saved in DB");
         }
 
-        console.log(await data.json())
         setPaidFor(true);
     }
 
@@ -121,7 +120,7 @@ export default function Checkout(props) {
     /*************************Handling The Error Status******************************/
     const handleError = async(err) => {
         //Saving the Order to DB
-        await fetch(`http://localhost:6001/api/v1/order/`, {
+        await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
             method: "POST",
             headers: {
                 Authorization: 'Bearer ' + token,
@@ -167,7 +166,7 @@ export default function Checkout(props) {
             {/* Error Modal */}
             <Modal show={showError} onHide={() => handleErrorShow()}>
                 <Modal.Body>
-                    <b class="text-danger">{errMsg}</b>
+                    <b className="text-danger">{errMsg}</b>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => handleErrorShow()}>
@@ -182,7 +181,7 @@ export default function Checkout(props) {
             <Modal show={showSuccess} onHide={() => handleSuccessClose()}>
                 <Modal.Body>
 
-                    <b class="text-success">Order is Successfull !! Thanks for Choosing us :)</b>
+                    <b className="text-success">Order is Successfull !! Thanks for Choosing us :)</b>
 
                 </Modal.Body>
                 <Modal.Footer>

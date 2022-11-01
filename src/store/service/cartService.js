@@ -1,7 +1,7 @@
 /**********************Get the cart Data*************************/ 
 
 const getCart = async(token)=>{
-    let data = await fetch('http://localhost:6001/api/v1/cart/getCart', {
+    let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/cart/getCart`, {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + token
@@ -20,7 +20,7 @@ const updateCart = async(token,cartData)=>{
 
     // console.log("CartData", cartData.items);
 
-    let data = await fetch('http://localhost:6001/api/v1/cart/updateCart', {
+    let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/cart/updateCart`, {
         method: "PUT",
         headers: {
             Authorization: 'Bearer ' + token,

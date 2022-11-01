@@ -81,7 +81,7 @@ export default function Header(props) {
               whileHover={{ scale: 1.2 }}
               style={{ cursor: "pointer" }}
               onClick={cartItemShowHandler}
-              class="me-5"
+              className="me-5"
               id="cart-icon"
             >
 
@@ -93,12 +93,12 @@ export default function Header(props) {
               </span>
             </motion.div>
 
-            <div class="me-md-4" id="user-login">
+            <div className="me-md-4" id="user-login">
 
               <small><i>Hello {registerData.user.name} !!</i></small>
 
-              <div class="ms-2">
-                <span class="material-symbols-outlined text-white" id="login-icon">
+              <div className="ms-2">
+                <span className="material-symbols-outlined text-white" id="login-icon">
                   account_circle
                 </span>
               </div>

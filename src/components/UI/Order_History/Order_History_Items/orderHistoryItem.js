@@ -6,26 +6,25 @@ import './OrderHistoryItem.css';
 
 export default function orderHistoryItem(props) {
 
-    console.log(props)
     return (
         <Row>
             <Col id="orderitem-bar" sm={6} className="m-auto p-4 my-4">
-                <h3 class="text-center text-white">Order Id : {props.item.orderId}</h3>
+                <h3 className="text-center text-white">Order Id : {props.item.orderId}</h3>
 
 
                 <div className="my-5 text-center" id="middle-order-items">
-                    {props.item.orders.map(x => <p>{x.amount} X {x.name}</p>)}
+                    {props.item.orders.map(x => <p key={x.name}>{x.amount} X {x.name}</p>)}
                 </div>
 
-                <div class="mt-5 mb-2 d-flex justify-content-start align-items-center location-date">
-                    <span class="material-symbols-rounded me-2">
+                <div className="mt-5 mb-2 d-flex justify-content-start align-items-center location-date">
+                    <span className="material-symbols-rounded me-2">
                         calendar_month
                     </span>
                     <small>{new Date(props.item.dateOfOrder).toDateString()}</small>
                 </div>
 
-                <div class="mb-5 d-flex justify-content-start align-items-center location-date">
-                    <span class="material-symbols-rounded me-2">
+                <div className="mb-5 d-flex justify-content-start align-items-center location-date">
+                    <span className="material-symbols-rounded me-2">
                         pin_drop
                     </span>
                     <small>{props.item.address}</small>
@@ -36,7 +35,7 @@ export default function orderHistoryItem(props) {
 
                     {props.item.paymentStatus === 'Success' ?
                         <div className="d-flex justify-content-start align-items-center text-success">
-                            <span class="material-symbols-rounded me-1">
+                            <span className="material-symbols-rounded me-1">
                                 check
                             </span>
                             <b><i>Successfull Payment</i></b>
@@ -47,7 +46,7 @@ export default function orderHistoryItem(props) {
                         <div className="d-flex justify-content-start align-items-center text-danger">
 
 
-                            <span class="material-symbols-rounded me-1">
+                            <span className="material-symbols-rounded me-1">
                                 report
                             </span>
                             <b><i>Failed Payment</i></b>

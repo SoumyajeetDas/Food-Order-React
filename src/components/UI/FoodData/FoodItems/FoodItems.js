@@ -65,7 +65,7 @@ export default function FoodItems(props) {
                 whileTap={{ scale: 0.9 }}
 
                 onClick={addCartHandler}
-                className="pt-1 px-2 text-center text-white" id="add-cart-button"><span class="material-symbols-rounded">
+                className="pt-1 px-2 text-center text-white" id="add-cart-button"><span className="material-symbols-rounded">
                   add_shopping_cart
                 </span></motion.span>
                 

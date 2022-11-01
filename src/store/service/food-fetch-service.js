@@ -2,7 +2,7 @@
 
 const getAllFoods = async (token) => {
 
-    let data = await fetch('http://localhost:6001/api/v1/bengalifood', {
+    let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/bengalifood`, {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + token
@@ -22,7 +22,7 @@ const getFoodTypeFoods = async (type, token) => {
     let data;
 
     if (type === 'all') {
-        data = await fetch('http://localhost:6001/api/v1/bengalifood', {
+        data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/bengalifood`, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + token
@@ -31,7 +31,7 @@ const getFoodTypeFoods = async (type, token) => {
     }
 
     else {
-        data = await fetch(`http://localhost:6001/api/v1/bengalifood/${type}`, {
+        data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/bengalifood/${type}`, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + token
@@ -52,7 +52,7 @@ const getFoodTypeFoods = async (type, token) => {
 const getSearchedFoods = async (key, token) => {
 
 
-    let data = await fetch(`http://localhost:6001/api/v1/bengalifood/search/${key}`, {
+    let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/bengalifood/search/${key}`, {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + token

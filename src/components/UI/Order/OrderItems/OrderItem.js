@@ -31,26 +31,26 @@ export default function OrederItem(props) {
                     <Col sm={12}>
                         <div id="wrapper-order">
                             <img className="rounded-circle" src={props.item.imageUrl} alt="loading"></img>
-                            <b class="text-center">{props.item.name}</b>
+                            <b className="text-center">{props.item.name}</b>
                             <b>₹{props.item.price}</b>
                         </div>
                     </Col>
 
                     <Col sm={6} className="mx-auto">
-                        <div id="inner-wrapper" class="mt-2">
+                        <div id="inner-wrapper" className="mt-2">
                             <motion.span
                                 whileHover={{ scale: 1.3 }}
                                 whileTap={{ scale: 0.9 }}
 
-                                id="button" class="material-symbols-outlined" onClick={addCartHandler}>
+                                id="button" className="material-symbols-outlined" onClick={addCartHandler}>
                                 add
                             </motion.span>
-                            <p class="m-0"><b>{props.item.amount}</b></p>
+                            <p className="m-0"><b>{props.item.amount}</b></p>
                             <motion.span
                                 whileHover={{ scale: 1.3 }}
                                 whileTap={{ scale: 0.9 }}
 
-                                id="button" class="material-symbols-rounded" onClick={removeCartHandler}>
+                                id="button" className="material-symbols-rounded" onClick={removeCartHandler}>
                                 remove
                             </motion.span>
                         </div>

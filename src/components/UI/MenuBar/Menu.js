@@ -92,13 +92,13 @@ export default function Menu(props) {
 
             {registerData  && <div className="menuitems" onClick={cartItemShowHandler}>
                 <span className="material-symbols-rounded">
-                    <span class="material-symbols-rounded">
+                    <span className="material-symbols-rounded">
                         lunch_dining
                     </span>
                 </span>
                 Cart
 
-                <p class="m-0 py-1 px-3 bg-danger rounded-pill">{items.length}</p>
+                <p className="m-0 py-1 px-3 bg-danger rounded-pill">{items.length}</p>
             </div>}
 
 
@@ -111,7 +111,7 @@ export default function Menu(props) {
 
 
             {!registerData  && <div className="menuitems" onClick={()=>navigate("/login")}>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     login
                 </span>
                 Login
@@ -119,7 +119,7 @@ export default function Menu(props) {
 
 
             {registerData  && <div className="menuitems" onClick={handleLogout}>
-                <span class="material-symbols-rounded">
+                <span className="material-symbols-rounded">
                     logout
                 </span>
                 Logout

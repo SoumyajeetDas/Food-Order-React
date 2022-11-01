@@ -87,13 +87,13 @@ export default function Order() {
                 initial={{ x: 250 }}
                 animate={{ x: 0 }}
 
-                class="bg-white" id="order-bar" >
-                <h4 class="mb-3">We will deliver in 24mins to the address!!</h4>
+                className="bg-white" id="order-bar" >
+                <h4 className="mb-3">We will deliver in 24mins to the address!!</h4>
 
 
                 <div id="menu-items">
                     {items.length === 0 ?
-                        <div class="d-flex justify-content-center align-items-center">
+                        <div className="d-flex justify-content-center align-items-center">
                             <img src="noitem.gif" alt="Loading..." header="200" width="200"></img>
                         </div>
 
@@ -103,19 +103,19 @@ export default function Order() {
                 </div>
 
 
-                <div class={`text-dark my-4 d-flex justify-content-between`} id="total-price">
+                <div className={`text-dark my-4 d-flex justify-content-between`} id="total-price">
                     <p>Total</p>
-                    <b class="text-success">₹{totalPrice}</b>
+                    <b className="text-success">₹{totalPrice}</b>
                 </div>
                 <Container >
                     <Row>
                         <Form onSubmit={onOrderSubmit}>
                             <Form.Group className="mb-3">
                                 <Form.Control value={addressData.address} id="address" type="text" placeholder="Enter your address" onChange={handleAddressData} />
-                                {!addressValidity.address && <b class="text-danger">Please provide an address</b>}
+                                {!addressValidity.address && <b className="text-danger">Please provide an address</b>}
                             </Form.Group>
 
-                            <button type='submit' class={`w-100 btn btn-sm btn-danger mb-2 ${items.length === 0 ? 'disabled' : ''}`}>Order</button>
+                            <button type='submit' className={`w-100 btn btn-sm btn-danger mb-2 ${items.length === 0 ? 'disabled' : ''}`}>Order</button>
                         </Form>
 
                     </Row>

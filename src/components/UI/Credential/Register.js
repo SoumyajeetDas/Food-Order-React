@@ -115,7 +115,7 @@ export default function Register() {
                 <Container >
                     {isError && <Row>
                         <Col md={6} className="m-auto mb-3">
-                            <div class="alert alert-danger text-center" role="alert">
+                            <div className="alert alert-danger text-center" role="alert">
                                 <b>{message}</b>
                             </div>
                         </Col>
@@ -123,16 +123,16 @@ export default function Register() {
 
                     <Row>
                         <Col md={6} className="m-auto p-3" style={{ borderRadius: "20px" }}>
-                            <h2 id="register" class="text-center mb-3">Register</h2>
+                            <h2 id="register" className="text-center mb-3">Register</h2>
                             <Form onSubmit={handleSubmit}>
-                                <motion.div class="mb-5"
+                                <motion.div className="mb-5"
                                     whileHover={{ scale: 1.1 }}
                                 >
                                     <Form.Group className="form-group ">
-                                        <span class="material-symbols-outlined b-0 p-2 colouring"  >
+                                        <span className="material-symbols-outlined b-0 p-2 colouring"  >
                                             person
                                         </span>
-                                        <input id="name" type="text" placeholder="Enter the name" className="colouring" onChange={handleRegisterData} />
+                                        <input id="name" type="text" autoComplete="on" placeholder="Enter the name" className="colouring" onChange={handleRegisterData} />
                                     </Form.Group>
                                     <div>
                                         {!registerFormValidity.name && <p className="text-danger text-end">**Please enter the username correctly</p>}
@@ -147,10 +147,10 @@ export default function Register() {
                                     className="mb-5"
                                 >
                                     <Form.Group className="form-group">
-                                        <span class="material-symbols-outlined b-0 p-2 colouring" >
+                                        <span className="material-symbols-outlined b-0 p-2 colouring" >
                                             email
                                         </span>
-                                        <input id="email" type="email" placeholder="Enter the email" class="colouring" onChange={handleRegisterData} />
+                                        <input id="email" type="email" autoComplete="on" placeholder="Enter the email" className="colouring" onChange={handleRegisterData} />
                                     </Form.Group>
                                     <div>
                                         {!registerFormValidity.email && <p className="text-danger text-end">**Please enter the email correctly</p>}
@@ -164,10 +164,10 @@ export default function Register() {
                                     className="mb-5"
                                 >
                                     <Form.Group className="form-group">
-                                        <span class="material-symbols-rounded b-0 p-2 colouring">
+                                        <span className="material-symbols-rounded b-0 p-2 colouring">
                                             lock
                                         </span>
-                                        <input id="password" type="password" placeholder="Enter the password" class="colouring" onChange={handleRegisterData} />
+                                        <input id="password" type="password" autoComplete="on" placeholder="Enter the password" className="colouring" onChange={handleRegisterData} />
                                     </Form.Group>
                                     <div>
                                         {!registerFormValidity.password && <p className="text-danger text-end">**Please enter the password correctly</p>}
@@ -181,12 +181,12 @@ export default function Register() {
                                     className="mb-5"
                                 >
                                     <Form.Group className="form-group">
-                                        <span class="material-symbols-rounded b-0 p-2 colouring">
-                                            <span class="material-symbols-outlined">
+                                        <span className="material-symbols-rounded b-0 p-2 colouring">
+                                            <span className="material-symbols-outlined">
                                                 lock_open
                                             </span>
                                         </span>
-                                        <input id="confirmpassword" type="password" placeholder="Confirm password" class="colouring" onChange={handleRegisterData} />
+                                        <input id="confirmpassword" type="password" autoComplete="on" placeholder="Confirm password" className="colouring" onChange={handleRegisterData} />
                                     </Form.Group>
 
                                     <div>
@@ -199,7 +199,7 @@ export default function Register() {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     id="btn">
-                                    <Button class="m-auto" style={{ backgroundColor: '#D2078B', border: "none" }} type="submit">
+                                    <Button className="m-auto" style={{ backgroundColor: '#D2078B', border: "none" }} type="submit">
                                         Create Account
                                     </Button>
                                 </motion.div>

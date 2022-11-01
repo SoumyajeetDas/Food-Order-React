@@ -42,7 +42,7 @@ export default function OrderHistory() {
         try {
             setLoading(true);
 
-            let data = await fetch('http://localhost:6001/api/v1/order/', {
+            let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + token

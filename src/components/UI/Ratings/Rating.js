@@ -9,7 +9,7 @@ export default function Rating(props) {
 
 
     const updateRating = async (foodId, token) => {
-        let data = await fetch(`http://localhost:6001/api/v1/review/addReview/${foodId}`, {
+        let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/review/addReview/${foodId}`, {
             method: "POST",
             headers: {
                 Authorization: 'Bearer ' + token,
@@ -22,7 +22,6 @@ export default function Rating(props) {
         });
 
         if(data.status===201){
-            console.log("200")
             props.setModalShow(true);
         }
 
@@ -46,8 +45,8 @@ export default function Rating(props) {
 
     return (
 
-            <div class="d-flex align-items-center justify-content-md-start justify-content-center mt-4" style={{ flexWrap: "wrap" }}>
-                <small class="text-white"><i>Please add your valuable rating</i> &nbsp;</small>
+            <div className="d-flex align-items-center justify-content-md-start justify-content-center mt-4" style={{ flexWrap: "wrap" }}>
+                <small className="text-white"><i>Please add your valuable rating</i> &nbsp;</small>
                 <ReactStars
                     count={5}
                     onChange={ratingChanged}

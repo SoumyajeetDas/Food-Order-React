@@ -9,7 +9,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 230px;
+    height: 250px;
     /*I made the height:230px to keep the height constant for all as after making the image to 100% the height gets random */
 }
 
@@ -42,6 +42,11 @@
 
 @media screen and (max-width:995px) {
 
+    #wrapper {
+
+        height: 270px;
+        /*I made the height:230px to keep the height constant for all as after making the image to 100% the height gets random */
+    }
     #wrapper img {
         height: 100%;
         width: 248px
@@ -60,9 +65,10 @@
     background-color: rgb(244, 191, 92);
 }
 
-@media screen and (max-width:738px) {
+@media screen and (max-width:913px) {
     #wrapper {
-        flex-wrap: wrap
+        flex-wrap: wrap;
+        height: 100%;
     }
 
     #wrapper img {
