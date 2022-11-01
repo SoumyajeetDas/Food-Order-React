@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 export default function Checkout(props) {
 
     const [paidFor, setPaidFor] = useState(false);
     const [cannotpaidFor, setCannotPaidFor] = useState(false);
-    const [errMsg, setErrMsg] = useState("")
+    const [errMsg, setErrMsg] = useState("");
+    // const [cancelPay, setCancelPay] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [showError, setShowError] = useState(false);
     const [dollarToINR, setDollarTOINR] = useState(0);
@@ -26,6 +27,9 @@ export default function Checkout(props) {
     const { items, totalPrice } = useSelector(state => state.cartReducer);
 
     const registerData = useSelector(state => state.authReducer.registerData);
+
+
+
 
 
     /*************************Converting INR TO USD on Checkout Component Mounting******************************/
@@ -73,11 +77,12 @@ export default function Checkout(props) {
 
     const handleApprove = async (orderId) => {
 
+
         //Saving the Order to DB
         let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
             method: "POST",
             headers: {
-                Authorization: 'Bearer ' + registerData.token!==null ? registerData.token : '',
+                Authorization: 'Bearer ' + registerData.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -97,17 +102,17 @@ export default function Checkout(props) {
         setPaidFor(true);
     }
 
+     // Used 'if' as useEffect() is resulting in 2 times rendering when paidForr is changed, once during first time paidFor
+    // changed from false to true in handleApprove() on and then with setPaidFor() resulting in paidFor changing from 
+    // true to false.
+    if (paidFor) {
+        handleClosePayment();
+        handleErrorClose();
+        handleSuccessShow();
+        setPaidFor(false);
+        // alert("Paid")
+    }
 
-    useEffect(() => {
-        if (paidFor) {
-            handleClosePayment();
-            handleErrorClose();
-            handleSuccessShow();
-            setPaidFor(false);
-            // alert("Paid")
-        }
-        // eslint-disable-next-line
-    }, [paidFor]);
 
     /************************************************************************************/
 
@@ -118,45 +123,56 @@ export default function Checkout(props) {
 
 
     /*************************Handling The Error Status******************************/
-    const handleError = async(err) => {
-        //Saving the Order to DB
-        await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
-            method: "POST",
-            headers: {
-                Authorization: 'Bearer ' + registerData.token!==null ? registerData.token : '',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                address: props.addressData.address,
-                orders: items,
-                totalPrice,
-                paymentStatus: 'Failed',
-                // orderId --> Since the order failed with error so orderId is also not present
-            })
-        });
+    const handleError = async (err) => {
+
+        // The if part will be executed only whne payment will be throwing error.
+        // When cancelled the if part will be not executed
+        if (err !== 'Payment has been cancelled') {
+            let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/order/`, {
+                method: "POST",
+                headers: {
+                    Authorization: 'Bearer ' + registerData.token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    address: props.addressData.address,
+                    orders: items,
+                    totalPrice,
+                    paymentStatus: 'Failed',
+                    // orderId --> Since the order failed with error so orderId is also not present
+                })
+            });
+
+            //Saving the Order to DB
+
+            if (data.status !== 201) {
+                alert("Your payment is not and order is not saved in DB");
+            }
+
+        }
+
 
         setErrMsg(err);
         setCannotPaidFor(true);
+    }
 
+    // Used 'if' as useEffect is resulting in 2 times rendering when cannotPaidFor is changed, once during first time cannotPaidFor
+    // changed from false to true in handleError() and then with setCannotPaidFor() resulting in cannotPaid changing from 
+    // true to false.
+    if (cannotpaidFor) {
+        handleClosePayment();
+        handleSuccessClose();
+        handleErrorShow();
+        setCannotPaidFor(false);
+        // alert("Not able to Pay")
     }
 
 
 
-    useEffect(() => {
-
-        if (cannotpaidFor) {
-            handleClosePayment();
-            handleSuccessClose();
-            handleErrorShow();
-            setCannotPaidFor(false);
-            // alert("Not able to Pay")
-        }
-        // eslint-disable-next-line
-    }, [cannotpaidFor])
-
 
     /************************************************************************************/
+
 
 
     return (
@@ -169,7 +185,7 @@ export default function Checkout(props) {
                     <b className="text-danger">{errMsg}</b>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => handleErrorShow()}>
+                    <Button variant="secondary" onClick={() => handleErrorClose()}>
                         Close
                     </Button>
                 </Modal.Footer>
@@ -235,7 +251,9 @@ export default function Checkout(props) {
 
 
                             // User will be automatically redirected to the Checkout Page on Cancel of the payment
-                            onCancel={() => { }}
+                            onCancel={() => {
+                                handleError("Payment has been cancelled");
+                            }}
 
                             onError={(err) => {
                                 handleError(err);

@@ -11,6 +11,7 @@ import Order from './components/UI/Order/Order';
 import OrderHistory from './components/UI/OrderHistory/OrderHistory'
 import ForgotPassword from './components/UI/Credential/ForgotPassword';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
+import Checkout from './components/UI/Checkout/Checkout';
 
 
 
@@ -63,6 +64,7 @@ const App = () => {
             <Route exact path="/forgotPassword" element={<ForgotPassword />} />
             <Route exact path="/foods" element={<Foods />} />
             <Route exact path="/orderHistory" element={<OrderHistory />} />
+            <Route exact path="/checkOut" element={<Checkout />} />
           </Routes>
         </BrowserRouter>
       </PayPalScriptProvider>
