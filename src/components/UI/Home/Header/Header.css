@@ -125,6 +125,7 @@ header {
 #user-login {
     display: flex;
     justify-content: center;
+    align-items:center;
     color: rgb(244, 191, 92);
 }
 
