@@ -103,7 +103,7 @@ export default function Order() {
                 </div>
 
 
-                <div className={`text-dark my-4 d-flex justify-content-between`} id="total-price">
+                <div className={`text-dark my-2 d-flex justify-content-between`} id="total-price">
                     <p>Total</p>
                     <b className="text-success">₹{totalPrice}</b>
                 </div>
