@@ -199,7 +199,7 @@ export default function ForgotPassword() {
                                     whileTap={{ scale: 0.9 }}
                                     id="btn">
                                     <Button className="m-auto" id="forgot-password-button" type="submit">
-                                        Create Account
+                                        Submit
                                     </Button>
                                 </motion.div>
 
