@@ -13,8 +13,7 @@ export default function FoodItems(props) {
   const dispatch = useDispatch();
 
 
-
-
+  // Adding items in the Redux cart. After updating the cart useEffect will run on Food.js which will update the DB by Redux Thunk
   const addCartHandler = () => {
 
     dispatch(cartActions.addItem({
@@ -25,12 +24,12 @@ export default function FoodItems(props) {
       amount: 1
     }));
 
-    // The item name will be set as toast when the data gets added in cart
+    // The item name will be set in the toast when the data gets added in cart present in Food.js
     props.setItem(props.item.name);
 
 
 
-    // The toast will be shown when the item gets added in cart.
+    // The toast will be shown when the item gets added in cart present in Food.js
 
     props.setShow(true);
 
@@ -59,24 +58,44 @@ export default function FoodItems(props) {
           <Row>
             <Col className="mx-auto p-0" sm={9} id="food-bar" style={{ position: "relative" }}>
 
-              <span className={`p-1 text-center text-white ${props.item.avgRating>=3? 'bg-success': 'bg-danger'}`} id="badge">{props.item.avgRating.toFixed(1)}</span>
+              {/* Avg Rating Badge */}
+              <span className={`p-1 text-center text-white ${props.item.avgRating >= 3 ? 'bg-success' : 'bg-danger'}`} id="badge">{props.item.avgRating.toFixed(1)}</span>
+
+              {/* Add Cart */}
               <motion.span
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
 
                 onClick={addCartHandler}
-                className="pt-1 px-2 text-center text-white" id="add-cart-button"><span className="material-symbols-rounded">
+
+                className="pt-1 px-2 text-center text-white" id="add-cart-button">
+
+                <span className="material-symbols-rounded">
                   add_shopping_cart
-                </span></motion.span>
-                
+                </span>
+
+              </motion.span>
+
+
+
               <div id="wrapper">
+
                 <img alt="Loading..." src={props.item.imageUrl}></img>
+
                 <div className="p-4">
+                  
                   <h3 id="food-name" className="text-white">{props.item.name}</h3>
+
                   <small className="text-white"><i>{props.item.description}</i></small>
+
                   <h4 id="price" className="mt-3"><b>₹{props.item.price}</b></h4>
-                  <Rating token={props.token} foodId={props.item._id} setModalShow={props.setModalShow}/>
+                  
+
+                  {/* Rating Component */}
+                  <Rating token={props.token} foodId={props.item._id} setModalShow={props.setModalShow} />
+
                 </div>
+
               </div>
 
             </Col>
