@@ -22,7 +22,6 @@ export default function Foods() {
   const [isFirst, setIsFirst] = useState(true);
   const [item, setItem] = useState();
   const [show, setShow] = useState(false);
-
   const [modalShow, setModalShow] = useState(false);
 
 
@@ -33,17 +32,19 @@ export default function Foods() {
 
   const { token } = useSelector(state => state.authReducer.registerData);
 
+
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
 
+  // Fetching the food wrt type like Breakfast, Lunch, Dinner
   const handleFoodType = async (type) => {
-
     dispatch(fetchFoodTypeFood(type))
   }
 
-
+  // Just updating the search usState()
   const handleSearch = (e) => {
     setSearch(e.target.value);
 
@@ -52,7 +53,7 @@ export default function Foods() {
   }
 
 
-  /****************Call the Serach API within 1s of change in the Search bar******************/
+  /****************Call the Serach API within 1sec of change of content in the Search bar******************/
 
 
   // To remeber the concept of return in useEffect plaese check the React Notes --> Type "useEffect Imp Concept"
@@ -106,6 +107,8 @@ export default function Foods() {
 
 
   /****************Updating the cart in DB whenever any item gets added or removed******************/
+
+  // This useEffect() will execute whenever addItem() or removeItem() will be called.
   useEffect(() => {
 
     if (changed) {
@@ -119,25 +122,28 @@ export default function Foods() {
   }, [items, totalPrice, dispatch, changed])
 
 
+  // Following opeartiosn just when the component gets loaded.
   useEffect(() => {
 
+
+    // Load the food list
     dispatch(fetchFood());
 
 
+    //Load the cart data
     dispatch(getCartData());
 
 
+    // After loading with useSelector() get the items and totalPrice and update the same data in the initial State of cart Redux
     dispatch(cartActions.replaceCart({
       items,
       totalPrice
-    }))
-
-    // dispatch(foodActions.reset())
+    }));
 
     // eslint-disable-next-line 
   }, []);
 
-
+  // Animation for moving the component from left to right
   const containerVariants = {
     hidden: {
       x: 400,
@@ -163,6 +169,8 @@ export default function Foods() {
 
       {modalShow && <RatingAddedModal modalShow={modalShow} setModalShow={setModalShow} />}
 
+
+      {/* When food is added in cart the pop up comes up */}
       {show && <motion.div
         initial={{ y: -400, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -175,6 +183,7 @@ export default function Foods() {
         </div>
       </motion.div>}
 
+
       <Container>
         <Row>
           <Col sm={6} className="mx-auto">
@@ -182,8 +191,9 @@ export default function Foods() {
             <motion.div
               whileHover={{ scale: 1.1 }}>
 
-              <Form.Group className="mb-5 form-group">
 
+              {/* Search Bar Functionality */}
+              <Form.Group className="mb-5 form-group">
                 <input id="search" type="text" placeholder="Search" className="colouring" onChange={handleSearch} />
                 <span className="material-symbols-outlined b-0 p-2 colouring" >
                   search
@@ -195,31 +205,55 @@ export default function Foods() {
         </Row>
       </Container>
 
+
+
       <Container>
         <Row>
           <Col>
             <div id="food-btn-wrapper">
+
+              {/* All Button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
 
-                id="food-btn" className="btn m-3" onClick={() => handleFoodType('all')}>All</motion.button>
+                id="food-btn" className="btn m-3" onClick={() => handleFoodType('all')}>All
+              </motion.button>
+
+
+
+              {/* Breakfast Button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
 
-                id="food-btn" className="btn m-3" onClick={() => handleFoodType('Breakfast')}>Breakfast</motion.button>
+                id="food-btn" className="btn m-3" onClick={() => handleFoodType('Breakfast')}>Breakfast
+              </motion.button>
+
+
+
+              {/* Lunch Button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
 
-                id="food-btn" className="btn m-3" onClick={() => handleFoodType('Lunch')}>Lunch</motion.button>
+                id="food-btn" className="btn m-3" onClick={() => handleFoodType('Lunch')}>Lunch
+              </motion.button>
+
+
+
+              {/* Dinner Button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
 
-                id="food-btn" className="btn m-3" onClick={() => handleFoodType('Dinner')}>Dinner</motion.button>
-                <motion.button
+                id="food-btn" className="btn m-3" onClick={() => handleFoodType('Dinner')}>Dinner
+              </motion.button>
+
+
+
+              {/* Desserts Button */}
+              <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
 
@@ -230,12 +264,16 @@ export default function Foods() {
       </Container>
 
 
+
+      {/* Spinner while loading food items */}
       <Container>
         <Row>
           {isLoading && <Spinner />}
         </Row>
       </Container>
 
+
+      {/* Message if food item not got loaded for any reason */}
       {isError &&
         <Container>
           <Row>
@@ -249,7 +287,7 @@ export default function Foods() {
 
 
 
-
+      {/* Loading Food Items */}
       {isSuccess && foodItems.map(item =>
         <motion.div
           initial={{ opacity: 0 }}

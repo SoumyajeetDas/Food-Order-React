@@ -2,11 +2,13 @@ import React from 'react';
 import './Menu.css';
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartItemShowActions, } from '../../../store/index'
+import { orderVisibilityActions } from '../../../store/index'
 import { useNavigate } from 'react-router-dom';
 import { authActions, cartActions } from '../../../store/index';
 import { logout } from '../../../store/auth-slice'
 
+
+// Animation for showing the Menu Bar
 const MenuVaraints1 = {
     hidden: {
         opacity: 0,
@@ -18,6 +20,8 @@ const MenuVaraints1 = {
     }
 }
 
+
+// Animation for removing the Menu Bar
 const MenuVaraints2 = {
     visible: {
         opacity: 1,
@@ -31,19 +35,26 @@ const MenuVaraints2 = {
 
 
 export default function Menu(props) {
+
+
     const items = useSelector(state => state.cartReducer.items);
     const { registerData } = useSelector(state => state.authReducer);
 
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
+
+    // This part is used to show thw Order Bar from the right side and remove the Menu Bar
     const cartItemShowHandler = () => {
-        dispatch(cartItemShowActions.show());
+        dispatch(orderVisibilityActions.show());
         props.show();
     }
 
-    const navigate = useNavigate();
 
+
+    // Handlig the logout functionality
     const handleLogout = () => {
         dispatch(logout());
 
@@ -52,6 +63,8 @@ export default function Menu(props) {
 
         navigate("/")
     }
+
+
 
     return (
         <motion.div
@@ -63,6 +76,7 @@ export default function Menu(props) {
             className={props.classname}>
 
 
+            {/* Header of Menubar conatining Image and the cross button */}
             <div id="cross" >
                 <div>
                     <img src="icon.png" alt="Loading..." height="30" width="30"></img>
@@ -75,6 +89,7 @@ export default function Menu(props) {
             </div>
 
 
+            {/* Home */}
            {!registerData && <div className="menuitems" onClick={() => navigate('/')}>
                 <span className="material-symbols-rounded">
                     home
@@ -83,6 +98,7 @@ export default function Menu(props) {
             </div>}
 
 
+            {/* Menus */}
             <div className="menuitems" onClick={() => navigate('/foods')}>
                 <span className="material-symbols-rounded">
                     list_alt
@@ -90,6 +106,8 @@ export default function Menu(props) {
                 Menus
             </div>
 
+
+            {/* Cart with no of items in cart */}
             {registerData  && <div className="menuitems" onClick={cartItemShowHandler}>
                 <span className="material-symbols-rounded">
                     <span className="material-symbols-rounded">
@@ -102,6 +120,7 @@ export default function Menu(props) {
             </div>}
 
 
+            {/* Your Orders which contains the list of previously paid orders */}
             <div className="menuitems" onClick={()=>navigate("/orderHistory")}>
                 <span className="material-symbols-rounded">
                     history
@@ -110,6 +129,8 @@ export default function Menu(props) {
             </div>
 
 
+
+            {/* Login */}
             {!registerData  && <div className="menuitems" onClick={()=>navigate("/login")}>
                 <span className="material-symbols-outlined">
                     login
@@ -118,6 +139,7 @@ export default function Menu(props) {
             </div>}
 
 
+            {/* Logout */}
             {registerData  && <div className="menuitems" onClick={handleLogout}>
                 <span className="material-symbols-rounded">
                     logout

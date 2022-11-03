@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./cart-slice";
-import cartItemShowSlice from './cart-item-show-slice';
+import orderVisibilitySlice from './order-component-visibility-slice';
 import authSlice from './auth-slice';
 import foodSlice from './food-slice'
 
@@ -9,7 +9,7 @@ import foodSlice from './food-slice'
 const store = configureStore({
     reducer: {
         cartReducer: cartSlice.reducer,
-        cartItemShowReducer : cartItemShowSlice.reducer,
+        orderVisibilityReducer : orderVisibilitySlice.reducer,
         authReducer: authSlice.reducer,
         foodReducer: foodSlice.reducer
     }
@@ -20,7 +20,7 @@ const store = configureStore({
 
 // Actions
 export const cartActions = cartSlice.actions;
-export const cartItemShowActions = cartItemShowSlice.actions;
+export const orderVisibilityActions = orderVisibilitySlice.actions;
 export const authActions = authSlice.actions;
 export const foodActions = foodSlice.actions;
 

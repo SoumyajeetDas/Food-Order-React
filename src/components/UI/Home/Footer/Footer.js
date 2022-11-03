@@ -10,9 +10,13 @@ export default function Footer() {
         <div>
             <Container className="my-5">
                 <Row>
+
+
                     <Col sm={12} className="text-center mx-auto">
                         <p id="follow-us">Follow Us On</p>
                     </Col>
+
+
                     <div style={{width:"150px"}} className="text-center mx-auto">
                         <div id="footer">
                             <motion.i
@@ -33,6 +37,8 @@ export default function Footer() {
                                 className="fab fa-linkedin text-white"></motion.i>
                         </div>
                     </div>
+
+                    
                 </Row>
             </Container>
         </div>

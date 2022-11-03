@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCartShowState = {
+const initialOrderVisibilityState = {
     willShow:false
 }
 
 
-const carItemShowSlice = createSlice({
-    name:'cartItemShow',
-    initialState:initialCartShowState,
+const orderVisibilitySlice = createSlice({
+    name:'orderVisibility',
+    initialState:initialOrderVisibilityState,
     reducers:{
         show(state){
             state.willShow = true;
@@ -18,4 +18,4 @@ const carItemShowSlice = createSlice({
     }
 })
 
-export default carItemShowSlice
+export default orderVisibilitySlice

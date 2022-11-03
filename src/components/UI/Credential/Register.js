@@ -22,6 +22,7 @@ const isEmail = value => validRegex.test(value.trim())
 const isPwdAndCnfSame = (pwd, cnf) => pwd === cnf
 
 
+// Animation for moving the component from left to right
 const containerVariants = {
     hidden: {
         x: 400,
@@ -39,7 +40,9 @@ export default function Register() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+
     const { isError, isSuccess, isLoading, message } = useSelector((state) => state.authReducer);
+
 
     const [registerData, setRegisterData] = useState({
         name: '',
@@ -70,13 +73,15 @@ export default function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
+        // Checking the Validity
         const isUsernameValid = !isEmpty(registerData.name);
         const isEmailValid = !isEmpty(registerData.email) && isEmail(registerData.email)
         const isPasswordValid = !isEmpty(registerData.password);
         const isConfirmPasswordValid = isPwdAndCnfSame(registerData.password, registerData.confirmpassword);
 
-        // console.log(isEmpty(registerData.name))
 
+        // Setting the form Validity and accordingly validation error will be shown for the fields
         setRegisterFormValidity({
             name: isUsernameValid,
             email: isEmailValid,
@@ -84,15 +89,21 @@ export default function Register() {
             confirmpassword: isConfirmPasswordValid
         });
 
+
         const isFormValid = isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid;
 
+        // If the form not valid the control will be removed from the flow
         if (!isFormValid) {
             return;
         }
 
+
+        // If everything is valid then the API will be called with the registerData paramter
         dispatch(register(registerData));
     }
 
+
+    // If the Api call is sucess then it will be redirected to the food page
     useEffect(() => {
         if (isSuccess) {
             navigate("/foods");
@@ -100,19 +111,27 @@ export default function Register() {
         dispatch(authActions.reset());
     }, [isSuccess, navigate, dispatch])
 
+
+
     return (
         <>
-
+            {/* During loading spinner over the backdrop */}
             {isLoading && <div id="backdropRegister">
                 <Spinner />
             </div>}
+
+
 
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
             >
+
+
                 <Container >
+
+                    {/* Error Messages coming from the api will be shown in Bootstrap 5 alert */}
                     {isError && <Row>
                         <Col md={6} className="m-auto mb-3">
                             <div className="alert alert-danger text-center" role="alert">
@@ -122,9 +141,11 @@ export default function Register() {
                     </Row>}
 
                     <Row>
+
                         <Col md={6} className="m-auto p-3" style={{ borderRadius: "20px" }}>
                             <h2 id="register" className="text-center mb-3">Register</h2>
                             <Form onSubmit={handleSubmit}>
+
                                 <motion.div className="mb-5"
                                     whileHover={{ scale: 1.1 }}
                                 >
@@ -137,9 +158,8 @@ export default function Register() {
                                     <div>
                                         {!registerFormValidity.name && <p className="text-danger text-end">**Please enter the username correctly</p>}
                                     </div>
-
-
                                 </motion.div>
+
 
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}
@@ -158,6 +178,8 @@ export default function Register() {
 
                                 </motion.div>
 
+
+
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}
 
@@ -172,8 +194,9 @@ export default function Register() {
                                     <div>
                                         {!registerFormValidity.password && <p className="text-danger text-end">**Please enter the password correctly</p>}
                                     </div>
-
                                 </motion.div>
+
+
 
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}
@@ -195,6 +218,8 @@ export default function Register() {
 
                                 </motion.div>
 
+
+
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
@@ -203,6 +228,8 @@ export default function Register() {
                                         Create Account
                                     </Button>
                                 </motion.div>
+
+
                             </Form>
                         </Col>
                     </Row>

@@ -29,11 +29,17 @@ export default function Rating(props) {
     }
 
 
+
+
     const ratingChanged = (newRating) => {
         setRating(newRating);
     };
 
+
+
     useEffect(() => {
+
+        // On first time load of component to prevent rating get updated automatically
         if (isFirst) {
             setIsFirst(false);
             return;
@@ -57,7 +63,7 @@ export default function Rating(props) {
                     fullIcon={<i className="fa fa-star"></i>}
                     activeColor="#ffd700"
 
-                />,
+                />
             </div>
 
     )

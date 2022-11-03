@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import OrderItem from './OrderItems/OrderItem';
 import './Order.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartItemShowActions } from '../../../store/index'
+import { orderVisibilityActions } from '../../../store/index'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { motion } from 'framer-motion';
@@ -16,15 +16,30 @@ export default function Order() {
 
     const { items, totalPrice } = useSelector(state => state.cartReducer);
 
+
+    // This checkout will be used to get the modal of the Payment for checkout
     const [showCheckOut, setShowCheckOut] = useState(false);
 
-
-    const show = useSelector(state => state.cartItemShowReducer.willShow);
+    // This show is a Redux item which tells whether the Order component will be mounted or not
+    const show = useSelector(state => state.orderVisibilityReducer.willShow);
 
     const dispatch = useDispatch();
 
 
-    const handleShow = () => setShowCheckOut(true);
+    const handleCheckoutShow = () => setShowCheckOut(true);
+
+
+
+    // Function will be used on clicking the backdrop to remove the Order Component
+    const orderVisibilityHandler = () => {
+        dispatch(orderVisibilityActions.dontShow());
+    }
+
+
+
+
+
+    /******************************Validation for the addreess and handling it during Order Submit*******************************/
 
     const [addressData, setAddressData] = useState({
         address: ''
@@ -49,7 +64,7 @@ export default function Order() {
         e.preventDefault();
 
 
-
+        // Validating Address
         const isAddressValid = !isEmpty(addressData.address)
 
 
@@ -59,30 +74,38 @@ export default function Order() {
 
         const isFormValid = isAddressValid;
 
+
+        // If Address not valid make it out of flow by return;
         if (!isFormValid) {
             return;
         }
 
-        dispatch(cartItemShowActions.dontShow());
-        handleShow();
+        // After clicking the order button the Order Componenet will be unmounted
+        dispatch(orderVisibilityActions.dontShow());
+
+        // And the checkout modal will be shown
+        handleCheckoutShow();
 
     }
+    /************************************************************************************************/
 
 
-    const cartItemdontShowHandler = () => {
-        dispatch(cartItemShowActions.dontShow());
-    }
+
+
 
     return (
         <>
-            {show && <div id="backdrop" onClick={cartItemdontShowHandler}>
+
+            {/* Backdrop */}
+            {show && <div id="backdrop" onClick={orderVisibilityHandler}>
 
             </div>}
 
 
+            {/* Checkout Modal */}
             <Checkout showCheckOut={showCheckOut} setShowCheckOut={setShowCheckOut} addressData={addressData}/>
 
-
+            
             {show && <motion.div
                 initial={{ x: 250 }}
                 animate={{ x: 0 }}
@@ -102,11 +125,14 @@ export default function Order() {
                         items.map(item => <OrderItem key={item.id} item={item} />)}
                 </div>
 
-
+                
+                {/* Total Amount */}
                 <div className={`text-dark my-2 d-flex justify-content-between`} id="total-price">
                     <p>Total</p>
                     <b className="text-success">₹{totalPrice}</b>
                 </div>
+
+
                 <Container >
                     <Row>
                         <Form onSubmit={onOrderSubmit}>
@@ -120,6 +146,8 @@ export default function Order() {
 
                     </Row>
                 </Container>
+
+
             </motion.div>}
         </>
 

@@ -17,10 +17,16 @@ import Checkout from './components/UI/Checkout/Checkout';
 
 const App = () => {
 
-  const [status, setStatus] = useState(false)
-  const [classname, seClassName] = useState('menu-bar-initial'); // Initially the menubar wil be kept as display: none so that it is not visible
+  const [status, setStatus] = useState(false);
+
+  // Initially the menubar wil be kept as display: none so that it is not visible
+  const [classname, seClassName] = useState('menu-bar-initial'); 
+
+
   const [variant, setVariant] = useState({});
 
+
+  // This show part will be used for the Menu Bar
   const show = () => {
     if (status === false) {
       setVariant({
@@ -43,6 +49,8 @@ const App = () => {
   return (
     <>
       {/* Backdrop */}
+
+      {/* onClick is given so that on clicking the backdrop the Menubar gets removed */}
       {status && <div id="backdrop" onClick={show}>
 
       </div>}

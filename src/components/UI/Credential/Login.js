@@ -20,6 +20,8 @@ const isEmpty = value => value.trim() === ''
 const isEmail = value => validRegex.test(value.trim());
 
 
+
+// Animation for moving the component from left to right
 const containerVariants = {
     hidden: {
         x: 400,
@@ -30,6 +32,7 @@ const containerVariants = {
         opacity: 1,
     }
 }
+
 
 
 export default function Login() {
@@ -61,26 +64,33 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
+        // Checking the Validity
         const isEmailValid = !isEmpty(loginData.email) && isEmail(loginData.email)
         const isPasswordValid = !isEmpty(loginData.password);
 
-        // console.log(isEmpty(registerData.name))
 
+        // Setting the form Validity and accordingly validation error will be shown for the fields
         setLoginFormValidity({
             email: isEmailValid,
             password: isPasswordValid,
         });
 
+
         const isFormValid = isEmailValid && isPasswordValid;
 
+
+        // If the form not valid the control will be removed from the flow
         if (!isFormValid) {
             return;
         }
 
+
+        // If everything is valid then the API will be called with the registerData paramter
         dispatch(login(loginData));
     }
 
+
+    // If the Api call is sucess then it will be redirected to the food page
     useEffect(() => {
         if (isSuccess) {
             navigate("/foods");
@@ -89,12 +99,15 @@ export default function Login() {
     }, [isSuccess, navigate, dispatch])
 
 
+
     return (
 
         <>
+            {/* During loading spinner over the backdrop */}
             {isLoading && <div id="backdropRegister">
                 <Spinner />
             </div>}
+
 
             <motion.div
                 variants={containerVariants}
@@ -102,6 +115,8 @@ export default function Login() {
                 animate="visible"
             >
                 <Container >
+
+                    {/* Error Messages coming from the api will be shown in Bootstrap 5 alert */}
                     {isError && <Row>
                         <Col md={6} className="m-auto mb-3">
                             <div className="alert alert-danger text-center" role="alert">
@@ -109,6 +124,9 @@ export default function Login() {
                             </div>
                         </Col>
                     </Row>}
+
+
+
                     <Row>
                         <Col md={6} className="m-auto p-3" style={{ borderRadius: "20px" }}>
                             <h2 id="register" className="text-center mb-3">Login</h2>
@@ -147,9 +165,13 @@ export default function Login() {
 
                                 </motion.div>
 
+
+                                {/* Forgot Password */}
                                 <div className="mb-5 ms-auto d-flex justify-content-end">
                                     <Link to="/forgotPassword" className="text-white">Forgot Password?</Link>
                                 </div>
+
+
 
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}

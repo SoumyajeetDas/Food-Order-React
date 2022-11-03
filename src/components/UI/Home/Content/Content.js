@@ -9,6 +9,7 @@ export default function Content() {
 
     const navigate = useNavigate();
 
+    // Animation for the Content to come from left to right
     const containerVariants = {
         hidden: {
             x: 400,
@@ -34,21 +35,28 @@ export default function Content() {
 
                         <div>
                             <p id="intro1" className="text-white mb-4">The Health you want is here :)</p>
+
                             <p id="intro2"><b>Bengali Food</b></p>
+
                             <p className="text-white text-center">Bring the quality living experience to today's urban customers</p>
+
+
+                            {/* Registration */}
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 id="accountbtn"
-                                onClick={() => navigate("/register")}
-                            >
+                                onClick={() => navigate("/register")}>
 
                                 Open your account
 
                             </motion.button>
 
                         </div>
+
                         <img src="BengaliFood.jpg" height="500" width="500" alt="Loading......." id="image"></img>
+
+
                     </div>
                 </Row>
             </Container>

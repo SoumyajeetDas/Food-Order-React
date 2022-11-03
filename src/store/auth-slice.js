@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from './service/authService';
-import Cookie from 'js-cookie'
+import Cookie from 'js-cookie';
 
-// const user = JSON.parse(localStorage.getItem('user'));
 
 const registerData = Cookie.get('userregisterData')?JSON.parse(Cookie.get('userregisterData')):'';
 
