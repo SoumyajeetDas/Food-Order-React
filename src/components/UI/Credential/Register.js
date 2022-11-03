@@ -224,7 +224,7 @@ export default function Register() {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     id="btn">
-                                    <Button className="m-auto" style={{ backgroundColor: '#D2078B', border: "none" }} type="submit">
+                                    <Button className="m-auto" id="register-button" type="submit">
                                         Create Account
                                     </Button>
                                 </motion.div>

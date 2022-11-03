@@ -177,7 +177,7 @@ export default function Login() {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     id="btn">
-                                    <Button className="m-auto" style={{ backgroundColor: '#D2078B', border: "none" }} type="submit">
+                                    <Button className="m-auto" id="login-button" type="submit">
                                         Login
                                     </Button>
                                 </motion.div>

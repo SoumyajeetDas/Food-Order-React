@@ -8,7 +8,8 @@ import { motion } from "framer-motion";
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../Spinner/Spiner'
 import Footer from '../Home/Footer/Footer';
-import { forgotPassword } from '../../../store/auth-slice'
+import { forgotPassword } from '../../../store/auth-slice';
+import './ForgotPassword.css';
 
 
 let validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
@@ -179,7 +180,7 @@ export default function ForgotPassword() {
                                     <Form.Group className="form-group">
                                         <span className="material-symbols-rounded b-0 p-2 colouring">
                                             <span className="material-symbols-outlined">
-                                                lock_open
+                                                lock
                                             </span>
                                         </span>
                                         <input id="confirmpassword" type="password" autoComplete="on" placeholder="Confirm password" className="colouring" onChange={handleRegisterData} />
@@ -197,7 +198,7 @@ export default function ForgotPassword() {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     id="btn">
-                                    <Button className="m-auto" style={{ backgroundColor: '#D2078B', border: "none" }} type="submit">
+                                    <Button className="m-auto" id="forgot-password-button" type="submit">
                                         Create Account
                                     </Button>
                                 </motion.div>
