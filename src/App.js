@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Menu from './components/UI/MenuBar/Menu';
 import Header from './components/UI/Home/Header/Header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -12,15 +12,22 @@ import OrderHistory from './components/UI/OrderHistory/OrderHistory'
 import ForgotPassword from './components/UI/Credential/ForgotPassword';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import Checkout from './components/UI/Checkout/Checkout';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCartData } from './store/cart-slice'
+import { cartActions } from './store/index'
 
 
 
 const App = () => {
 
+  const { isCartError, cartMessage, items, totalPrice } = useSelector(state => state.cartReducer);
+
+  const dispatch = useDispatch();
+
   const [status, setStatus] = useState(false);
 
   // Initially the menubar wil be kept as display: none so that it is not visible
-  const [classname, seClassName] = useState('menu-bar-initial'); 
+  const [classname, seClassName] = useState('menu-bar-initial');
 
 
   const [variant, setVariant] = useState({});
@@ -46,6 +53,39 @@ const App = () => {
       setStatus(false);
     }
   }
+
+
+
+  // This is used if any error comes from cartSlice while calling the cartData
+  useEffect(() => {
+
+    if (isCartError) {
+      alert(cartMessage);
+      dispatch(cartActions.reset());
+    }
+
+  }, [isCartError, cartMessage, dispatch])
+
+
+
+
+  useEffect(() => {
+
+    //Load the cart data
+    dispatch(getCartData());
+
+
+    // After loading with useSelector() get the items and totalPrice and update the same data in the initial State of cart Redux
+    dispatch(cartActions.replaceCart({
+      items,
+      totalPrice
+    }));
+
+    // eslint-disable-next-line
+  }, [])
+
+
+
   return (
     <>
       {/* Backdrop */}
@@ -60,7 +100,7 @@ const App = () => {
       {/* PayPalScriptProvider is added here so that all the Components within it passed can access the client-id */}
 
       <PayPalScriptProvider
-      options={{"client-id":process.env.REACT_APP_PAYPAL_CLIENT_ID}}
+        options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}
       >
         <BrowserRouter>
           <Header show={show} />

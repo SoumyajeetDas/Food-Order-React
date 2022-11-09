@@ -3,6 +3,12 @@ import authService from './service/authService';
 import Cookie from 'js-cookie';
 
 
+
+// Here the cookie is not httpOnly which is very vulnerable to hackers as it conatins the raw jwt token so we are not going to 
+// follow this step in original projects the cookie should be registered from backend itself.
+// The structure should be, there will be an refresh token that will be used by backend to validate by it's own way to handle
+// httpOnly Cookie and there should be a access token which should be saved in the Cookie and that needs to be passed from the
+// frontend to the backend for validation.
 const registerData = Cookie.get('userregisterData')?JSON.parse(Cookie.get('userregisterData')):'';
 
 const initialAuthState = {

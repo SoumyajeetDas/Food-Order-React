@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFood, fetchFoodTypeFood, fetchSearchedFood } from '../../../store/food-slice';
-import { getCartData, updateCartData } from '../../../store/cart-slice'
+import { updateCartData } from '../../../store/cart-slice'
 import { logout } from '../../../store/auth-slice'
 import { foodActions, cartActions } from '../../../store/index'
 import RatingAddedModal from '../Ratings/RatingAddedModal';
@@ -28,7 +28,7 @@ export default function Foods() {
 
   const { isError, isSuccess, isLoading, message, foodItems } = useSelector((state) => state.foodReducer);
 
-  const { isCartError, cartMessage, changed, items, totalPrice } = useSelector(state => state.cartReducer);
+  const { changed, items, totalPrice } = useSelector(state => state.cartReducer);
 
   const { token } = useSelector(state => state.authReducer.registerData);
 
@@ -94,21 +94,14 @@ export default function Foods() {
       dispatch(foodActions.reset());
     }
 
-
-    // This is used if any error comes from cartSlice while calling the cartData
-    if (isCartError) {
-      alert(cartMessage);
-      dispatch(cartActions.reset())
-    }
-
-
-  }, [isError, cartMessage, isCartError, navigate, message, dispatch])
+  }, [isError,  navigate, message, dispatch])
 
 
 
   /****************Updating the cart in DB whenever any item gets added or removed******************/
 
-  // This useEffect() will execute whenever addItem() or removeItem() will be called.
+  // This useEffect() will execute whenever addItem() or removeItem() will be called. For the first time the items, totalPrice
+  // will change but still updateCartData() will not be called as changed is still false.
   useEffect(() => {
 
     if (changed) {
@@ -129,16 +122,6 @@ export default function Foods() {
     // Load the food list
     dispatch(fetchFood());
 
-
-    //Load the cart data
-    dispatch(getCartData());
-
-
-    // After loading with useSelector() get the items and totalPrice and update the same data in the initial State of cart Redux
-    dispatch(cartActions.replaceCart({
-      items,
-      totalPrice
-    }));
 
     // eslint-disable-next-line 
   }, []);
