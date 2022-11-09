@@ -20,7 +20,7 @@ import { cartActions } from './store/index'
 
 const App = () => {
 
-  const { isCartError, cartMessage, items, totalPrice } = useSelector(state => state.cartReducer);
+  const { isCartError, cartMessage } = useSelector(state => state.cartReducer);
 
   const dispatch = useDispatch();
 

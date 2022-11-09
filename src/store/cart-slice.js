@@ -11,7 +11,7 @@ const initialCartState = {
 
 
 
-/**********************Get the cart Data when Food.js gets mounted*************************/ 
+/**********************Get the cart Data when Food.js gets mounted*************************/
 export const getCartData = createAsyncThunk('cart/getCartData', async (value = null, thunkAPI) => {
     try {
 
@@ -41,8 +41,8 @@ export const getCartData = createAsyncThunk('cart/getCartData', async (value = n
 
 
 
-/**********************Update the cart data in Mongo DB on adding any item in cart*************************/ 
-export const updateCartData = createAsyncThunk('cart/updateCartData', async (value=null, thunkAPI) => {
+/**********************Update the cart data in Mongo DB on adding any item in cart*************************/
+export const updateCartData = createAsyncThunk('cart/updateCartData', async (value = null, thunkAPI) => {
     try {
 
         // With getState() you can access any state all over the React Project. getState() actually returns all the reducer which is 
@@ -52,7 +52,7 @@ export const updateCartData = createAsyncThunk('cart/updateCartData', async (val
         const cartData = thunkAPI.getState().cartReducer
 
 
-        let response = await cartService.updateCart(token,cartData);
+        let response = await cartService.updateCart(token, cartData);
 
 
         // The value passed in the fulfillWithValue will be going in the reducer method as action.paylaod
