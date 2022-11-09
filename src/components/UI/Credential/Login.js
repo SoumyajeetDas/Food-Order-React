@@ -166,23 +166,28 @@ export default function Login() {
                                 </motion.div>
 
 
-                                {/* Forgot Password */}
-                                <div className="mb-5 ms-auto d-flex justify-content-end">
-                                    <Link to="/forgotPassword" className="text-white">Forgot Password?</Link>
-                                </div>
-
-
-
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
-                                    id="btn">
+                                    id="btn" className="mt-5">
                                     <Button className="m-auto" id="login-button" type="submit">
                                         Login
                                     </Button>
                                 </motion.div>
 
                             </Form>
+
+                            
+                            <div className="mt-5 ms-auto d-flex justify-content-center">
+
+                                {/* Forgot Password */}
+                                <Link to="/forgotPassword" className="text-white">Forgot Password?</Link> 
+
+                                <span className="text-white"> &nbsp; | &nbsp;</span>
+
+                                {/* Sign Up */}
+                                <Link to="/register" className="text-white">Open an Account?</Link>
+                            </div>
                         </Col>
                     </Row>
                 </Container>

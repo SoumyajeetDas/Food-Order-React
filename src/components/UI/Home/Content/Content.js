@@ -36,7 +36,7 @@ export default function Content() {
                         <div>
                             <p id="intro1" className="text-white mb-4">The Health you want is here :)</p>
 
-                            <p id="intro2"><b>Bengali Food</b></p>
+                            <p id="intro2"><b>The Bengalis</b></p>
 
                             <p className="text-white text-center">Bring the quality living experience to today's urban customers</p>
 

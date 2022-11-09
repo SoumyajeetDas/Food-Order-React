@@ -10,35 +10,39 @@ export default function Footer() {
         <div>
             <Container className="my-5">
                 <Row>
-
-
                     <Col sm={12} className="text-center mx-auto">
                         <p id="follow-us">Follow Us On</p>
                     </Col>
 
-
-                    <div style={{width:"150px"}} className="text-center mx-auto">
-                        <div id="footer">
-                            <motion.i
-                                whileHover={{ scale: 2.1 }}
-                                whileTap={{ scale: 1.5 }}
-                                className="fab fa-facebook text-white"></motion.i>
-                            <motion.i
-                                whileHover={{ scale: 2.1 }}
-                                whileTap={{ scale: 1.5 }}
-                                className="fab fa-instagram text-white"></motion.i>
-                            <motion.i
-                                whileHover={{ scale: 2.1 }}
-                                whileTap={{ scale: 1.5 }}
-                                className="fab fa-twitter text-white"></motion.i>
-                            <motion.i
-                                whileHover={{ scale: 2.1 }}
-                                whileTap={{ scale: 1.5 }}
-                                className="fab fa-linkedin text-white"></motion.i>
+                    <Col>
+                        <div style={{ width: "150px" }} className="text-center mx-auto">
+                            <div id="footer">
+                                <motion.i
+                                    whileHover={{ scale: 2.1 }}
+                                    whileTap={{ scale: 1.5 }}
+                                    className="fab fa-facebook text-white"></motion.i>
+                                <motion.i
+                                    whileHover={{ scale: 2.1 }}
+                                    whileTap={{ scale: 1.5 }}
+                                    className="fab fa-instagram text-white"></motion.i>
+                                <motion.i
+                                    whileHover={{ scale: 2.1 }}
+                                    whileTap={{ scale: 1.5 }}
+                                    className="fab fa-twitter text-white"></motion.i>
+                                <motion.i
+                                    whileHover={{ scale: 2.1 }}
+                                    whileTap={{ scale: 1.5 }}
+                                    className="fab fa-linkedin text-white"></motion.i>
+                            </div>
                         </div>
-                    </div>
+                    </Col>
 
-                    
+                </Row>
+
+                <Row >
+                    <Col className="text-center text-white mt-5">
+                        <i>bengali-food-webapp.netlify.app © 2022</i>
+                    </Col>
                 </Row>
             </Container>
         </div>
