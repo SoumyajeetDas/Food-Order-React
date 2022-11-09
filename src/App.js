@@ -68,18 +68,12 @@ const App = () => {
 
 
 
-
+  // Just when the application gets loaded the cart System tries gets loaded. If user is not looged in then it will not get loaded 
+  // If the user is looged in the cart gets loaded and whichever component the data needs to be shown is showed.
   useEffect(() => {
 
     //Load the cart data
     dispatch(getCartData());
-
-
-    // After loading with useSelector() get the items and totalPrice and update the same data in the initial State of cart Redux
-    dispatch(cartActions.replaceCart({
-      items,
-      totalPrice
-    }));
 
     // eslint-disable-next-line
   }, [])
