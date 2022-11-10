@@ -7,6 +7,9 @@ import { useEffect } from 'react';
 import Spinner from '../Spinner/Spiner';
 import { useSelector } from 'react-redux'
 import Footer from '../Home/Footer/Footer';
+import { logout } from '../../../store/auth-slice'
+import { useDispatch } from 'react-redux';
+
 
 const containerVariants = {
     hidden: {
@@ -33,6 +36,10 @@ export default function OrderHistory() {
 
     const { token } = useSelector(state => state.authReducer.registerData);
 
+    const dispatch = useDispatch();
+
+
+
     const navigate = useNavigate();
 
 
@@ -46,12 +53,14 @@ export default function OrderHistory() {
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + token
-                }
+                },
+                'credentials': 'include',
             });
 
             if (data.status === 401) {
                 setApiStatus(data.status);
-                navigate("/login")
+                navigate("/login");
+                dispatch(logout());
             }
 
             else if (data.status === 200) {

@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie'
 
-/**********************Register*************************/ 
+/**********************Register*************************/
 
 const register = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/signup`, {
@@ -9,6 +9,7 @@ const register = async (user) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        'credentials': 'include',
         body: JSON.stringify(user)
     });
 
@@ -27,7 +28,7 @@ const register = async (user) => {
 
 
 
-/**********************Login*************************/ 
+/**********************Login*************************/
 export const login = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/login`, {
         method: "POST",
@@ -35,6 +36,7 @@ export const login = async (user) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        'credentials': 'include',
         body: JSON.stringify(user)
     });
 
@@ -53,16 +55,23 @@ export const login = async (user) => {
 
 
 
-/**********************Logout*************************/ 
+/**********************Logout*************************/
 export const logout = async () => {
     // localStorage.removeItem('user');
 
     Cookie.remove('userregisterData');
+
+    await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/logout`, {
+        method: "GET",
+        'credentials': 'include',
+    });
+
+
 }
 
 
 
-/**********************Forgot Password*************************/ 
+/**********************Forgot Password*************************/
 
 const passwordUpdate = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/forgotPassword`, {
@@ -71,6 +80,7 @@ const passwordUpdate = async (user) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        'credentials': 'include',
         body: JSON.stringify(user)
     });
 

@@ -5,7 +5,8 @@ const getCart = async(token)=>{
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + token
-        }
+        },
+        'credentials': 'include',
     });
 
     let response = await data.json();
@@ -27,6 +28,7 @@ const updateCart = async(token,cartData)=>{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        'credentials': 'include',
         body: JSON.stringify({
             items: cartData.items,
             totalPrice:cartData.totalPrice

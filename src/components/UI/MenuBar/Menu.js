@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { orderVisibilityActions } from '../../../store/index'
 import { useNavigate } from 'react-router-dom';
-import { authActions, cartActions } from '../../../store/index';
+import { cartActions } from '../../../store/index';
 import { logout } from '../../../store/auth-slice'
 
 
@@ -58,7 +58,6 @@ export default function Menu(props) {
     const handleLogout = () => {
         dispatch(logout());
 
-        dispatch(authActions.reset());
         dispatch(cartActions.reset());
 
         navigate("/")
@@ -90,7 +89,7 @@ export default function Menu(props) {
 
 
             {/* Home */}
-           {!registerData && <div className="menuitems" onClick={() => navigate('/')}>
+            {!registerData && <div className="menuitems" onClick={() => navigate('/')}>
                 <span className="material-symbols-rounded">
                     home
                 </span>
@@ -108,7 +107,7 @@ export default function Menu(props) {
 
 
             {/* Cart with no of items in cart */}
-            {registerData  && <div className="menuitems" onClick={cartItemShowHandler}>
+            {registerData && <div className="menuitems" onClick={cartItemShowHandler}>
                 <span className="material-symbols-rounded">
                     <span className="material-symbols-rounded">
                         lunch_dining
@@ -116,12 +115,12 @@ export default function Menu(props) {
                 </span>
                 Cart
 
-                <p className="m-0 py-1 px-3 bg-danger rounded-pill">{items.length}</p>
+                <p className="m-0 py-1 px-3 bg-danger rounded-pill">{items? 0 :items.length}</p>
             </div>}
 
 
             {/* Your Orders which contains the list of previously paid orders */}
-            <div className="menuitems" onClick={()=>navigate("/orderHistory")}>
+            <div className="menuitems" onClick={() => navigate("/orderHistory")}>
                 <span className="material-symbols-rounded">
                     history
                 </span>
@@ -131,7 +130,7 @@ export default function Menu(props) {
 
 
             {/* Login */}
-            {!registerData  && <div className="menuitems" onClick={()=>navigate("/login")}>
+            {!registerData && <div className="menuitems" onClick={() => navigate("/login")}>
                 <span className="material-symbols-outlined">
                     login
                 </span>
@@ -140,7 +139,7 @@ export default function Menu(props) {
 
 
             {/* Logout */}
-            {registerData  && <div className="menuitems" onClick={handleLogout}>
+            {registerData && <div className="menuitems" onClick={handleLogout}>
                 <span className="material-symbols-rounded">
                     logout
                 </span>

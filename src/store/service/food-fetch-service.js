@@ -6,7 +6,8 @@ const getAllFoods = async (token) => {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + token
-        }
+        },
+        'credentials': 'include',
     });
 
     let response = await data.json();
@@ -26,7 +27,8 @@ const getFoodTypeFoods = async (type, token) => {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + token
-            }
+            },
+            'credentials': 'include',
         });
     }
 
@@ -56,7 +58,8 @@ const getSearchedFoods = async (key, token) => {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + token
-        }
+        },
+        'credentials': 'include',
     });
 
 

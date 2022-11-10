@@ -31,6 +31,8 @@ export const getCartData = createAsyncThunk('cart/getCartData', async (value = n
         else if (response.status === '500 Internal Server Error')
             return thunkAPI.rejectWithValue(response.message);
 
+        else return thunkAPI.rejectWithValue(response.message);
+
 
     }
 

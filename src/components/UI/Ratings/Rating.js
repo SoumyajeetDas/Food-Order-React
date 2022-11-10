@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import ReactStars from "react-rating-stars-component";
+import { logout } from '../../../store/auth-slice'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 
 export default function Rating(props) {
 
     const [rating, setRating] = useState(0);
     const [isFirst, setIsFirst] = useState(true);
 
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
 
     const updateRating = async (foodId, token) => {
@@ -16,13 +23,20 @@ export default function Rating(props) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            'credentials': 'include',
             body: JSON.stringify({
                 rating
             })
         });
 
-        if(data.status===201){
+
+        if (data.status === 201) {
             props.setModalShow(true);
+        }
+
+        else if (data.status === 401) {
+            navigate("/login");
+            dispatch(logout());
         }
 
         else if (data.status === 500) console.log("Rating not getting updated");
@@ -51,20 +65,20 @@ export default function Rating(props) {
 
     return (
 
-            <div className="d-flex align-items-center justify-content-md-start justify-content-center mt-4" style={{ flexWrap: "wrap" }}>
-                <small className="text-white"><i>Please add your valuable rating</i> &nbsp;</small>
-                <ReactStars
-                    count={5}
-                    onChange={ratingChanged}
-                    size={24}
-                    isHalf={true}
-                    emptyIcon={<i className="far fa-star"></i>}
-                    halfIcon={<i className="fa fa-star-half-alt"></i>}
-                    fullIcon={<i className="fa fa-star"></i>}
-                    activeColor="#ffd700"
+        <div className="d-flex align-items-center justify-content-md-start justify-content-center mt-4" style={{ flexWrap: "wrap" }}>
+            <small className="text-white"><i>Please add your valuable rating</i> &nbsp;</small>
+            <ReactStars
+                count={5}
+                onChange={ratingChanged}
+                size={24}
+                isHalf={true}
+                emptyIcon={<i className="far fa-star"></i>}
+                halfIcon={<i className="fa fa-star-half-alt"></i>}
+                fullIcon={<i className="fa fa-star"></i>}
+                activeColor="#ffd700"
 
-                />
-            </div>
+            />
+        </div>
 
     )
 }

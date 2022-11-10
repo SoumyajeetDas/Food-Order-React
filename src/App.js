@@ -60,7 +60,7 @@ const App = () => {
   useEffect(() => {
 
     if (isCartError) {
-      alert(cartMessage);
+      console.log(cartMessage);
       dispatch(cartActions.reset());
     }
 

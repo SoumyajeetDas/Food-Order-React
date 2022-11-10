@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../../store/auth-slice';
+// import { useNavigate } from 'react-router-dom'
 
 export default function Checkout(props) {
 
     const [paidFor, setPaidFor] = useState(false);
     const [cannotpaidFor, setCannotPaidFor] = useState(false);
     const [errMsg, setErrMsg] = useState("");
-    // const [cancelPay, setCancelPay] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [showError, setShowError] = useState(false);
     const [dollarToINR, setDollarTOINR] = useState(0);
@@ -29,6 +30,11 @@ export default function Checkout(props) {
     const registerData = useSelector(state => state.authReducer.registerData);
 
 
+    const dispatch = useDispatch();
+    
+    // const navigate = useNavigate();
+
+
 
 
 
@@ -45,9 +51,19 @@ export default function Checkout(props) {
                 headers: myHeaders
             });
 
+
+            if (data.status === 401) {
+                // navigate("/login");
+                dispatch(logout());
+            }
+
             if (data.status === 200) {
                 const dataJson = await data.json();
                 setDollarTOINR(dataJson.result.toFixed(2))
+            }
+
+            else if (data.status !== 201 && data.status !== 401) {
+                alert("Your payment is not successful and order also not saved in DB");
             }
 
             else {
@@ -63,6 +79,8 @@ export default function Checkout(props) {
 
     useEffect(() => {
         fetchDollarToINR();
+
+        // eslint-disable-next-line
     }, []);
 
     /************************************************************************************/
@@ -86,6 +104,7 @@ export default function Checkout(props) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            'credentials': 'include',
             body: JSON.stringify({
                 address: props.addressData.address,
                 orders: items,
@@ -95,14 +114,19 @@ export default function Checkout(props) {
             })
         });
 
-        if (data.status !== 201) {
+        if (data.status === 401) {
+            // navigate("/login");
+            dispatch(logout());
+        }
+
+        else if (data.status !== 201 && data.status !== 401) {
             alert("Your payment is successful but order is not saved in DB");
         }
 
         setPaidFor(true);
     }
 
-     // Used 'if' as useEffect() is resulting in 2 times rendering when paidForr is changed, once during first time paidFor
+    // Used 'if' as useEffect() is resulting in 2 times rendering when paidForr is changed, once during first time paidFor
     // changed from false to true in handleApprove() on and then with setPaidFor() resulting in paidFor changing from 
     // true to false.
     if (paidFor) {
@@ -135,6 +159,7 @@ export default function Checkout(props) {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
+                'credentials': 'include',
                 body: JSON.stringify({
                     address: props.addressData.address,
                     orders: items,

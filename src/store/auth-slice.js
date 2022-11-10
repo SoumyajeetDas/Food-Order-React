@@ -4,11 +4,14 @@ import Cookie from 'js-cookie';
 
 
 
-// Here the cookie is not httpOnly which is very vulnerable to hackers as it conatins the raw jwt token so we are not going to 
-// follow this step in original projects the cookie should be registered from backend itself.
-// The structure should be, there will be an refresh token that will be used by backend to validate by it's own way to handle
-// httpOnly Cookie and there should be a access token which should be saved in the Cookie and that needs to be passed from the
-// frontend to the backend for validation.
+// Genarally the whole authentication should take place with the help of refresh token and acees token. But I didn't do in that way.
+// I created two tokens in the backend. One is server Side JWT Token and another is client side JWT Token. The client side token
+// gets stored into userRegisterData and in the cookie as well. And this token will be passed as Bearer token into all the requests.
+// The server side token is registered as httpOnlyCookie.
+// First when the request gets passed the client Side will go to the protect() route and it will be verified and then if it is 
+// verified the server side token will be verified and then the request will be executed in the backend. 
+// I feel if there is any changes made in the client side token there will be no problem as the backend will be ultimately get 
+// authorized by the client token and that cannot be changed as it is httpOnlyCookie. 
 const registerData = Cookie.get('userregisterData')?JSON.parse(Cookie.get('userregisterData')):'';
 
 const initialAuthState = {
