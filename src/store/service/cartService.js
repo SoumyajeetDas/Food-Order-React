@@ -1,12 +1,17 @@
-/**********************Get the cart Data*************************/ 
+/**********************Get the cart Data*************************/
 
-const getCart = async(token)=>{
+const getCart = async (token) => {
     let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/cart/getCart`, {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + token
         },
-        'credentials': 'include',
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
+        'credentials': 'include'
     });
 
     let response = await data.json();
@@ -16,8 +21,8 @@ const getCart = async(token)=>{
 
 
 
-/**********************Upadting the cart*************************/ 
-const updateCart = async(token,cartData)=>{
+/**********************Upadting the cart*************************/
+const updateCart = async (token, cartData) => {
 
     // console.log("CartData", cartData.items);
 
@@ -28,10 +33,17 @@ const updateCart = async(token,cartData)=>{
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
         'credentials': 'include',
+
+        
         body: JSON.stringify({
             items: cartData.items,
-            totalPrice:cartData.totalPrice
+            totalPrice: cartData.totalPrice
         })
     });
 

@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../../store/auth-slice';
-// import { useNavigate } from 'react-router-dom'
+
 
 export default function Checkout(props) {
 
@@ -31,14 +31,13 @@ export default function Checkout(props) {
 
 
     const dispatch = useDispatch();
-    
-    // const navigate = useNavigate();
 
 
 
 
 
-    /*************************Converting INR TO USD on Checkout Component Mounting******************************/
+
+    /*************************Converting INR TO USD on Checkout When the CheckOut Component Will Mount******************************/
     const fetchDollarToINR = async () => {
 
         try {
@@ -52,18 +51,9 @@ export default function Checkout(props) {
             });
 
 
-            if (data.status === 401) {
-                // navigate("/login");
-                dispatch(logout());
-            }
-
             if (data.status === 200) {
                 const dataJson = await data.json();
                 setDollarTOINR(dataJson.result.toFixed(2))
-            }
-
-            else if (data.status !== 201 && data.status !== 401) {
-                alert("Your payment is not successful and order also not saved in DB");
             }
 
             else {
@@ -81,7 +71,7 @@ export default function Checkout(props) {
         fetchDollarToINR();
 
         // eslint-disable-next-line
-    }, []);
+    }, [props.showCheckOut]);
 
     /************************************************************************************/
 
@@ -104,7 +94,14 @@ export default function Checkout(props) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+
+
+            // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+            // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+            // can borrow credential from another domain
             'credentials': 'include',
+
+
             body: JSON.stringify({
                 address: props.addressData.address,
                 orders: items,
@@ -114,10 +111,14 @@ export default function Checkout(props) {
             })
         });
 
+
+        // Authentication Issue
         if (data.status === 401) {
-            // navigate("/login");
+            alert("Your payment is successfull but order is not saved in DB as you are logged out!!");
             dispatch(logout());
         }
+
+
 
         else if (data.status !== 201 && data.status !== 401) {
             alert("Your payment is successful but order is not saved in DB");
@@ -159,7 +160,15 @@ export default function Checkout(props) {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
+
+
+
+                // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+                // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+                // can borrow credential from another domain
                 'credentials': 'include',
+
+                
                 body: JSON.stringify({
                     address: props.addressData.address,
                     orders: items,
@@ -169,10 +178,14 @@ export default function Checkout(props) {
                 })
             });
 
-            //Saving the Order to DB
+            // Authentication Issue
+            if (data.status === 401) {
+                alert("Your payment is not successful and order is not saved in DB as you are logged out!!");
+                dispatch(logout());
+            }
 
-            if (data.status !== 201) {
-                alert("Your payment is not and order is not saved in DB");
+            else if (data.status !== 201 && data.status !== 401) {
+                alert("Your payment is not successfull and order is not saved in DB");
             }
 
         }

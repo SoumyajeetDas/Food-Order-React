@@ -12,7 +12,7 @@ import Cookie from 'js-cookie';
 // verified the server side token will be verified and then the request will be executed in the backend. 
 // I feel if there is any changes made in the client side token there will be no problem as the backend will be ultimately get 
 // authorized by the client token and that cannot be changed as it is httpOnlyCookie. 
-const registerData = Cookie.get('userregisterData')?JSON.parse(Cookie.get('userregisterData')):'';
+const registerData = Cookie.get('userregisterData') ? JSON.parse(Cookie.get('userregisterData')) : '';
 
 const initialAuthState = {
     registerData,
@@ -71,7 +71,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
 });
 
 
-export const logout = createAsyncThunk('auth/logout', async()=>{
+export const logout = createAsyncThunk('auth/logout', async () => {
     await authService.logout();
 })
 
@@ -153,7 +153,7 @@ export const authSlice = createSlice({
 
 
 
-        [logout.fulfilled]:(state)=>{
+        [logout.fulfilled]: (state) => {
             state.registerData = '';
         },
 

@@ -54,7 +54,11 @@ export default function OrderHistory() {
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
-                'credentials': 'include',
+
+                // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+                // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+                // can borrow credential from another domain
+                'credentials': 'include'
             });
 
             if (data.status === 401) {

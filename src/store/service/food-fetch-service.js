@@ -1,4 +1,4 @@
-/**********************Get All Foods*************************/ 
+/**********************Get All Foods*************************/
 
 const getAllFoods = async (token) => {
 
@@ -7,7 +7,12 @@ const getAllFoods = async (token) => {
         headers: {
             Authorization: 'Bearer ' + token
         },
-        'credentials': 'include',
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
+        'credentials': 'include'
     });
 
     let response = await data.json();
@@ -17,7 +22,7 @@ const getAllFoods = async (token) => {
 
 
 
-/**********************Get the Type of Food like Breakfast, Lunch etc.*************************/ 
+/**********************Get the Type of Food like Breakfast, Lunch etc.*************************/
 const getFoodTypeFoods = async (type, token) => {
 
     let data;
@@ -28,7 +33,12 @@ const getFoodTypeFoods = async (type, token) => {
             headers: {
                 Authorization: 'Bearer ' + token
             },
-            'credentials': 'include',
+
+
+            // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+            // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+            // can borrow credential from another domain
+            'credentials': 'include'
         });
     }
 
@@ -37,7 +47,13 @@ const getFoodTypeFoods = async (type, token) => {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + token
-            }
+            },
+
+
+            // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+            // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+            // can borrow credential from another domain
+            'credentials': 'include'
         });
     }
 
@@ -50,7 +66,7 @@ const getFoodTypeFoods = async (type, token) => {
 
 
 
-/**********************Search the food*************************/ 
+/**********************Search the food*************************/
 const getSearchedFoods = async (key, token) => {
 
 
@@ -59,7 +75,12 @@ const getSearchedFoods = async (key, token) => {
         headers: {
             Authorization: 'Bearer ' + token
         },
-        'credentials': 'include',
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
+        'credentials': 'include'
     });
 
 

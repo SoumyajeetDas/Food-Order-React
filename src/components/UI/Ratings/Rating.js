@@ -23,7 +23,14 @@ export default function Rating(props) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+
+
+            // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+            // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+            // can borrow credential from another domain
             'credentials': 'include',
+
+            
             body: JSON.stringify({
                 rating
             })

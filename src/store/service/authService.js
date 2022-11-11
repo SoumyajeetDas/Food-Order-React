@@ -9,7 +9,13 @@ const register = async (user) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
         'credentials': 'include',
+
+
         body: JSON.stringify(user)
     });
 
@@ -21,7 +27,7 @@ const register = async (user) => {
         // localStorage.setItem('user', JSON.stringify(response.data));
 
         // Expires in 1d
-        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1 }) 
+        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1 })
     }
 
     return response;
@@ -38,7 +44,14 @@ export const login = async (user) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
         'credentials': 'include',
+
+        
         body: JSON.stringify(user)
     });
 
@@ -67,7 +80,12 @@ export const logout = async () => {
 
     await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/logout`, {
         method: "GET",
-        'credentials': 'include',
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
+        'credentials': 'include'
     });
 
 
@@ -84,7 +102,14 @@ const passwordUpdate = async (user) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
         'credentials': 'include',
+
+
         body: JSON.stringify(user)
     });
 
