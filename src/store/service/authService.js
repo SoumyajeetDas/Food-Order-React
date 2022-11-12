@@ -5,6 +5,7 @@ import Cookie from 'js-cookie'
 const register = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/signup`, {
         method: "POST",
+        mode: "cors",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -40,6 +41,7 @@ const register = async (user) => {
 export const login = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/login`, {
         method: "POST",
+        mode: "cors",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
