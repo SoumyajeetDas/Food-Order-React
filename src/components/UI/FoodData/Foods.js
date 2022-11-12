@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFood, fetchFoodTypeFood, fetchSearchedFood } from '../../../store/food-slice';
-import { updateCartData } from '../../../store/cart-slice'
+import { getCartData, updateCartData } from '../../../store/cart-slice'
 import { logout } from '../../../store/auth-slice'
 import { foodActions, cartActions } from '../../../store/index'
 import RatingAddedModal from '../Ratings/RatingAddedModal';
@@ -28,7 +28,7 @@ export default function Foods() {
 
   const { isError, isSuccess, isLoading, message, foodItems } = useSelector((state) => state.foodReducer);
 
-  const { changed, items, totalPrice } = useSelector(state => state.cartReducer);
+  const { isCartError, cartMessage, changed, items, totalPrice } = useSelector(state => state.cartReducer);
 
   const { token } = useSelector(state => state.authReducer.registerData);
 
@@ -87,6 +87,7 @@ export default function Foods() {
   /****************For handling all kind of error******************/
   useEffect(() => {
 
+
     // This is used if any error comes from the foodSlice 
     if (isError && message === '401 Unauthorized') {
       navigate('/login');
@@ -94,7 +95,16 @@ export default function Foods() {
       dispatch(foodActions.reset());
     }
 
-  }, [isError,  navigate, message, dispatch])
+
+    // This is used if any error comes from cartSlice while calling the cartData
+    if (isCartError) {
+      // Alert creating problem so given console.log()
+      console.log(cartMessage);
+      
+      dispatch(cartActions.reset())
+    }
+
+  }, [isError, cartMessage, isCartError, navigate, message, dispatch])
 
 
 
@@ -121,6 +131,10 @@ export default function Foods() {
 
     // Load the food list
     dispatch(fetchFood());
+
+
+    //Load the cart data
+    dispatch(getCartData());
 
 
     // eslint-disable-next-line 

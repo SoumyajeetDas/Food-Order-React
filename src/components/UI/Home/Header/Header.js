@@ -79,7 +79,7 @@ export default function Header(props) {
           <motion.li
             whileHover={{ scale: 1.5 }}
           >
-            <Link to="/orderHistory">Your Orders</Link>
+            <Link to="/orderHistory">Order History</Link>
 
           </motion.li>
 

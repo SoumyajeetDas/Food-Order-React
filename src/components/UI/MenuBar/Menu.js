@@ -115,7 +115,7 @@ export default function Menu(props) {
                 </span>
                 Cart
 
-                <p className="m-0 py-1 px-3 bg-danger rounded-pill">{items? 0 :items.length}</p>
+                <p className="m-0 py-1 px-3 bg-danger rounded-pill">{items? items.length:0}</p>
             </div>}
 
 
@@ -124,7 +124,7 @@ export default function Menu(props) {
                 <span className="material-symbols-rounded">
                     history
                 </span>
-                Your Orders
+                Order History
             </div>
 
 

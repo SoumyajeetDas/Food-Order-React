@@ -42,15 +42,19 @@ export default function Checkout(props) {
 
         try {
             var myHeaders = new Headers();
-            myHeaders.append("apikey", "GJssLafVkwVyQ1seiH6DOBLcp4ZOyKG9");
 
-            const data = await fetch('https://api.apilayer.com/exchangerates_data/convert?to=INR&from=USD&amount=1', {
+            myHeaders.append("apikey", process.env.REACT_APP_SOUMYAJEETOUTLOOK_DOLLAR_TO_INR);
+
+            // Website : https://apilayer.com/marketplace/fixer-api
+            // GoogleAccount : soumyajeetdas1998@gmail.com, 1705937@kiit.ac.in --> Google Auth 
+            // Normal Account : username : soumyajeetdas@outlook.com password : as ususal I give @123
+            const data = await fetch('https://api.apilayer.com/fixer/convert?to=INR&from=USD&amount=1', {
                 method: 'GET',
                 redirect: 'follow',
                 headers: myHeaders
             });
 
-
+            // console.log(data.status)
             if (data.status === 200) {
                 const dataJson = await data.json();
                 setDollarTOINR(dataJson.result.toFixed(2))
@@ -67,11 +71,20 @@ export default function Checkout(props) {
 
     }
 
+    
+
     useEffect(() => {
+
+        // Only when the checkout modal comes up then only the Dollar to INR api will be called.
+        // Website : https://apilayer.com/marketplace/fixer-api
+        // Website : https://apilayer.com/marketplace/fixer-api
+        // GoogleAccount : soumyajeetdas1998@gmail.com, 1705937@kiit.ac.in --> Google Auth 
+        // Normal Account : username : soumyajeetdas@outlook.com password : as ususal I give @123
+
         fetchDollarToINR();
 
         // eslint-disable-next-line
-    }, [props.showCheckOut]);
+    }, []);
 
     /************************************************************************************/
 
@@ -168,7 +181,7 @@ export default function Checkout(props) {
                 // can borrow credential from another domain
                 'credentials': 'include',
 
-                
+
                 body: JSON.stringify({
                     address: props.addressData.address,
                     orders: items,
