@@ -4,6 +4,7 @@ const getAllFoods = async (token) => {
 
     let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/bengalifood`, {
         method: 'GET',
+        mode: "cors",
         headers: {
             Authorization: 'Bearer ' + token
         },
