@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.css'
 import { motion } from "framer-motion"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useResolvedPath, useMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { orderVisibilityActions } from '../../../../store/index';
 import { authActions, cartActions } from '../../../../store/index';
@@ -23,6 +23,30 @@ export default function Header(props) {
   // This part is used to show thw Order Bar from the right side
   const cartItemShowHandler = () => {
     dispatch(orderVisibilityActions.show());
+  }
+
+  // When any nav link will be selected that particular component will be rendered and rendered link will be added the className active 
+  // so that the colour gets changed from white to yellow
+  const CustomLink = (props) => {
+    // The resolvedPath resolves a given To value into an actual Path object with an absolute pathname. This is useful whenever 
+    // you need to know the exact path for a relative To value. For example, the <Link> component uses this function to know the
+    //  actual URL it points to.
+    const resolvedPath = useResolvedPath(props.to);
+
+    // Matches a path to the location. It means actually the path passed and the location(current page address) in the browser
+    // is same or not. 
+    // end is like exact path in the Route section of the BrowserRouter.
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+
+    return (
+      <motion.li
+        whileHover={{ scale: 1.5 }}
+
+      >
+        <Link className={isActive ? "active" : 'normal'} to={props.to}>{props.name}</Link>
+
+      </motion.li>
+    )
   }
 
 
@@ -58,30 +82,19 @@ export default function Header(props) {
 
 
           {/* Home will be shown when not logged in */}
-          {!registerData && <motion.li
-            whileHover={{ scale: 1.5 }}
-          >
-            <Link to="/">Home</Link>
-
-          </motion.li>}
+          {!registerData && <CustomLink to="/" name="Home"></CustomLink>}
 
 
           {/* Menus */}
-          <motion.li
-            whileHover={{ scale: 1.5 }}
-          >
-            <Link to="/foods">Menus</Link>
 
-          </motion.li>
+          <CustomLink to="/foods" name="Menus"></CustomLink>
+
 
 
           {/* Your Orders */}
-          <motion.li
-            whileHover={{ scale: 1.5 }}
-          >
-            <Link to="/orderHistory">Order History</Link>
 
-          </motion.li>
+          <CustomLink to="/orderHistory" name="Order History"></CustomLink>
+
 
         </ul>
       </nav>
@@ -92,12 +105,9 @@ export default function Header(props) {
 
           {/* Login */}
           <ul className="nav__links">
-            <motion.li
-              whileHover={{ scale: 1.5 }}
-            >
-              <Link className="login" to="/login">Login</Link>
 
-            </motion.li>
+            <CustomLink to="/login" name="Login"></CustomLink>
+
 
           </ul>
 

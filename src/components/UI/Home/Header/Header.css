@@ -19,7 +19,6 @@ header {
 .button {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    color: white;
     text-decoration: none;
 }
 
@@ -41,20 +40,26 @@ header {
     color: rgb(244, 191, 92);
 }
 
+.normal{
+    color: white;
+}
+.active{
+    color: rgb(244, 191, 92);
+}
+
 .button {
     padding: 9px 25px;
     background-color: #D2078B;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-
+    color: white;
 }
 
 
-.login {
+.right_part .nav__links a {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    color: white;
     text-decoration: none;
     list-style: none;
     margin: 0 2rem;
