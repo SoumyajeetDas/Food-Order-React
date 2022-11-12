@@ -3,15 +3,8 @@ import authService from './service/authService';
 import Cookie from 'js-cookie';
 
 
-
-// Genarally the whole authentication should take place with the help of refresh token and acees token. But I didn't do in that way.
-// I created two tokens in the backend. One is server Side JWT Token and another is client side JWT Token. The client side token
-// gets stored into userRegisterData and in the cookie as well. And this token will be passed as Bearer token into all the requests.
-// The server side token is registered as httpOnlyCookie.
-// First when the request gets passed the client Side will go to the protect() route and it will be verified and then if it is 
-// verified the server side token will be verified and then the request will be executed in the backend. 
-// I feel if there is any changes made in the client side token there will be no problem as the backend will be ultimately get 
-// authorized by the client token and that cannot be changed as it is httpOnlyCookie. 
+// Done by normal authentication process. The autghentication process should be done by the reset token and access token 
+// and httpOnly cookie but cannot be done as httpOnly Cookie is not working with vercel and Heroku.
 const registerData = Cookie.get('userregisterData') ? JSON.parse(Cookie.get('userregisterData')) : '';
 
 const initialAuthState = {

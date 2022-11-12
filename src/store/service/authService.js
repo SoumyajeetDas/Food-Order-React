@@ -80,16 +80,6 @@ export const logout = async () => {
 
     Cookie.remove('userregisterData');
 
-    await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/logout`, {
-        method: "GET",
-
-
-        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
-        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
-        // can borrow credential from another domain
-        'credentials': 'include'
-    });
-
 
 }
 
