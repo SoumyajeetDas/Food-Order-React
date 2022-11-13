@@ -43,7 +43,7 @@ export default function Checkout(props) {
         try {
             var myHeaders = new Headers();
 
-            myHeaders.append("apikey", process.env.REACT_APP_SOUMYAJEETOUTLOOK_DOLLAR_TO_INR);
+            myHeaders.append("apikey", process.env.REACT_APP_SOUMYAJEET1998_DOLLAR_TO_INR);
 
             // Website : https://apilayer.com/marketplace/fixer-api
             // GoogleAccount : soumyajeetdas1998@gmail.com, 1705937@kiit.ac.in --> Google Auth 
