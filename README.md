@@ -88,6 +88,8 @@ The Web App is deployed in Netifly
 - Redux Architectire
 - Redux Toolkit
 - Redux Devtools
+- CORS(Cross Origin Resouce Sharing)
+- Cookies
 - Redux Thunk by asyncThunk Creator
 - Mongo DB
 - JWT(JSON Web Token)
