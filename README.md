@@ -105,7 +105,7 @@ The Web App is deployed in Netifly
 
 - 🌱 I’m currently learning **MERN Stack**
 
-- 💬 Ask me about **React, Redux, Node JS, Mongo DB**
+- 💬 Ask me about **React, Redux, Node JS, Express JS, Mongo DB**
 
 
 
