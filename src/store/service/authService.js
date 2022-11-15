@@ -29,7 +29,8 @@ const register = async (user) => {
 
         // Expires in 1d
         // See sameSite and secure definition from React/Node JS Notes
-        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1, sameSite: 'strict', secure: `${process.env.REACT_APP_ENV === 'production' ? true : false}` })
+        Cookie.set('userregisterData', JSON.stringify(response.data), 
+        { expires: 1, sameSite: 'strict', secure: `${process.env.REACT_APP_ENV === 'production' ? true : false}` })
     }
 
     return response;
@@ -68,7 +69,8 @@ export const login = async (user) => {
 
         // Expires in 1d
         // See sameSite and secure definition from React/Node JS Notes
-        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1, sameSite: 'strict', secure: process.env.REACT_APP_ENV === 'production' ? true : false });
+        Cookie.set('userregisterData', JSON.stringify(response.data), 
+        { expires: 1, sameSite: 'strict', secure: process.env.REACT_APP_ENV === 'production' ? true : false });
     }
 
     return response;
@@ -81,8 +83,6 @@ export const logout = async () => {
     // localStorage.removeItem('user');
 
     Cookie.remove('userregisterData');
-
-
 }
 
 
