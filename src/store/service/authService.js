@@ -28,7 +28,8 @@ const register = async (user) => {
         // localStorage.setItem('user', JSON.stringify(response.data));
 
         // Expires in 1d
-        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1 })
+        // See sameSite and secure definition from React/Node JS Notes
+        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1, sameSite: 'strict', secure: `${process.env.REACT_APP_ENV === 'production' ? true : false}` })
     }
 
     return response;
@@ -53,7 +54,7 @@ export const login = async (user) => {
         // can borrow credential from another domain
         'credentials': 'include',
 
-        
+
         body: JSON.stringify(user)
     });
 
@@ -66,7 +67,8 @@ export const login = async (user) => {
 
 
         // Expires in 1d
-        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1 });
+        // See sameSite and secure definition from React/Node JS Notes
+        Cookie.set('userregisterData', JSON.stringify(response.data), { expires: 1, sameSite: 'strict', secure: process.env.REACT_APP_ENV === 'production' ? true : false });
     }
 
     return response;
