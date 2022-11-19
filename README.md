@@ -99,7 +99,7 @@ The Web App is deployed in Netifly
 
 
 ## 🚀 About Me
-<h1 align="center">Hi 👋, I'm Soumyajeet Das</h1>
+<h1 align="center">Hi 👋, I'm Soumyajeet</h1>
 <h3 align="center">A passionate full stack developer</h3>
 
 - 🔭 I’m currently working with **Cognizant**
