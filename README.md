@@ -58,6 +58,7 @@ https://bengali-food-webapp.netlify.app/
 
 - Full MERN Stack Application with Best Practises.
 - Email Notification After Sign Up and Ordering Food with the help of SendGrid Email API.
+- Using Reset Token to update Password if the user has forgot password.
 - Authentication in backend using JWT(JSON Web Token).
 - Search any food.
 - Buttons added wrt food type like Breakfast, Dinner, Lunch, Desserts.
@@ -96,6 +97,7 @@ The Web App is deployed in Netifly
 - JWT(JSON Web Token)
 - Sending Mails through Email Delivery Service (SendGrid)
 - Paypal Integartion SDK
+- Using Email Api Service with SendGrid and testing email with MailTrap
 
 
 ## 🚀 About Me
