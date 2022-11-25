@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import Footer from '../Home/Footer/Footer';
 import { authActions } from '../../../store/index'
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 
 
@@ -34,8 +33,10 @@ export default function SendTokenAndUpdatePwdMedium() {
     const dispatch = useDispatch();
 
 
+
+    // Resetting the state in the auth-slice. If not done, the message token is sent is been shown which is coming from the 
+    // ForgotPassword.js component.
     useEffect(() => {
-        console.log("Worked")
         dispatch(authActions.reset());
 
         // eslint-disable-next-line

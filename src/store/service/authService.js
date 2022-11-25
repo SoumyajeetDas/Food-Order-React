@@ -87,7 +87,7 @@ export const logout = async () => {
 
 
 
-/**********************Forgot Password*************************/
+/**********************Forgot Password which sends Token through Email*************************/
 
 const handleForgotPassword = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/forgotPassword`, {
@@ -114,7 +114,7 @@ const handleForgotPassword = async (user) => {
 
 
 
-
+/**********************Update the password with the help of token*************************/
 const handleResetPassword = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/resetPassword`, {
         method: "POST",

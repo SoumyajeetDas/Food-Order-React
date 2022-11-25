@@ -86,7 +86,7 @@ export const forgotPassword = createAsyncThunk('auth/forgotPassword', async (use
     }
 
     catch (err) {
-        return thunkAPI.rejectWithValue('Could not able to login. Problem from backend!!');
+        return thunkAPI.rejectWithValue('Problem from backend!!');
     }
 });
 
@@ -108,7 +108,7 @@ export const resetPassword = createAsyncThunk('auth/resetPassword', async (user,
     }
 
     catch (err) {
-        return thunkAPI.rejectWithValue('Could not able to login. Problem from backend!!');
+        return thunkAPI.rejectWithValue('Problem from backend!!');
     }
 });
 

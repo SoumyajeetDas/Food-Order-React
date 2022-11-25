@@ -11,6 +11,7 @@ import Footer from '../Home/Footer/Footer';
 import { forgotPassword } from '../../../store/auth-slice';
 import { useNavigate } from 'react-router-dom';
 import './ForgotPassword.css';
+import { authActions } from '../../../store/index'
 
 
 let validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
@@ -94,11 +95,20 @@ export default function ForgotPassword() {
 
     useEffect(() => {
 
-        if(isSuccess)
+        if (isSuccess)
             navigate('/medium')
 
         // eslint-disable-next-line
-    }, [isSuccess])
+    }, [isSuccess]);
+
+
+    // Resetting the state in the auth-slice. If not done, suppose if there is any error thrown during login time it is showing
+    // on loading the reset Password as well
+    useEffect(() => {
+        dispatch(authActions.reset());
+
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <>

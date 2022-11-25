@@ -44,6 +44,13 @@ https://bengali-food-webapp.netlify.app/
 ### Register
 ![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Sign%20Up.png)
 
+### Forgot Password
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Forgot%20Password.png)
+
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Middle.png)
+
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Update%20Password.png)
+
 ### List of Foods
 ![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Food%20With%20Cart%20System%201.png)
 
@@ -52,13 +59,21 @@ https://bengali-food-webapp.netlify.app/
 ### Rating
 ![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Give%20Rating.png)
 
+### Email Template created with SendGrid
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Welcomer%20Email.png)
+
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Successfull%20Order%20Email.png)
+
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Unsuccessfull%20Email.png)
+
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Password%20Reset%20Token.png)
 
 
 ## Features
 
 - Full MERN Stack Application with Best Practises.
 - Email Notification After Sign Up and Ordering Food with the help of SendGrid Email API.
-- Using Reset Token to update Password if the user has forgot password.
+- Using Reset Token to update Password if the user has forgotten password.
 - Authentication in backend using JWT(JSON Web Token).
 - Search any food.
 - Buttons added wrt food type like Breakfast, Dinner, Lunch, Desserts.
