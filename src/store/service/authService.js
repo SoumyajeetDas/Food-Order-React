@@ -89,8 +89,34 @@ export const logout = async () => {
 
 /**********************Forgot Password*************************/
 
-const passwordUpdate = async (user) => {
+const handleForgotPassword = async (user) => {
     let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/forgotPassword`, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+
+
+        // To send the credential(cookies) with the request to the backend side of another domain or same domain. 
+        // Due to the CORS policy we have to add the credentials:true so that the server in a particular doamin
+        // can borrow credential from another domain
+        'credentials': 'include',
+
+
+        body: JSON.stringify(user)
+    });
+
+    let response = await res.json();
+
+    return response;
+}
+
+
+
+
+const handleResetPassword = async (user) => {
+    let res = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/authenticate/resetPassword`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -118,7 +144,8 @@ const authService = {
     register,
     login,
     logout,
-    passwordUpdate
+    handleForgotPassword,
+    handleResetPassword
 }
 
 

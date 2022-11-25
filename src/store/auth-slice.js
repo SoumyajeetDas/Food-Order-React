@@ -74,15 +74,10 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 export const forgotPassword = createAsyncThunk('auth/forgotPassword', async (user, thunkAPI) => {
 
     try {
-        let response = await authService.passwordUpdate(user);
+        let response = await authService.handleForgotPassword(user);
 
         // The value passed in the fulfillWithValue will be going in the reducer method as action.paylaod
         if (response.status === '200 OK') return thunkAPI.fulfillWithValue(response.message);
-
-
-
-        else if (response.status === '500 Internal Server Error' && response.message === "Duplicate")
-            return thunkAPI.rejectWithValue("Sorry user already exists with same email!!")
 
 
 
@@ -94,6 +89,31 @@ export const forgotPassword = createAsyncThunk('auth/forgotPassword', async (use
         return thunkAPI.rejectWithValue('Could not able to login. Problem from backend!!');
     }
 });
+
+
+
+// createAsyncThunk will always return a promise
+export const resetPassword = createAsyncThunk('auth/resetPassword', async (user, thunkAPI) => {
+
+    try {
+        let response = await authService.handleResetPassword(user);
+
+        // The value passed in the fulfillWithValue will be going in the reducer method as action.paylaod
+        if (response.status === '200 OK') return thunkAPI.fulfillWithValue(response.message);
+
+
+
+        // The value passed in the rejectWithValue will be going in the reducer method as action.paylaod
+        else return thunkAPI.rejectWithValue(response.message);
+    }
+
+    catch (err) {
+        return thunkAPI.rejectWithValue('Could not able to login. Problem from backend!!');
+    }
+});
+
+
+
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -154,6 +174,9 @@ export const authSlice = createSlice({
 
         [forgotPassword.pending]: (state) => {
             state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
+            state.message = ''
         },
 
         [forgotPassword.fulfilled]: (state, action) => {
@@ -163,6 +186,27 @@ export const authSlice = createSlice({
             state.message = action.payload
         },
         [forgotPassword.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.isSuccess = false;
+            state.message = action.payload;
+        },
+
+
+        [resetPassword.pending]: (state) => {
+            state.isLoading = true
+            state.isSuccess = false
+            state.isError = false
+            state.message = ''
+        },
+
+        [resetPassword.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.isError = false
+            state.message = action.payload
+        },
+        [resetPassword.rejected]: (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.isSuccess = false;

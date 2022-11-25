@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,15 +8,13 @@ import { motion } from "framer-motion";
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../Spinner/Spiner'
 import Footer from '../Home/Footer/Footer';
-import { forgotPassword } from '../../../store/auth-slice';
-import { useNavigate } from 'react-router-dom';
+import { resetPassword } from '../../../store/auth-slice';
 import './ForgotPassword.css';
 
 
-let validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
 
 const isEmpty = value => value.trim() === ''
-const isEmail = value => validRegex.test(value.trim())
+const isPwdAndCnfSame = (pwd, cnf) => pwd === cnf
 
 
 
@@ -40,22 +38,22 @@ export default function ForgotPassword() {
 
     const { isError, isSuccess, isLoading, message } = useSelector((state) => state.authReducer);
 
-    const navigate = useNavigate();
-
-
-
-    const [forgotPasswordData, setForgotPasswordData] = useState({
-        email: '',
+    const [resetPasswordData, setResetPasswordData] = useState({
+        token:'',
+        password: '',
+        confirmpassword: ''
     });
 
 
-    const [forgotPasswordFormValidity, setForgotPasswordFormValidity] = useState({
-        email: true
+    const [resetPasswordFormValidity, setResetPasswordFormValidity] = useState({
+        token:true,
+        password: true,
+        confirmpassword: true
     });
 
 
     const handleRegisterData = (e) => {
-        setForgotPasswordData((prevState) => {
+        setResetPasswordData((prevState) => {
             return {
                 ...prevState,
                 [e.target.id]: e.target.value
@@ -69,16 +67,20 @@ export default function ForgotPassword() {
 
 
         // Checking the Validity
-        const isEmailValid = !isEmpty(forgotPasswordData.email) && isEmail(forgotPasswordData.email)
+        const isTokenValid = !isEmpty(resetPasswordData.token);
+        const isPasswordValid = !isEmpty(resetPasswordData.password);
+        const isConfirmPasswordValid = isPwdAndCnfSame(resetPasswordData.password, resetPasswordData.confirmpassword);
 
 
         // Setting the form Validity and accordingly validation error will be shown for the fields
-        setForgotPasswordFormValidity({
-            email: isEmailValid
+        setResetPasswordFormValidity({
+            token: isTokenValid,
+            password: isPasswordValid,
+            confirmpassword: isConfirmPasswordValid
         });
 
 
-        const isFormValid = isEmailValid;
+        const isFormValid = isTokenValid && isPasswordValid && isConfirmPasswordValid;
 
 
         // If the form not valid the control will be removed from the flow
@@ -88,17 +90,8 @@ export default function ForgotPassword() {
 
 
         // If everything is valid then the API will be called with the registerData paramter
-        dispatch(forgotPassword(forgotPasswordData));
+        dispatch(resetPassword(resetPasswordData));
     }
-
-
-    useEffect(() => {
-
-        if(isSuccess)
-            navigate('/medium')
-
-        // eslint-disable-next-line
-    }, [isSuccess])
 
     return (
         <>
@@ -116,16 +109,16 @@ export default function ForgotPassword() {
                 <Container >
 
 
-
-                    {/* {isSuccess && <Row>
+                    {/* Success Messages coming from the api will be shown in Bootstrap 5 alert */}
+                    {isSuccess && <Row>
                         <Col md={6} className="m-auto mb-3">
                             <div className="alert alert-success text-center" role="alert">
                                 <b>{message}</b>
                             </div>
                         </Col>
-                    </Row>} */}
+                    </Row>}
 
-
+                    
                     {/* Error Message coming from the api will be shown in Bootstrap 5 alert */}
                     {isError && <Row>
                         <Col md={6} className="m-auto mb-3">
@@ -138,7 +131,7 @@ export default function ForgotPassword() {
 
                     <Row>
                         <Col md={6} className="m-auto p-3" style={{ borderRadius: "20px" }}>
-                            <h2 id="register" className="text-center mb-4">Forgot Your Password?</h2>
+                            <h2 id="register" className="text-center mb-3">Update password</h2>
                             <Form onSubmit={handleSubmit}>
 
                                 <motion.div
@@ -148,14 +141,55 @@ export default function ForgotPassword() {
                                 >
                                     <Form.Group className="form-group">
                                         <span className="material-symbols-outlined b-0 p-2 colouring" >
-                                            email
+                                            token
                                         </span>
-                                        <input id="email" type="email" autoComplete="on" placeholder="Enter the email" className="colouring" onChange={handleRegisterData} />
+                                        <input id="token" type="text" autoComplete="on" placeholder="Enter the token from email" className="colouring" onChange={handleRegisterData} />
                                     </Form.Group>
                                     <div>
-                                        {!forgotPasswordFormValidity.email && <p className="text-danger text-end">**Please enter the email to get the token</p>}
+                                        {!resetPasswordFormValidity.token && <p className="text-danger text-end">**Please enter the token</p>}
                                     </div>
                                 </motion.div>
+
+
+
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+
+                                    className="mb-5"
+                                >
+                                    <Form.Group className="form-group">
+                                        <span className="material-symbols-rounded b-0 p-2 colouring">
+                                            lock
+                                        </span>
+                                        <input id="password" type="password" autoComplete="on" placeholder="Enter the password" className="colouring" onChange={handleRegisterData} />
+                                    </Form.Group>
+                                    <div>
+                                        {!resetPasswordFormValidity.password && <p className="text-danger text-end">**Please enter the password correctly</p>}
+                                    </div>
+                                </motion.div>
+
+
+
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+
+                                    className="mb-5"
+                                >
+                                    <Form.Group className="form-group">
+                                        <span className="material-symbols-rounded b-0 p-2 colouring">
+                                            <span className="material-symbols-outlined">
+                                                lock
+                                            </span>
+                                        </span>
+                                        <input id="confirmpassword" type="password" autoComplete="on" placeholder="Confirm password" className="colouring" onChange={handleRegisterData} />
+                                    </Form.Group>
+
+                                    <div>
+                                        {!resetPasswordFormValidity.confirmpassword && <p className="text-danger text-end">**Confirm Password and Password should be same</p>}
+                                    </div>
+
+                                </motion.div>
+
 
 
                                 <motion.div
@@ -163,11 +197,11 @@ export default function ForgotPassword() {
                                     whileTap={{ scale: 0.9 }}
                                     id="btn">
                                     <Button className="m-auto" id="forgot-password-button" type="submit">
-                                        Send token
+                                        Update Password
                                     </Button>
                                 </motion.div>
 
-
+                                
                             </Form>
                         </Col>
                     </Row>

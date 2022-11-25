@@ -8,12 +8,14 @@ import Register from './components/UI/Credential/Register';
 import Login from './components/UI/Credential/Login';
 import Foods from './components/UI/FoodData/Foods';
 import Order from './components/UI/Order/Order';
-import OrderHistory from './components/UI/OrderHistory/OrderHistory'
+import OrderHistory from './components/UI/OrderHistory/OrderHistory';
 import ForgotPassword from './components/UI/Credential/ForgotPassword';
+import ResetPassword from './components/UI/Credential/ResetPassword';
+import SendTokenAndUpdatePwdMedium from './components/UI/Credential/SendTokenAndUpdatePwdMedium'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { useSelector, useDispatch } from 'react-redux';
-import { getCartData } from './store/cart-slice'
-import { cartActions } from './store/index'
+import { getCartData } from './store/cart-slice';
+import { cartActions } from './store/index';
 
 
 
@@ -104,8 +106,10 @@ const App = () => {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/forgotPassword" element={<ForgotPassword />} />
+            <Route exact path="/resetPassword" element={<ResetPassword />} />
             <Route exact path="/foods" element={<Foods />} />
             <Route exact path="/orderHistory" element={<OrderHistory />} />
+            <Route exact path="/medium" element={<SendTokenAndUpdatePwdMedium />} />
           </Routes>
         </BrowserRouter>
       </PayPalScriptProvider>
