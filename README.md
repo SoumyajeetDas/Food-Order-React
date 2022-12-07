@@ -130,8 +130,17 @@ The Web App is deployed in Netifly
 ## 🛠 Skills
 
 <h3 align="left">Languages and Tools:</h3>
-# 💻 Tech Stack:
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+
+- ![](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+- CSS 3
+- Bootstrap 5
+- React JS
+- Redux
+- Node JS
+- Express JS
+- Mongo DB
+- T-SQL
+
 
 
 ## 🔗 Connect With Me
