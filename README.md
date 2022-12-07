@@ -4,9 +4,6 @@ A Web App named as THE BENGALIS created with MERN Stack
 
 
 
-
-## Badges
-
 ![](https://img.shields.io/badge/Maintained-Yes-brightgreen?style=for-the-badge)
 
 ![](https://img.shields.io/badge/Website%20Up-Yes-brightgreen?style=for-the-badge)
@@ -22,6 +19,8 @@ A Web App named as THE BENGALIS created with MERN Stack
 ![](https://img.shields.io/badge/react--router--dom-6.4.2-important?style=for-the-badge)
 
 ![](https://img.shields.io/badge/Bootstrap-5.2.2-important?style=for-the-badge)
+
+![](https://img.shields.io/badge/framer--motion-7.8.1-important?style=for-the-badge)
 
 ![](https://img.shields.io/badge/%40paypal%2Freact--paypal--js-7.8.1-important?style=for-the-badge)
 
@@ -80,6 +79,7 @@ https://bengali-food-webapp.netlify.app/
 - Payment with Paypal Integartion SDK.
 - Add To Cart.
 - Add Rating by User on a specefic food.
+- Used Framer Motion for Animation
 - Deployed to Netlify using CI/CD pipeline configuration.
 
 
