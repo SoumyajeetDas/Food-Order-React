@@ -20,7 +20,7 @@ A Web App named as THE BENGALIS created with MERN Stack
 
 ![](https://img.shields.io/badge/Bootstrap-5.2.2-important?style=for-the-badge)
 
-![](https://img.shields.io/badge/framer--motion-7.8.1-important?style=for-the-badge)
+![](https://img.shields.io/badge/framer--motion-7.5.3-important?style=for-the-badge)
 
 ![](https://img.shields.io/badge/%40paypal%2Freact--paypal--js-7.8.1-important?style=for-the-badge)
 
@@ -112,6 +112,7 @@ The Web App is deployed in Netifly
 - JWT(JSON Web Token)
 - Sending Mails through Email Delivery Service (SendGrid)
 - Paypal Integartion SDK
+- Animation with Framer Motion
 - Using Email Api Service with SendGrid and testing email with MailTrap
 
 
