@@ -114,8 +114,10 @@ export default function Menu(props) {
                     </span>
                 </span>
                 Cart
+                <div className="text-white text-center p-1 m-0 bg-danger rounded-circle">
+                    <b className="m-2">{items ? items.length : 0}</b>
+                </div>
 
-                <p className="m-0 py-1 px-3 bg-danger rounded-pill">{items? items.length:0}</p>
             </div>}
 
 
