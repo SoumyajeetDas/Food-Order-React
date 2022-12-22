@@ -35,37 +35,37 @@ https://bengali-food-webapp.netlify.app/
 ## Screenshots
 
 ### Landing Page
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Landing%20Page.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Landing%20Page.png)
 
 ### Login
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Login.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Login.png)
 
 ### Register
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Sign%20Up.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Sign%20Up.png)
 
 ### Forgot Password
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Forgot%20Password.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Forgot%20Password.png)
 
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Middle.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Middle.png)
 
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Update%20Password.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Update%20Password.png)
 
 ### List of Foods
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Food%20With%20Cart%20System%201.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Food%20With%20Cart%20System%201.png)
 
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Food%20With%20Cart%20System%202.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Food%20With%20Cart%20System%202.png)
 
 ### Rating
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Give%20Rating.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Give%20Rating.png)
 
 ### Email Template created with SendGrid
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Welcomer%20Email.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Welcomer%20Email.png)
 
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Successfull%20Order%20Email.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Successfull%20Order%20Email.png)
 
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Unsuccessfull%20Email.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Unsuccessfull%20Email.png)
 
-![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/The-Bengalis-Images/main/Password%20Reset%20Token.png)
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Password%20Reset%20Token.png)
 
 
 ## Features
@@ -79,7 +79,8 @@ https://bengali-food-webapp.netlify.app/
 - Payment with Paypal Integartion SDK.
 - Add To Cart.
 - Add Rating by User on a specefic food.
-- Used Framer Motion for Animation
+- Used Framer Motion for Animation.
+- Fully Responsive Website.
 - Deployed to Netlify using CI/CD pipeline configuration.
 
 
@@ -136,9 +137,11 @@ The Web App is deployed in Netifly
 
 ![](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
 
+![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
 ![](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)
 
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
