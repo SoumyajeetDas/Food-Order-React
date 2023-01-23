@@ -56,7 +56,7 @@ export default function FoodItems(props) {
         <Container style={{ maxWidth: "90%" }} className="p-0">
 
           <Row>
-            <Col className="mx-auto p-0" sm={9} id="food-bar" style={{ position: "relative" }}>
+            <Col className="mx-auto p-0" sm={9} id="food-bar" style={{ position: "relative", zIndex:"2px" }}>
 
               {/* Avg Rating Badge */}
               <span className={`p-1 text-center text-white ${props.item.avgRating >= 3 ? 'bg-success' : 'bg-danger'}`} id="badge">{props.item.avgRating.toFixed(1)}</span>

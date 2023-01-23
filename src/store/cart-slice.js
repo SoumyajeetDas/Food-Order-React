@@ -95,7 +95,7 @@ const cartSlice = createSlice({
             const existingCartItem = state.items[existingCartItemIndex]; // If the index is incorrect then the value of existingCartItem is undefined
 
 
-            state.changed = true; // This is required to confirm whethere the data will be save din DB or not. Explanation in App.js
+            state.changed = true; // This is required to confirm whethere the data will be save din DB or not. Explanation in Food.js
 
             // 3. Update the item if present and add in the list if new
 
@@ -128,7 +128,7 @@ const cartSlice = createSlice({
             const existingCartItem = state.items[existingCartItemIndex];
 
 
-            state.changed = true; // This is required to confirm whethere the data will be save din DB or not. Explanation in App.js
+            state.changed = true; // This is required to confirm whethere the data will be save din DB or not. Explanation in Food.js
 
 
             // 3. Update the amount for the item if present and remove it when the amount is 0

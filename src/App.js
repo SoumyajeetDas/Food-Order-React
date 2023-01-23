@@ -16,6 +16,7 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { useSelector, useDispatch } from 'react-redux';
 import { getCartData } from './store/cart-slice';
 import { cartActions } from './store/index';
+import Page404 from './components/UI/PageNotFound/Page404';
 
 
 
@@ -110,6 +111,7 @@ const App = () => {
             <Route exact path="/foods" element={<Foods />} />
             <Route exact path="/orderHistory" element={<OrderHistory />} />
             <Route exact path="/medium" element={<SendTokenAndUpdatePwdMedium />} />
+            <Route exact path="/*" element={<Page404/>} />
           </Routes>
         </BrowserRouter>
       </PayPalScriptProvider>
