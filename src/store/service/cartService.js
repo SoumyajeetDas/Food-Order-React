@@ -1,6 +1,8 @@
 /**********************Get the cart Data*************************/
 
 const getCart = async (token) => {
+
+    // If the cookie gets expired then the token coming as undefined.
     let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/cart/getCart`, {
         method: 'GET',
         mode: "cors",
@@ -24,6 +26,8 @@ const getCart = async (token) => {
 
 /**********************Upadting the cart*************************/
 const updateCart = async (token, cartData) => {
+
+    // If the cookie gets expired then the token coming as undefined.
 
     // console.log("CartData", cartData.items);
 

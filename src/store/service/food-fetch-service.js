@@ -2,6 +2,8 @@
 
 const getAllFoods = async (token) => {
 
+    // If the cookie gets expired then the token coming as undefined.
+
     let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/bengalifood`, {
         method: 'GET',
         mode: "cors",
@@ -25,6 +27,8 @@ const getAllFoods = async (token) => {
 
 /**********************Get the Type of Food like Breakfast, Lunch etc.*************************/
 const getFoodTypeFoods = async (type, token) => {
+
+    // If the cookie gets expired then the token coming as undefined.
 
     let data;
 
@@ -70,6 +74,7 @@ const getFoodTypeFoods = async (type, token) => {
 /**********************Search the food*************************/
 const getSearchedFoods = async (key, token) => {
 
+    // If the cookie gets expired then the token coming as undefined.
 
     let data = await fetch(`${process.env.REACT_APP_Working_URL}/api/v1/bengalifood/search/${key}`, {
         method: 'GET',

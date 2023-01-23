@@ -5,6 +5,9 @@ import Cookie from 'js-cookie';
 
 // Done by normal authentication process. The autghentication process should be done by the reset token and access token 
 // and httpOnly cookie but cannot be done as httpOnly Cookie is not working with vercel and Heroku.
+
+// The expiration is 1 day. Within that 1 day each time the site gets loaded the cookie comes along with it. When the 
+// cookie gets expired the cookies also disappears.
 const registerData = Cookie.get('userregisterData') ? JSON.parse(Cookie.get('userregisterData')) : '';
 
 const initialAuthState = {
