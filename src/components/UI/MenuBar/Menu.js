@@ -78,7 +78,7 @@ export default function Menu(props) {
             {/* Header of Menubar conatining Image and the cross button */}
             <div id="cross" >
                 <div>
-                    <img src="icon.png" alt="Loading..." height="50" width="50"></img>
+                    <img src="/icon.png" alt="Loading..." height="50" width="50"></img>
                     <p className="mt-1">The Bengalis</p>
                 </div>
 

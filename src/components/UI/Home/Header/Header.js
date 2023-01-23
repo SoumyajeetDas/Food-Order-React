@@ -77,7 +77,7 @@ export default function Header(props) {
 
 
           <li>
-            <img src="icon.png" height="100" width="100" alt="...Loading"></img>
+            <img src="/icon.png" height="100" width="100" alt="...Loading"></img>
           </li>
 
 
