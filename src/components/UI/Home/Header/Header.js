@@ -142,7 +142,7 @@ export default function Header(props) {
                 lunch_dining
               </span>
               <div id="cart-number" className="text-white text-center m-0  bg-danger">
-                <b>{items.length}</b>
+                <b className='d-flex justify-content-center align-items-center text-center'>{items.length}</b>
               </div>
             </motion.div>
 
