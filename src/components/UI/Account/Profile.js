@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from '../../../store/user-slice'
 import { useEffect } from 'react';
 import { motion } from "framer-motion"
+import Spiner from '../Spinner/Spiner';
 
 
 
@@ -26,8 +27,7 @@ const containerVariants = {
 
 const Profile = () => {
 
-    const { name, phone, address, email, isUserError, userMessage, orderNumber } = useSelector(state => state.userReducer);
-    console.log(useSelector(state => state.userReducer))
+    const { name, phone, address, email, isUserError, userMessage, orderNumber, isLoading } = useSelector(state => state.userReducer);
 
     const dispatch = useDispatch();
 
@@ -60,8 +60,13 @@ const Profile = () => {
             initial="hidden"
             animate="visible"
         >
+
+            
             <Container className='my-5' style={{ maxWidth: "90%" }}>
                 <Row>
+
+                {isLoading ? <Spiner /> :
+
                     <Col xl={6} lg={8} md={8} sm={12} className="m-auto" id="profile-wrapper">
                         <div id="profile-wrapper-header">
 
@@ -110,7 +115,7 @@ const Profile = () => {
                             </div>
 
                         </Form>
-                    </Col>
+                    </Col> }
                 </Row>
             </Container>
 

@@ -6,9 +6,10 @@ const initialUserState = {
     address: '',
     email: '',
     phone: 0,
-    orderNumber:0,
+    orderNumber: 0,
     isUserError: false,
-    userMessage: ''
+    userMessage: '',
+    isLoading: false
 }
 
 
@@ -24,13 +25,13 @@ export const getUserData = createAsyncThunk('user/getUserData', async (value = n
 
 
         else if (response.status === '500 Internal Server Error') return thunkAPI.rejectWithValue(response.message);
-            
-            
 
-        else{
+
+
+        else {
             console.log("Hello for rejection")
             return thunkAPI.rejectWithValue(response.status);
-        } 
+        }
     }
     catch (err) {
         return thunkAPI.rejectWithValue(err.message);
@@ -52,7 +53,12 @@ const userSlice = createSlice({
             state.phone = action.payload.phone;
             state.orderNumber = action.payload.orderNumber;
             state.isUserError = false;
-            state.userMessage = ''
+            state.userMessage = '';
+            state.isLoading = false;
+        },
+
+        [getUserData.pending]: (state) => {
+            state.isLoading = true;
         },
 
         [getUserData.rejected]: (state, action) => {
@@ -62,7 +68,8 @@ const userSlice = createSlice({
             state.phone = 0;
             state.orderNumber = 0;
             state.isUserError = true;
-            state.userMessage = action.payload
+            state.userMessage = action.payload;
+            state.isLoading = false;
         },
     }
 });
