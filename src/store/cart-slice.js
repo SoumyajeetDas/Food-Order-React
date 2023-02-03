@@ -16,7 +16,7 @@ export const getCartData = createAsyncThunk('cart/getCartData', async (value = n
     try {
 
         // With getState() you can access any state all over the React Project. getState() actually returns all the reducer which is 
-        // present in the stire and throught the reducer the state can be accessed.
+        // present in the store and through out the reducer the state can be accessed.
         const token = thunkAPI.getState().authReducer.registerData.token;
 
 

@@ -5,7 +5,7 @@ import { Link, useNavigate, useResolvedPath, useMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { orderVisibilityActions } from '../../../../store/index';
 import { authActions, cartActions } from '../../../../store/index';
-import { logout } from '../../../../store/auth-slice'
+import { logout } from '../../../../store/auth-slice';
 
 export default function Header(props) {
 
@@ -138,17 +138,17 @@ export default function Header(props) {
               id="cart-icon"
             >
 
-              <span className="material-symbols-rounded text-white">
+              <span className="material-symbols-rounded text-white mt-auto">
                 lunch_dining
               </span>
-              <div id="cart-number" className="text-white text-center m-0  bg-danger rounded-circle">
+              <div id="cart-number" className="text-white text-center m-0  bg-danger">
                 <b>{items.length}</b>
               </div>
             </motion.div>
 
 
             {/* Logged In User Name */}
-            <div className="me-md-4" id="user-login">
+            <div className="me-md-4" id="user-login" onClick={()=>navigate('/profile')}>
 
               <small><i>Hello {registerData.user.name} !!</i></small>
 

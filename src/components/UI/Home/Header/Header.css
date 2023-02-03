@@ -40,10 +40,11 @@ header {
     color: rgb(244, 191, 92);
 }
 
-.normal{
+.normal {
     color: white;
 }
-.active{
+
+.active {
     color: rgb(244, 191, 92);
 }
 
@@ -72,8 +73,6 @@ header {
 
 }
 
-
-
 .right_part {
     display: flex;
     justify-content: space-between;
@@ -82,10 +81,19 @@ header {
     color: rgb(244, 191, 92);
 }
 
+#cart-icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 #cart-number {
     position: relative;
-    top: -45px;
-    right:-21px;
+    top: -18px;
+    right: 6px;
+    border-radius: 50%;
+    width:28px;
+    height:28px;
 }
 
 
@@ -129,9 +137,12 @@ header {
 #user-login {
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     color: rgb(244, 191, 92);
+    cursor: pointer;
 }
+
+
 
 
 @media screen and (max-width:1092px) {

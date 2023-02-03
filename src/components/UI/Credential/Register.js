@@ -15,10 +15,12 @@ import Footer from '../Home/Footer/Footer';
 
 
 
-let validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
+let validRegexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
+let validRegexPhone = /^[\d]{10}$/
 
 const isEmpty = value => value.trim() === ''
-const isEmail = value => validRegex.test(value.trim())
+const isEmail = value => validRegexEmail.test(value.trim())
+const isPhone = value => validRegexPhone.test(value.trim())
 const isPwdAndCnfSame = (pwd, cnf) => pwd === cnf
 
 
@@ -47,6 +49,8 @@ export default function Register() {
     const [registerData, setRegisterData] = useState({
         name: '',
         email: '',
+        phone: '',
+        address: '',
         password: '',
         confirmpassword: ''
     });
@@ -55,6 +59,8 @@ export default function Register() {
     const [registerFormValidity, setRegisterFormValidity] = useState({
         name: true,
         email: true,
+        phone: true,
+        address: true,
         password: true,
         confirmpassword: true
     });
@@ -76,7 +82,9 @@ export default function Register() {
 
         // Checking the Validity
         const isUsernameValid = !isEmpty(registerData.name);
-        const isEmailValid = !isEmpty(registerData.email) && isEmail(registerData.email)
+        const isEmailValid = !isEmpty(registerData.email) && isEmail(registerData.email);
+        const isPhoneValid = !isEmpty(registerData.phone) && isPhone(registerData.phone);
+        const isAddressValid = !isEmpty(registerData.address);
         const isPasswordValid = !isEmpty(registerData.password);
         const isConfirmPasswordValid = isPwdAndCnfSame(registerData.password, registerData.confirmpassword);
 
@@ -85,12 +93,14 @@ export default function Register() {
         setRegisterFormValidity({
             name: isUsernameValid,
             email: isEmailValid,
+            phone: isPhoneValid,
+            address: isAddressValid,
             password: isPasswordValid,
             confirmpassword: isConfirmPasswordValid
         });
 
 
-        const isFormValid = isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid;
+        const isFormValid = isUsernameValid && isEmailValid && isPhoneValid && isAddressValid && isPasswordValid && isConfirmPasswordValid;
 
         // If the form not valid the control will be removed from the flow
         if (!isFormValid) {
@@ -178,7 +188,39 @@ export default function Register() {
 
                                 </motion.div>
 
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
 
+                                    className="mb-5"
+                                >
+                                    <Form.Group className="form-group">
+                                        <span className="material-symbols-outlined b-0 p-2 colouring" >
+                                            call
+                                        </span>
+                                        <input id="phone" type="text" autoComplete="on" placeholder="Enter the phone Number" className="colouring" onChange={handleRegisterData} />
+                                    </Form.Group>
+                                    <div>
+                                        {!registerFormValidity.phone && <p className="text-danger text-end">**Please enter a valid phone no.</p>}
+                                    </div>
+
+                                </motion.div>
+
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+
+                                    className="mb-5"
+                                >
+                                    <Form.Group className="form-group">
+                                        <span className="material-symbols-outlined b-0 p-2 colouring" >
+                                            home
+                                        </span>
+                                        <input id="address" type="text" autoComplete="on" placeholder="Enter the address" className="colouring" onChange={handleRegisterData} />
+                                    </Form.Group>
+                                    <div>
+                                        {!registerFormValidity.address && <p className="text-danger text-end">**Please enter your address</p>}
+                                    </div>
+
+                                </motion.div>
 
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}

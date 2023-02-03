@@ -17,6 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCartData } from './store/cart-slice';
 import { cartActions } from './store/index';
 import Page404 from './components/UI/PageNotFound/Page404';
+import Profile from './components/UI/Account/Profile';
 
 
 
@@ -111,6 +112,7 @@ const App = () => {
             <Route exact path="/foods" element={<Foods />} />
             <Route exact path="/orderHistory" element={<OrderHistory />} />
             <Route exact path="/medium" element={<SendTokenAndUpdatePwdMedium />} />
+            <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/*" element={<Page404/>} />
           </Routes>
         </BrowserRouter>
