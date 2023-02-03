@@ -141,8 +141,8 @@ export default function Header(props) {
               <span className="material-symbols-rounded text-white mt-auto">
                 lunch_dining
               </span>
-              <div id="cart-number" className="text-white text-center m-0  bg-danger">
-                <b className='d-flex justify-content-center align-items-center text-center'>{items.length}</b>
+              <div id="cart-number" className="text-white m-0 d-flex justify-content-center align-items-center bg-danger">
+                <b>{items.length}</b>
               </div>
             </motion.div>
 
