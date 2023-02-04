@@ -8,6 +8,8 @@ A Web App named as THE BENGALIS created with MERN Stack
 
 ![](https://img.shields.io/badge/Website%20Up-Yes-brightgreen?style=for-the-badge)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d781e3f8-6268-4e32-90cb-e19b66032248/deploy-status)](https://app.netlify.com/sites/bengali-food-webapp/deploys)
+
 ![](https://img.shields.io/badge/Made%20with-React-informational?style=for-the-badge)
 
 ![](https://img.shields.io/badge/Made%20with-Redux-informational?style=for-the-badge)
@@ -50,6 +52,11 @@ https://bengali-food-webapp.netlify.app/
 
 ![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Update%20Password.png)
 
+### User Profile Page
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Profile.png)
+
+![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Profile1.png)
+
 ### List of Foods
 ![App Screenshot](https://raw.githubusercontent.com/SoumyajeetDas/Project-Images/main/The-Bengalis-Images/Food%20With%20Cart%20System%201.png)
 
@@ -74,6 +81,7 @@ https://bengali-food-webapp.netlify.app/
 - Email Notification After Sign Up and Ordering Food with the help of SendGrid Email API.
 - Using Reset Token to update Password if the user has forgotten password.
 - Authentication in backend using JWT(JSON Web Token).
+- User can check profile details and can upload profile picture.
 - Search any food.
 - Buttons added wrt food type like Breakfast, Dinner, Lunch, Desserts.
 - Payment with Paypal Integartion SDK.
@@ -105,6 +113,7 @@ The Web App is deployed in Netifly
 - Redux Architectire
 - Redux Toolkit
 - Redux Devtools
+- Uploading Profile Pic via Cloudinary
 - Fetch API
 - CORS(Cross Origin Resouce Sharing)
 - Cookies
