@@ -113,7 +113,7 @@ const Profile = () => {
             navigate('/login');
         }
 
-        else {
+        else if(isUserError && userMessage) {
             console.log(userMessage);
         }
 
@@ -218,7 +218,7 @@ const Profile = () => {
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
                                             className="btn" onClick={() => handleDelete()}>
-                                            <span class="material-symbols-rounded">
+                                            <span className="material-symbols-rounded">
                                                 delete
                                             </span>
                                             Delete Profile Photo
@@ -234,8 +234,8 @@ const Profile = () => {
 
                                         <input id="file-input" type="file" style={{ display: "none" }} onChange={(e) => uploadImage(e.target.files[0])} />
 
-                                        <label for="file-input">
-                                            <span class="material-symbols-rounded">
+                                        <label htmlFor="file-input">
+                                            <span className="material-symbols-rounded">
                                                 add_circle
                                             </span>
 

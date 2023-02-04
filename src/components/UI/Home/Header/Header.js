@@ -14,6 +14,7 @@ export default function Header(props) {
 
   const { registerData } = useSelector(state => state.authReducer);
 
+  const { profilePic } = useSelector(state => state.userReducer);
 
   const dispatch = useDispatch();
 
@@ -148,15 +149,21 @@ export default function Header(props) {
 
 
             {/* Logged In User Name */}
-            <div className="me-md-4" id="user-login" onClick={()=>navigate('/profile')}>
+            <div className="me-md-4" id="user-login" onClick={() => navigate('/profile')}>
 
               <small><i>Hello {registerData.user.name} !!</i></small>
 
-              <div className="ms-2">
-                <span className="material-symbols-outlined text-white" id="login-icon">
-                  account_circle
-                </span>
-              </div>
+
+              {profilePic ?
+                <img src={profilePic} height="45px" width="45px" alt="..." style={{marginLeft:"1rem", borderRadius:"50%"}}></img>
+
+                :
+
+                <div className="ms-2">
+                  <span className="material-symbols-outlined text-white" id="login-icon">
+                    account_circle
+                  </span>
+                </div>}
 
             </div>
 

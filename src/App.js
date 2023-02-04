@@ -15,6 +15,7 @@ import SendTokenAndUpdatePwdMedium from './components/UI/Credential/SendTokenAnd
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { useSelector, useDispatch } from 'react-redux';
 import { getCartData } from './store/cart-slice';
+import { getUserData } from './store/user-slice'
 import { cartActions } from './store/index';
 import Page404 from './components/UI/PageNotFound/Page404';
 import Profile from './components/UI/Account/Profile';
@@ -24,6 +25,10 @@ import Profile from './components/UI/Account/Profile';
 const App = () => {
 
   const { isCartError, cartMessage } = useSelector(state => state.cartReducer);
+
+  const { registerData } = useSelector(state => state.authReducer);
+
+  const { isUserError, userMessage } = useSelector(state => state.userReducer);
 
   const dispatch = useDispatch();
 
@@ -59,7 +64,7 @@ const App = () => {
 
 
 
-  // This is used if any error comes from cartSlice while calling the cartData
+  // This is used if any error comes from cartSlice, user-slice while calling the cartData
   useEffect(() => {
 
     if (isCartError) {
@@ -68,19 +73,37 @@ const App = () => {
       dispatch(cartActions.reset());
     }
 
-  }, [isCartError, cartMessage, dispatch])
+    if(isUserError){
+      console.log(userMessage);
+    }
+
+  }, [isCartError, cartMessage, dispatch, isUserError, userMessage])
+
+
+  // Everytime the registerData changes say when the user gets logged in or logged out the getUserData() needs to be called, so 
+  // that the profilePic in the header gets updated.
+  useEffect(() => {
+
+    dispatch(getUserData());
+
+    // eslint-disable-next-line
+  }, [registerData])
 
 
 
-  // Just when the application gets loaded the cart System tries gets loaded. If user is not looged in then it will not get loaded 
-  // If the user is looged in the cart gets loaded and whichever component the data needs to be shown is showed.
+  // Just when the application gets loaded the cart System and the user data tries gets loaded. If user is not logged in then 
+  // both user and cart will not get loaded. If the user is logged in, the cart and the user gets loaded irrespective of 
+  // whichever component gets loaded.
+
   useEffect(() => {
 
     //Load the cart data
     dispatch(getCartData());
 
+    dispatch(getUserData());
+
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
 
 
@@ -113,7 +136,7 @@ const App = () => {
             <Route exact path="/orderHistory" element={<OrderHistory />} />
             <Route exact path="/medium" element={<SendTokenAndUpdatePwdMedium />} />
             <Route exact path="/profile" element={<Profile />} />
-            <Route exact path="/*" element={<Page404/>} />
+            <Route exact path="/*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
       </PayPalScriptProvider>
