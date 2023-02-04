@@ -7,6 +7,7 @@ const initialUserState = {
     email: '',
     phone: 0,
     orderNumber: 0,
+    profilePic: '',
     isUserError: false,
     userMessage: '',
     isLoading: false
@@ -29,7 +30,6 @@ export const getUserData = createAsyncThunk('user/getUserData', async (value = n
 
 
         else {
-            console.log("Hello for rejection")
             return thunkAPI.rejectWithValue(response.status);
         }
     }
@@ -52,6 +52,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.phone = action.payload.phone;
             state.orderNumber = action.payload.orderNumber;
+            state.profilePic = action.payload.profilePic;
             state.isUserError = false;
             state.userMessage = '';
             state.isLoading = false;
@@ -67,6 +68,7 @@ const userSlice = createSlice({
             state.email = '';
             state.phone = 0;
             state.orderNumber = 0;
+            state.profilePic = action.payload.profilePic;
             state.isUserError = true;
             state.userMessage = action.payload;
             state.isLoading = false;
