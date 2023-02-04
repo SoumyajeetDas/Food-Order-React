@@ -217,6 +217,7 @@ const Profile = () => {
                                         <motion.button
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
+                                            id="delete-profile-pic"
                                             className="btn" onClick={() => handleDelete()}>
                                             <span className="material-symbols-rounded">
                                                 delete
