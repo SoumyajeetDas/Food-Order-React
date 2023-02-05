@@ -155,14 +155,12 @@ export default function Header(props) {
 
 
               {profilePic ?
-                <img src={profilePic} height="45px" width="45px" alt="..." style={{marginLeft:"1rem", borderRadius:"50%"}}></img>
+                <img src={profilePic} height="45px" width="45px" alt="..."></img>
 
                 :
 
-                <div className="ms-2">
-                  <span className="material-symbols-outlined text-white" id="login-icon">
-                    account_circle
-                  </span>
+                <div>
+                  <b>{registerData.user.name.charAt(0)}</b>
                 </div>}
 
             </div>
